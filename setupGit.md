@@ -3,8 +3,8 @@
 ## Her kommer en liten guide på hvordan dere kan bruke git hvis dere aldri har brukt det før.
 
 Programmer du må laste ned for å enkelt kunne bruke Git:
-    - [Git](https://git-scm.com/downloads)
-    - VSCode
+- [Git](https://git-scm.com/downloads)
+- VSCode
 
 ### Step 0 - Github
 Hvis du ikke allerede har en bruker på Github, så må du laste ned denne. Når du har gjort det, så må du sende Fredrik en melding med epostadressen du har satt for Github-kontoen, så han kan gi deg tilgang.  
@@ -40,4 +40,4 @@ Skriv inn kodesnutten nedenfor og sett inn din email.
 Du blir videre bedt om en fil å lagre nøkkelen i, men bare trykk enter.
 Du blir også bedt om å sette et passord, men det er lettest å ikke sette noe, så bare trykk enter uten å skrive inn passord.
 
-Nå er du nødt til å legge til denne SSH-nøkkelen i Github profilen din. For å gjøre det kan du følge denne [guiden]($ ssh-keygen -t ed25519 -C "your_email@example.com").
+Nå er du nødt til å legge til denne SSH-nøkkelen i Github profilen din. For å gjøre det kan du følge denne [guiden](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).
