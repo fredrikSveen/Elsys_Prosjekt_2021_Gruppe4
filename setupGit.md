@@ -3,11 +3,11 @@
 ## Her kommer en liten guide på hvordan dere kan bruke git hvis dere aldri har brukt det før.
 
 Programmer du må laste ned for å enkelt kunne bruke Git:
-- [Git](https://git-scm.com/downloads)
+- [Git](https://git-scm.com/downloads) (Velg Visual Studio Code som standard editor)
 - VSCode
 
 ### Step 0 - Github
-Hvis du ikke allerede har en bruker på Github, så må du laste ned denne. Når du har gjort det, så må du sende Fredrik en melding med epostadressen du har satt for Github-kontoen, så han kan gi deg tilgang.  
+Hvis du ikke allerede har en bruker på Github, så må du lage dette. Når du har gjort det, så må du sende Fredrik en melding med epostadressen du har satt for Github-kontoen, så han kan gi deg tilgang.  
 
 ### Step 1 - Oppsett av Git Bash
 Git Bash skal ha blitt lastet ned når du lastet ned Git. Hvis ikke, last ned Git Bash.
@@ -15,7 +15,7 @@ Git Bash skal ha blitt lastet ned når du lastet ned Git. Hvis ikke, last ned Gi
 
 Sett brukernavn for Git
 
-`$ git config --global user.name "Mona Lisa"`
+    $ git config --global user.name "Mona Lisa"
 
 og sjekk at brukernavnet er definert
 
