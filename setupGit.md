@@ -15,5 +15,6 @@ Sett brukernavn for Git
 
 og sjekk at brukernavnet er definert
 
-`$ git config --global user.name`
-`> Mona Lisa`
+    $ git config --global user.name
+    > Mona Lisa
+
