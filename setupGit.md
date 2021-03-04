@@ -41,3 +41,18 @@ Du blir videre bedt om en fil å lagre nøkkelen i, men bare trykk enter.
 Du blir også bedt om å sette et passord, men det er lettest å ikke sette noe, så bare trykk enter uten å skrive inn passord.
 
 Nå er du nødt til å legge til denne SSH-nøkkelen i Github profilen din. For å gjøre det kan du følge denne [guiden](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).
+
+For å teste om du har lagt inn SSH-nøkkelen riktig, kan du bruke denne [linken](https://docs.github.com/en/github/authenticating-to-github/testing-your-ssh-connection).
+
+### Step 3 - Klone Github repoet (koden på Github) til din PC.
+Nå skal du hente koden fra Github til din PC, og etablere en kobling mellom din PC og Github så du enkelt kan laste opp filer og hente de siste endringene. 
+
+Du skal nå kunne kjøre følgende kommando i Git Bash
+    $ git clone git@github.com:fredrikSveen/Elsys_Prosjekt_2021_Gruppe4.git
+Her må du logge inn med brukernavn og passord for Github (Hvis du ikke har fått tilgang av Fredrik enda, så vil ikke dette fungere).
+
+Kjør så
+    $ cd Elsys_Prosjekt_2021_Gruppe4
+og deretter
+    code .
+for å åpne hele prosjektet i VScode.
