@@ -48,11 +48,17 @@ For å teste om du har lagt inn SSH-nøkkelen riktig, kan du bruke denne [linken
 Nå skal du hente koden fra Github til din PC, og etablere en kobling mellom din PC og Github så du enkelt kan laste opp filer og hente de siste endringene. 
 
 Du skal nå kunne kjøre følgende kommando i Git Bash
+
     $ git clone git@github.com:fredrikSveen/Elsys_Prosjekt_2021_Gruppe4.git
+
 Her må du logge inn med brukernavn og passord for Github (Hvis du ikke har fått tilgang av Fredrik enda, så vil ikke dette fungere).
 
 Kjør så
+
     $ cd Elsys_Prosjekt_2021_Gruppe4
+
 og deretter
-    code .
+
+    $ code .
+
 for å åpne hele prosjektet i VScode.
