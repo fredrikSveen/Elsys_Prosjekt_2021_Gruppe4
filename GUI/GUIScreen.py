@@ -22,11 +22,13 @@ def Avslutt():
     w.geometry('400x240')  
     v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
     v.place(relx = 0.2, rely = 0.2)
+    def closeW():
+        w.destroy()
     
     avsluttSpill = tk.Button(w, text="Avslutt spill", font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
-    tilbake = tk.Button(w, text="Tilbake til spillet", commannd=quit, font=("Arial Bold", 10))
+    tilbake = tk.Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 10))
     tilbake.place(relx = 0.2, rely = 0.4)       
 
 def window1():
@@ -63,6 +65,8 @@ def window1():
     start.place(relx = 0.45, rely = 0.7)
 
 
+
+
 def window2():
     rundenr = 1
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
@@ -81,7 +85,10 @@ def window3():
     fortsett.place(relx = 0.72, rely = 0.83)
     
     avslutt = tk.Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 30))
-    avslutt.place(relx = 0.72, rely = 0.83)   
+    avslutt.place(relx = 0.72, rely = 0.83) 
+
+
+
 
 
 window1()
