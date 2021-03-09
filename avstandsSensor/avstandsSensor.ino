@@ -43,7 +43,7 @@ void loop() {
     i = 0;
   }
 
-  if (stones == 8) {
+  if (stones == 16) {
     stones = 0;
     finish = true;
   }
