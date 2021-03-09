@@ -6,7 +6,7 @@ window.geometry('800x480')
 
 
 #Globale variabler:
-#rundenr
+runder = 5
     
 
 #Funksjoner
@@ -19,7 +19,15 @@ def clearFrame(): # destroys all widgets from frame
        
 def Avslutt():
     w = tk.Tk()
-    w.geometry()       
+    w.geometry('400x240')  
+    v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
+    v.place(relx = 0.2, rely = 0.2)
+    
+    avsluttSpill = tk.Button(w, text="Avslutt spill", font=("Arial Bold", 10))
+    avsluttSpill.place(relx = 0.6, rely = 0.4)
+    
+    tilbake = tk.Button(w, text="Tilbake til spillet", commannd=quit, font=("Arial Bold", 10))
+    tilbake.place(relx = 0.2, rely = 0.4)       
 
 def window1():
     runder = 5
@@ -30,11 +38,15 @@ def window1():
         value = int(l["text"])
         if value < 10:
             l["text"] = f"{value + 1}"
+            global runder
+            runder += 1
     
     def pilNed():
         value = int(l["text"])
         if value > 1:
             l["text"] = f"{value - 1}"
+            global runder
+            runder -= 1
     
     def Start():
         clearFrame()
@@ -64,7 +76,12 @@ def window2():
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
     lag2.place(relx = 0.5, rely = 0.2)
     
+def window3():
+    fortsett = tk.Button(window, text="Fortsett", command=Avslutt, font=("Arial Bold", 30))
+    fortsett.place(relx = 0.72, rely = 0.83)
     
+    avslutt = tk.Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 30))
+    avslutt.place(relx = 0.72, rely = 0.83)   
 
 
 window1()
