@@ -20,32 +20,22 @@ def clearFrame(): # destroys all widgets from frame
        
 def Avslutt():
     w = tk.Tk()
-    w.geometry('400x240')  
+    w.geometry('401x240')  
     v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
     v.place(relx = 0.2, rely = 0.2)
-<<<<<<< HEAD
     def closeW():
         w.destroy()
-=======
 
     def A(): #Avsluttknapp i det lille vinduet
         w.destroy()
         clearFrame()
         window3()
->>>>>>> 29e501532cac8d44c9fa7afe15f68d20abf35d09
     
     avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
-<<<<<<< HEAD
     tilbake = tk.Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 10))
     tilbake.place(relx = 0.2, rely = 0.4)       
-=======
-    tilbake = tk.Button(w, text="Tilbake til spillet", command=quit, font=("Arial Bold", 10))
-    tilbake.place(relx = 0.2, rely = 0.4)  
-
-    
->>>>>>> 29e501532cac8d44c9fa7afe15f68d20abf35d09
 
 def window1():
     runder = 5
@@ -100,12 +90,6 @@ def window3():
     fortsett.place(relx = 0.72, rely = 0.83)
     
     avslutt = tk.Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 30))
-<<<<<<< HEAD
-    avslutt.place(relx = 0.72, rely = 0.83) 
-
-
-
-=======
     avslutt.place(relx = 0.72, rely = 0.83)
 
 def window4():
@@ -115,7 +99,6 @@ def window4():
         
     ns = tk.Button(window, text="Nytt spill", command=nyttSpill, font=("Arial Bold", 30))
     ns.place(relx=0.4, rely=0.8)
->>>>>>> 29e501532cac8d44c9fa7afe15f68d20abf35d09
 
 
 window1()
