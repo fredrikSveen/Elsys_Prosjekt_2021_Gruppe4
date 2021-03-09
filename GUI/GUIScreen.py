@@ -65,9 +65,7 @@ def window2():
     lag2.place(relx = 0.5, rely = 0.2)
     
     
-def window3():
-    fortsett = tk.Button(window, text="Continue", font("Arial Bold", 40))
-    
+
 
 window1()
     
