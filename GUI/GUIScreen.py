@@ -7,6 +7,7 @@ window.geometry('800x480')
 
 #Globale variabler:
 runder = 5
+rundenr = 1
     
 
 #Funksjoner
@@ -22,12 +23,19 @@ def Avslutt():
     w.geometry('400x240')  
     v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
     v.place(relx = 0.2, rely = 0.2)
+
+    def A(): #Avsluttknapp i det lille vinduet
+        w.destroy()
+        clearFrame()
+        window3()
     
-    avsluttSpill = tk.Button(w, text="Avslutt spill", font=("Arial Bold", 10))
+    avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
-    tilbake = tk.Button(w, text="Tilbake til spillet", commannd=quit, font=("Arial Bold", 10))
-    tilbake.place(relx = 0.2, rely = 0.4)       
+    tilbake = tk.Button(w, text="Tilbake til spillet", command=quit, font=("Arial Bold", 10))
+    tilbake.place(relx = 0.2, rely = 0.4)  
+
+    
 
 def window1():
     runder = 5
@@ -64,7 +72,6 @@ def window1():
 
 
 def window2():
-    rundenr = 1
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
     
@@ -81,7 +88,15 @@ def window3():
     fortsett.place(relx = 0.72, rely = 0.83)
     
     avslutt = tk.Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 30))
-    avslutt.place(relx = 0.72, rely = 0.83)   
+    avslutt.place(relx = 0.72, rely = 0.83)
+
+def window4():
+    def nyttSpill():
+        clearFrame()
+        window1()
+        
+    ns = tk.Button(window, text="Nytt spill", command=nyttSpill, font=("Arial Bold", 30))
+    ns.place(relx=0.4, rely=0.8)
 
 
 window1()
