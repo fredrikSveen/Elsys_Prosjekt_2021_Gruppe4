@@ -20,7 +20,7 @@ def clearFrame(): # destroys all widgets from frame
        
 def Avslutt():
     w = tk.Tk()
-    w.geometry('401x240')  
+    w.geometry('400x240')  
     v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
     v.place(relx = 0.2, rely = 0.2)
     def closeW():
