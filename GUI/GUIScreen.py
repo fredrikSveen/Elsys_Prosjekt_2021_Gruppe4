@@ -8,6 +8,7 @@ window.geometry('800x480')
 #Globale variabler:
 runder = 5
 rundenr = 1
+avsluttBool = False
     
 
 #Funksjoner
@@ -27,6 +28,7 @@ def Avslutt():
         w.destroy()
 
     def A(): #Avsluttknapp i det lille vinduet
+        avsluttBool = True
         w.destroy()
         clearFrame()
         window3()
@@ -35,10 +37,10 @@ def Avslutt():
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
     tilbake = tk.Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 10))
-    tilbake.place(relx = 0.2, rely = 0.4)       
+    tilbake.place(relx = 0.2, rely = 0.4)
+
 
 def window1():
-    runder = 5
     l = tk.Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
     
@@ -71,8 +73,6 @@ def window1():
     start.place(relx = 0.45, rely = 0.7)
 
 
-
-
 def window2():
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
@@ -86,11 +86,29 @@ def window2():
     lag2.place(relx = 0.5, rely = 0.2)
     
 def window3():
-    fortsett = tk.Button(window, text="Fortsett", command=Avslutt, font=("Arial Bold", 30))
-    fortsett.place(relx = 0.72, rely = 0.83)
-    
-    avslutt = tk.Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 30))
-    avslutt.place(relx = 0.72, rely = 0.83)
+    def w4():
+        clearFrame()
+        window4()
+
+    def w3_1(): # vindu 3 layout 1
+        def n_r():
+            clearFrame()
+            window2()
+        nesteRunde = tk.Button(window, text="Neste runde", command=n_r)
+        nesteRunde.place(relx=0.2, rely=0.8)
+        
+        avslutt2 = tk.Button(window, text="Avslutt", command=w4)
+        avslutt2.place(relx=0.5, rely=0.8)
+
+    def w3_2(): # vindu 3 layout 2
+        fortsett = tk.Button(window, text="Fortsett", command=w4)
+        fortsett.place(relx=0.4, rely=0.8)
+
+    if avsluttBool:
+        w3_2()
+        #avsluttBool = False
+    else:
+        w3_1()
 
 def window4():
     def nyttSpill():
@@ -100,8 +118,12 @@ def window4():
     ns = tk.Button(window, text="Nytt spill", command=nyttSpill, font=("Arial Bold", 30))
     ns.place(relx=0.4, rely=0.8)
 
+    vinner = "Team 1" # legge inn den faktiske vinneren
+
+    vinnerText = tk.Label(window, text="Vinneren er "+vinner, font=("Arial Bold", 30))
+    vinnerText.place(relx=0.3, rely=0.3)
+
 
 window1()
     
-
 window.mainloop()
