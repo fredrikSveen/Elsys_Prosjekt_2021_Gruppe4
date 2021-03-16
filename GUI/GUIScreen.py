@@ -12,17 +12,7 @@ rundenr = 1
 avsluttBool = False
 stones = 0
 
-# take the data 
-table = list(range(runder + 1))
-for i in range(0,runder + 1):
-    cols = list(range(3))
-    cols[0] = str(i)
-    cols[1] = str(3)
-    cols[2] = str(3)
-    table[i] = cols
-table[0][0] = "Team/Round"
-table[0][1] = "Team 1"
-table[0][2] = "Team 2"
+
 
     
 totalStones = 4
@@ -85,13 +75,13 @@ def window1():
         window2()   
     
     opp = tk.Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30))
-    opp.place(relx = 0.5, rely = 0.4)
+    opp.place(relx = 0.55, rely = 0.35)
     
     ned = tk.Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30))
-    ned.place(relx = 0.5, rely = 0.5)
+    ned.place(relx = 0.55, rely = 0.53)
     
     start = tk.Button(window, text="Start", command=Start, font=("Arial Bold", 25))
-    start.place(relx = 0.45, rely = 0.7)
+    start.place(relx = 0.45, rely = 0.8)
 
 def window2():
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
@@ -185,7 +175,17 @@ def window3():
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
         
-
+    # take the data 
+    table = list(range(runder + 1))
+    for i in range(0,runder + 1):
+        cols = list(range(3))
+        cols[0] = str(i)
+        cols[1] = str(3)
+        cols[2] = str(3)
+        table[i] = cols
+    table[0][0] = "Team/Round"
+    table[0][1] = "Team 1"
+    table[0][2] = "Team 2"
    
     # find total number of rows and 
     # columns in list 
