@@ -10,6 +10,20 @@ window.geometry('800x480')
 runder = 5
 rundenr = 1
 avsluttBool = False
+stones = 0
+
+# take the data 
+table = list(range(runder + 1))
+for i in range(0,runder + 1):
+    cols = list(range(3))
+    cols[0] = str(i)
+    cols[1] = str(3)
+    cols[2] = str(3)
+    table[i] = cols
+table[0][0] = "Team/Round"
+table[0][1] = "Team 1"
+table[0][2] = "Team 2"
+
     
 
 #Funksjoner
@@ -65,7 +79,7 @@ def window1():
         
     
     opp = tk.Button(window, text="Pil opp", command=pilOpp, font=("Arial Bold", 30))
-    opp.place(relx = 0.5, rely = 0.4)
+    opp.place(relx = 0.5, rely = 0.35)
     
     ned = tk.Button(window, text="Pil ned", command=pilNed, font=("Arial Bold", 30))
     ned.place(relx = 0.5, rely = 0.5)
@@ -157,17 +171,7 @@ def window3():
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
         
-    # take the data 
-    table = list(range(runder + 1))
-    for i in range(0,runder + 1):
-        cols = list(range(3))
-        cols[0] = str(i)
-        cols[1] = str(3)
-        cols[2] = str(3)
-        table[i] = cols
-    table[0][0] = "Team/Round"
-    table[0][1] = "Team 1"
-    table[0][2] = "Team 2"
+
    
     # find total number of rows and 
     # columns in list 
