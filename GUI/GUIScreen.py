@@ -11,6 +11,20 @@ runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
+
+# take the data 
+table = list(range(runder + 1))
+for i in range(0,runder + 1):
+    cols = list(range(3))
+    cols[0] = str(i)
+    cols[1] = str(3)
+    cols[2] = str(3)
+    table[i] = cols
+table[0][0] = "Team/Round"
+table[0][1] = "Team 1"
+table[0][2] = "Team 2"
+
+    
 totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
@@ -171,17 +185,7 @@ def window3():
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
         
-    # take the data 
-    table = list(range(runder + 1))
-    for i in range(0,runder + 1):
-        cols = list(range(3))
-        cols[0] = str(i)
-        cols[1] = str(3)
-        cols[2] = str(3)
-        table[i] = cols
-    table[0][0] = "Team/Round"
-    table[0][1] = "Team 1"
-    table[0][2] = "Team 2"
+
    
     # find total number of rows and 
     # columns in list 
