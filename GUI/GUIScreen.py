@@ -5,7 +5,6 @@ window = tk.Tk()
 window.title("Curlingspill")
 window.geometry('800x480')
 
-#fgvhjkl
 
 #Globale variabler:
 runder = 5
