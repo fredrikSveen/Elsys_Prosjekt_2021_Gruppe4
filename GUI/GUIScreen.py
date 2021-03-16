@@ -10,7 +10,7 @@ window.geometry('800x480')
 #Globale variabler:
 runder = 5
 rundenr = 1
-avsluttBool = False
+avsluttBool = True
 stones = 0
 
 # take the data 
