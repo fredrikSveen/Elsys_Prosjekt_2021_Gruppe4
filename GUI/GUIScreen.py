@@ -10,7 +10,6 @@ window.geometry('800x480')
 runder = 5
 rundenr = 1
 avsluttBool = False
-stones = 0
     
 
 #Funksjoner
@@ -167,7 +166,6 @@ def window3():
                     self.e.insert(END, table[j][i])
         
     # take the data 
-    runder = 10
     table = list(range(runder + 1))
     for i in range(0,runder + 1):
         cols = list(range(3))
