@@ -15,6 +15,7 @@ totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
+
 #Funksjoner
 #roundKeeper(tar inn data fra pi-en):
 #Øker rundenr med 1 hver gang en stein registreres
@@ -67,8 +68,7 @@ def window1():
     
     def Start():
         clearFrame()
-        window2()
-        
+        window2()   
     
     opp = tk.Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30))
     opp.place(relx = 0.5, rely = 0.4)
@@ -97,9 +97,21 @@ def window2():
     
     team1stones = tk.Label(window, text=str(stones1), font=("Arial bold", 30))
     team1stones.place(relx = 0, rely = 0.4)
+    team1stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30))
+    team1stonesText.place(relx = 0.05, rely = 0.4)
 
     team2stones = tk.Label(window, text=str(stones2), font=("Arial bold", 30))
     team2stones.place(relx = 0.5, rely = 0.4)
+    team2stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30))
+    team2stonesText.place(relx = 0.55, rely = 0.4)
+
+    if (stones1 == 1):
+        #team1stonesText["text"] = "stein igjen"
+        team1stonesText.config(text = "stein igjen")
+    
+    if (stones2 == 1):
+        #team2stonesText["text"] = "stein igjen"
+        team2stonesText.config(text = "stein igjen")
 
     def s():
         global stones
@@ -125,8 +137,7 @@ def window2():
             
     stonesButton=tk.Button(window, text="Steiner", command=s)
     stonesButton.place(relx = 0.5, rely = 0.5)
-
-        
+  
 def window3():
     def w4():
         clearFrame()
@@ -146,7 +157,7 @@ def window3():
         fortsett = tk.Button(window, text="Fortsett", command=w4)
         fortsett.place(relx=0.4, rely=0.8)
 
-    class Table: 
+    class Table:
         def __init__(self,window):  
             # code for creating table 
             for i in range(total_rows):
