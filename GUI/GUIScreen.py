@@ -9,6 +9,7 @@ window.geometry('800x480')
 runder = 5
 rundenr = 1
 avsluttBool = False
+stones = 0
     
 
 #Funksjoner
@@ -28,6 +29,7 @@ def Avslutt():
         w.destroy()
 
     def A(): #Avsluttknapp i det lille vinduet
+        global avsluttBool
         avsluttBool = True
         w.destroy()
         clearFrame()
@@ -38,7 +40,6 @@ def Avslutt():
     
     tilbake = tk.Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 10))
     tilbake.place(relx = 0.2, rely = 0.4)
-
 
 def window1():
     l = tk.Label(window, text=str(runder), font=("Arial Bold", 60))
@@ -72,7 +73,6 @@ def window1():
     start = tk.Button(window, text="Start", command=Start, font=("Arial Bold", 25))
     start.place(relx = 0.45, rely = 0.7)
 
-
 def window2():
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
@@ -84,6 +84,25 @@ def window2():
     lag1.place(relx = 0, rely = 0.2)
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
     lag2.place(relx = 0.5, rely = 0.2)
+
+    #simulasjon av steinkast
+
+    stones = 0
+    
+    def s():
+        global stones
+        stones+=1
+        if (stones == 3):
+            stones = 0
+            global rundenr
+            rundenr+=1
+            print(rundenr)
+            clearFrame()
+            window3()
+            
+    stonesButton=tk.Button(window, text="Steiner", command=s)
+    stonesButton.place(relx = 0.5, rely = 0.5)
+
     
 def window3():
     def w4():
@@ -101,12 +120,13 @@ def window3():
         avslutt2.place(relx=0.5, rely=0.8)
 
     def w3_2(): # vindu 3 layout 2
+        clearFrame()
         fortsett = tk.Button(window, text="Fortsett", command=w4)
         fortsett.place(relx=0.4, rely=0.8)
 
-    if avsluttBool:
+    if avsluttBool or (runder == rundenr):
         w3_2()
-        #avsluttBool = False
+        # avsluttBool = False
     else:
         w3_1()
 
