@@ -10,7 +10,6 @@ window.geometry('800x480')
 runder = 5
 rundenr = 1
 avsluttBool = False
-stones = 0
     
 
 #Funksjoner
