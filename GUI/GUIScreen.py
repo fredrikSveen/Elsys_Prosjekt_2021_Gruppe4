@@ -140,16 +140,8 @@ def window3():
         avslutt2.place(relx=0.5, rely=0.8)
 
     def w3_2(): # vindu 3 layout 2
-        clearFrame()
         fortsett = tk.Button(window, text="Fortsett", command=w4)
         fortsett.place(relx=0.4, rely=0.8)
-
-    if avsluttBool or (runder < rundenr):
-        w3_2()
-        # avsluttBool = False
-    else:
-        w3_1()
-
 
     class Table: 
         def __init__(self,window):  
@@ -182,7 +174,16 @@ def window3():
     total_columns = len(table) 
     total_rows = len(table[0]) 
 
-    t = Table(window) 
+    t = Table(window)
+
+    if avsluttBool or (runder < rundenr):
+        w3_2()
+        # avsluttBool = False
+    else:
+        w3_1()
+
+
+    
 
 def window4():
     def nyttSpill():
