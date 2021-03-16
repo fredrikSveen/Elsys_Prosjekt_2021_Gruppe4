@@ -9,7 +9,7 @@
 # table.pack(side="top", fill="both", expand=True)
 # window.mainloop()
 
-from tkinter import *
+from tkinter import Button, Label, Tk, Entry, END
   
   
 class Table: 
