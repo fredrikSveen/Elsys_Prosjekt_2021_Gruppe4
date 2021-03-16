@@ -85,24 +85,44 @@ def window2():
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
     lag2.place(relx = 0.5, rely = 0.2)
 
+    
+
     #simulasjon av steinkast
+    totalStones = 4
 
     stones = 0
-    
+    stones1 = int(totalStones/2)
+    stones2 = int(totalStones/2)
+
+    team1stones = tk.Label(window, text=f"{stones1} steiner igjen", font=("Arial bold", 30))
+    team1stones.place(relx = 0, rely = 0.4)
+
+    team2stones = tk.Label(window, text=f"{stones2} steiner igjen", font=("Arial bold", 30))
+    team2stones.place(relx = 0.5, rely = 0.4)
+
     def s():
         global stones
         stones+=1
-        if (stones == 3):
+        if (stones == totalStones):
             stones = 0
             global rundenr
             rundenr+=1
-            print(rundenr)
             clearFrame()
             window3()
+            if (stones % 2 == 0):
+                global stones2
+                stones2 -= 1
+                team2stones["text"] = f"{stones2} steiner igjen"
+            else:
+                global stones1
+                stones1 -= 1
+                team1stones["text"] = f"{stones1} steiner igjen"
+
             
     stonesButton=tk.Button(window, text="Steiner", command=s)
     stonesButton.place(relx = 0.5, rely = 0.5)
 
+    
     
 def window3():
     def w4():
@@ -124,7 +144,7 @@ def window3():
         fortsett = tk.Button(window, text="Fortsett", command=w4)
         fortsett.place(relx=0.4, rely=0.8)
 
-    if avsluttBool or (runder == rundenr):
+    if avsluttBool or (runder < rundenr):
         w3_2()
         # avsluttBool = False
     else:
@@ -134,7 +154,10 @@ def window4():
     def nyttSpill():
         clearFrame()
         window1()
-        
+    
+    global rundenr
+    rundenr = 1
+
     ns = tk.Button(window, text="Nytt spill", command=nyttSpill, font=("Arial Bold", 30))
     ns.place(relx=0.4, rely=0.8)
 
