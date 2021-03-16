@@ -183,9 +183,6 @@ def window3():
     else:
         w3_1()
 
-
-    
-
 def window4():
     def nyttSpill():
         clearFrame()
