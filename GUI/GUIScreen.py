@@ -151,10 +151,30 @@ def window3():
         def n_r():
             clearFrame()
             window2()
+
+        def a2():
+            w2 = tk.Tk()
+            w2.geometry('400x240')  
+            v2 = tk.Label(w2, text="Er du sikker på at du \n vil avslutte nå?", font=("Arial Bold", 10))
+            v2.place(relx = 0.2, rely = 0.2)
+            def closeW2():
+                w2.destroy()
+
+            def a3():
+                w2.destroy()
+                clearFrame()
+                window4()
+            
+            avsluttSpill2 = tk.Button(w2, text="Avslutt spill",command=a3, font=("Arial Bold", 10))
+            avsluttSpill2.place(relx = 0.6, rely = 0.4)
+            
+            tilbake2 = tk.Button(w2, text="Tilbake til spillet", command=closeW2, font=("Arial Bold", 10))
+            tilbake2.place(relx = 0.2, rely = 0.4)
+
         nesteRunde = tk.Button(window, text="Neste runde", command=n_r)
         nesteRunde.place(relx=0.2, rely=0.8)
         
-        avslutt2 = tk.Button(window, text="Avslutt", command=w4)
+        avslutt2 = tk.Button(window, text="Avslutt", command=a2)
         avslutt2.place(relx=0.5, rely=0.8)
 
     def w3_2(): # vindu 3 layout 2
@@ -202,6 +222,8 @@ def window3():
 
 def window4():
     def nyttSpill():
+        global runder
+        runder = 5
         clearFrame()
         window1()
     
