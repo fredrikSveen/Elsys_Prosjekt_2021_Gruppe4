@@ -12,9 +12,9 @@ rundenr = 1
 avsluttBool = False
 stones = 0
 
+winnerTeam = "Team 1"
+points = 2
 
-
-    
 totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
@@ -136,6 +136,7 @@ def window2():
 
         if (stones == totalStones):
             stones = 0
+            #pointsInTable(winnerTeam, points)
             global rundenr
             rundenr+=1
             clearFrame()
@@ -223,6 +224,14 @@ def window3():
         # avsluttBool = False
     else:
         w3_1()
+    
+    # def pointsInTable(winnerTeam, points):
+    #     if winnerTeam == "Team 1":
+    #         table[rundenr][1] = points
+    #         table[rundenr][2] = 0
+    #     else:
+    #         table[rundenr][2] = points
+    #         table[rundenr][1] = 0
 
 def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
