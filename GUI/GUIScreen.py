@@ -17,6 +17,17 @@ totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
+ # Lager liste med resulteter
+table = list(range(runder + 1))
+for i in range(0,runder + 1):
+    cols = list(range(3))
+    cols[0] = str(i)        
+    cols[1] = str(3)
+    cols[2] = str(3)
+    table[i] = cols
+table[0][0] = "Team/Round"
+table[0][1] = "Team 1"
+table[0][2] = "Team 2"
 
 #Funksjoner
 #roundKeeper(tar inn data fra pi-en):
@@ -39,7 +50,7 @@ def Avslutt(): # Åpner varslingsvindu
         avsluttBool = True
         w.destroy()
         clearFrame()
-        window3()
+        window3(table)
     
     avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
@@ -137,12 +148,12 @@ def window2(): # Vinduet under spill
             global rundenr
             rundenr+=1
             clearFrame()
-            window3()
+            window3(table)
             
     stonesButton=tk.Button(window, text="Steiner", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
   
-def window3():
+def window3(table):
     def w4(): # Åpner vindu 4
         clearFrame()
         window4()
@@ -195,17 +206,7 @@ def window3():
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
         
-    # Lager liste med resulteter
-    table = list(range(runder + 1))
-    for i in range(0,runder + 1):
-        cols = list(range(3))
-        cols[0] = str(i)
-        cols[1] = str(3)
-        cols[2] = str(3)
-        table[i] = cols
-    table[0][0] = "Team/Round"
-    table[0][1] = "Team 1"
-    table[0][2] = "Team 2"
+
    
     # Number of rows and colums in the list
     total_columns = len(table) 

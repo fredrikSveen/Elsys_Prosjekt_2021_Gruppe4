@@ -10,23 +10,11 @@
 # window.mainloop()
 
 from tkinter import Button, Label, Tk, Entry, END
-runder = 10  
   
-table = list(range(runder + 1))
-for i in range(0,runder + 1):
-    cols = list(range(3))
-    cols[0] = str(i)
-    cols[1] = str(3)
-    cols[2] = str(3)
-    table[i] = cols
-table[0][0] = "Team/Round"
-table[0][1] = "Team 1"
-table[0][2] = "Team 2"
-print(table)
+  
 
-    
-  
- 
+
+
 
 
 
