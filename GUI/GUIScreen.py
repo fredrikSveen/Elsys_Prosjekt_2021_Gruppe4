@@ -12,14 +12,14 @@ rundenr = 1
 avsluttBool = False
 stones = 0
 
-winnerTeam = "Team 1"
-points = 2
+winnerTeam = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
+points = 2 # Input fra openCV (antall poeng til winnerTeam)
 
 totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
- # Lager liste med resulteter
+# Lager liste med resultater
 table = list(range(runder + 1))
 for i in range(0,runder + 1):
     cols = list(range(3))
@@ -30,6 +30,14 @@ for i in range(0,runder + 1):
 table[0][0] = "Team/Round"
 table[0][1] = "Team 1"
 table[0][2] = "Team 2"
+
+def pointsInTable(winnerTeam, points):
+    if winnerTeam == 1:
+        table[rundenr][1] = points
+        table[rundenr][2] = 0
+    else:
+        table[rundenr][2] = points
+        table[rundenr][1] = 0
 
 #Funksjoner
 #roundKeeper(tar inn data fra pi-en):
@@ -147,7 +155,7 @@ def window2(): # Vinduet under spill
 
         if (stones == totalStones):
             stones = 0
-            #pointsInTable(winnerTeam, points)
+            pointsInTable(winnerTeam, points)
             global rundenr
             rundenr+=1
             clearFrame()
@@ -208,9 +216,7 @@ def window3(table):
                                     font=('Arial',16,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
-        
-
-   
+    
     # Number of rows and colums in the list
     total_columns = len(table) 
     total_rows = len(table[0]) 
@@ -224,13 +230,7 @@ def window3(table):
     else:
         w3_1()
     
-    # def pointsInTable(winnerTeam, points):
-    #     if winnerTeam == "Team 1":
-    #         table[rundenr][1] = points
-    #         table[rundenr][2] = 0
-    #     else:
-    #         table[rundenr][2] = points
-    #         table[rundenr][1] = 0
+    
 
 def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
