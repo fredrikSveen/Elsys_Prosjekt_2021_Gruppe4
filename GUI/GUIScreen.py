@@ -19,21 +19,32 @@ totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
+ # Lager liste med resulteter
+table = list(range(runder + 1))
+for i in range(0,runder + 1):
+    cols = list(range(3))
+    cols[0] = str(i)        
+    cols[1] = str(3)
+    cols[2] = str(3)
+    table[i] = cols
+table[0][0] = "Team/Round"
+table[0][1] = "Team 1"
+table[0][2] = "Team 2"
 
 #Funksjoner
 #roundKeeper(tar inn data fra pi-en):
 #Øker rundenr med 1 hver gang en stein registreres
 
-def clearFrame(): # destroys all widgets from frame
+def clearFrame(): # Destroys all widgets from frame
     for widget in window.winfo_children():
        widget.destroy()
        
-def Avslutt():
+def Avslutt(): # Åpner varslingsvindu
     w = tk.Tk()
     w.geometry('400x240')  
     v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
     v.place(relx = 0.2, rely = 0.2)
-    def closeW():
+    def closeW(): # Lukker vinduet
         w.destroy()
 
     def A(): #Avsluttknapp i det lille vinduet
@@ -41,7 +52,7 @@ def Avslutt():
         avsluttBool = True
         w.destroy()
         clearFrame()
-        window3()
+        window3(table)
     
     avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
@@ -49,28 +60,28 @@ def Avslutt():
     tilbake = tk.Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 10))
     tilbake.place(relx = 0.2, rely = 0.4)
 
-def window1():
+def window1(): # Åpner første vindu
     x = tk.Label(window, text="Hvor mange runder vil dere spille?", font=("Arial Bold", 20))
-    x.place(relx = 0.3, rely = 0.2)
+    x.place(relx = 0.25, rely = 0.2)
 
     l = tk.Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
     
-    def pilOpp():
+    def pilOpp(): # Øker antall runder
         value = int(l["text"])
         if value < 10:
             l["text"] = f"{value + 1}"
             global runder
             runder += 1
     
-    def pilNed():
+    def pilNed():# Minker antall runder
         value = int(l["text"])
         if value > 1:
             l["text"] = f"{value - 1}"
             global runder
             runder -= 1
     
-    def Start():
+    def Start():# Hopper til vindu 2
         clearFrame()
         window2()   
     
@@ -83,7 +94,7 @@ def window1():
     start = tk.Button(window, text="Start", command=Start, font=("Arial Bold", 25)) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
 
-def window2():
+def window2(): # Vinduet under spill
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
     
@@ -91,9 +102,9 @@ def window2():
     avslutt.place(relx = 0.72, rely = 0.83)
     
     lag1 = tk.Label(window, text="Team 1", font=("Arial bold", 40))  
-    lag1.place(relx = 0, rely = 0.2)
+    lag1.place(relx = 0.2, rely = 0.2)
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
-    lag2.place(relx = 0.5, rely = 0.2)
+    lag2.place(relx = 0.65, rely = 0.2)
 
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
@@ -140,12 +151,12 @@ def window2():
             global rundenr
             rundenr+=1
             clearFrame()
-            window3()
+            window3(table)
             
     stonesButton=tk.Button(window, text="Steiner", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
   
-def window3():
+def window3(table):
     def w4(): # Åpner vindu 4
         clearFrame()
         window4()
@@ -184,10 +195,9 @@ def window3():
         fortsett = tk.Button(window, text="Fortsett", command=w4) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
 
-    # Tabell start
-    class Table:
+    # Oppretter tabell
+    class Table: 
         def __init__(self,window):  
-            # code for creating table 
             for i in range(total_rows):
                 self.e = Entry(window, width=12, fg='blue', 
                                     font=('Arial',16,'bold')) 
@@ -199,20 +209,9 @@ def window3():
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
         
-    # take the data 
-    table = list(range(runder + 1))
-    for i in range(0,runder + 1):
-        cols = list(range(3))
-        cols[0] = str(i)
-        cols[1] = str(3)
-        cols[2] = str(3)
-        table[i] = cols
-    table[0][0] = "Team/Round"
-    table[0][1] = "Team 1"
-    table[0][2] = "Team 2"
+
    
-    # find total number of rows and 
-    # columns in list 
+    # Number of rows and colums in the list
     total_columns = len(table) 
     total_rows = len(table[0]) 
 
@@ -239,6 +238,7 @@ def window4():
         runder = 5
         clearFrame()
         window1()
+
     
     global rundenr
     rundenr = 1
@@ -250,6 +250,8 @@ def window4():
 
     vinnerText = tk.Label(window, text="Vinneren er "+vinner, font=("Arial Bold", 50)) # Label som annonserer vinner
     vinnerText.place(relx=0.2, rely=0.3)
+
+    
 
 
 window1()
