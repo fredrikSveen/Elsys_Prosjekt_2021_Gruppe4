@@ -24,7 +24,7 @@ table = list(range(runder + 1))
 for i in range(0,runder + 1):
     cols = list(range(3))
     cols[0] = str(i)        
-    cols[1] = str(3)
+    cols[1] = str(2)
     cols[2] = str(3)
     table[i] = cols
 table[0][0] = "Team/Round"
@@ -245,12 +245,21 @@ def window4():
     ns = tk.Button(window, text="Nytt spill", command=nyttSpill, font=("Arial Bold", 30)) # "Nytt spill"-knapp
     ns.place(relx=0.4, rely=0.8)
 
-    vinner = "Team 1" # legge inn den faktiske vinneren
+    score1 = 0
+    score2 = 0
+    for i in range(1, len(table)):
+        score1 += int(table[i][1])
+        score2 += int(table[i][2])
 
-    vinnerText = tk.Label(window, text="Vinneren er "+vinner, font=("Arial Bold", 50)) # Label som annonserer vinner
+    if score1 > score2:
+         vinnerText = tk.Label(window, text="Vinneren er Team 1", font=("Arial Bold", 50))
+    elif score1 < score2:
+         vinnerText = tk.Label(window, text="Vinneren er Team 2", font=("Arial Bold", 50))
+    else: 
+         vinnerText = tk.Label(window, text="Det ble uavgjort", font=("Arial Bold", 50))
     vinnerText.place(relx=0.2, rely=0.3)
 
-    
+        
 
 
 window1()
