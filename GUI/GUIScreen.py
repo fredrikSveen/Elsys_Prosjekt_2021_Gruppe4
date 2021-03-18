@@ -113,7 +113,6 @@ def window2(): # Vinduet under spill
     lag1.place(relx = 0.2, rely = 0.2)
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
     lag2.place(relx = 0.65, rely = 0.2)
-
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
     stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 1
