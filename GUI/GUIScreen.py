@@ -19,17 +19,7 @@ totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
-# Lager liste med resultater
-table = list(range(runder + 1))
-for i in range(0,runder + 1):
-    cols = list(range(3))
-    cols[0] = str(i)        
-    cols[1] = str(2)
-    cols[2] = str(3)
-    table[i] = cols
-table[0][0] = "Team/Round"
-table[0][1] = "Team 1"
-table[0][2] = "Team 2"
+
 
 def pointsInTable(winnerTeam, points):
     if winnerTeam == 1:
@@ -91,7 +81,8 @@ def window1(): # Åpner første vindu
     
     def Start():# Hopper til vindu 2
         clearFrame()
-        window2()   
+        window2(table)
+  
     
     opp = tk.Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp
     opp.place(relx = 0.55, rely = 0.35)
@@ -102,7 +93,7 @@ def window1(): # Åpner første vindu
     start = tk.Button(window, text="Start", command=Start, font=("Arial Bold", 25)) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
 
-def window2(): # Vinduet under spill
+def window2(table): # Vinduet under spill
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
     
@@ -172,7 +163,7 @@ def window3(table):
     def w3_1(): # vindu 3 versjon 1
         def n_r(): # Åpner vindu 2
             clearFrame()
-            window2()
+            window2(table)
 
         def a2(): # Åpner et "sikker på at du vil avslutte"-vindu
             w2 = tk.Tk()
@@ -217,9 +208,21 @@ def window3(table):
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
     
+            
+    table = list(range(runder + 1))
+    for i in range(0,runder + 1):
+        cols = list(range(3))
+        cols[0] = str(i)        
+        cols[1] = ''
+        cols[2] = ''
+        table[i] = cols
+    table[0][0] = "Team/Round"
+    table[0][1] = "Team 1"
+    table[0][2] = "Team 2" 
+
     # Number of rows and colums in the list
     total_columns = len(table) 
-    total_rows = len(table[0]) 
+    total_rows = len(3) 
 
     t = Table(window)
     # Tabell slutt
