@@ -9,28 +9,32 @@ rundenr = 1
 avsluttBool = False
 stones = 0
 
+# Lager liste med resultater
+table = list(range(12))
+for i in range(0,12):
+    cols = list(range(3))
+    cols[0] = str(i)        
+    cols[1] = ''
+    cols[2] = ''
+    table[i] = cols
+table[0][0] = "Team/Round"
+table[0][1] = "Team 1"
+table[0][2] = "Team 2"
+
+
+
 winnerTeam = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
 points = 2 # Input fra openCV (antall poeng til winnerTeam)
 
 
-vinnerlag = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
-poeng = 2 # Input fra openCV (antall poeng til winnerTeam)
+# vinnerlag = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
+# poeng = 2 # Input fra openCV (antall poeng til winnerTeam)
 
 totalStones = 2
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
-# Lager liste med resultater
-table = list(range(runder + 1))
-for i in range(0,runder + 1):
-    cols = list(range(3))
-    cols[0] = str(i)        
-    cols[1] = str(2)
-    cols[2] = str(3)
-    table[i] = cols
-table[0][0] = "Team/Round"
-table[0][1] = "Team 1"
-table[0][2] = "Team 2"
+
 
 
 def pointsInTable(winnerTeam, points):
@@ -124,6 +128,7 @@ def window2(): # Vinduet under spill
     team1stones.place(relx = 0, rely = 0.4)
     team1stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tekst)
     team1stonesText.place(relx = 0.05, rely = 0.4)
+    
     team2stones = tk.Label(window, text=str(stones2), font=("Arial bold", 30)) # Label antall steiner igjen team 2 (tall)
     team2stones.place(relx = 0.5, rely = 0.4)
     team2stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
@@ -197,35 +202,35 @@ def window3():
         fortsett = tk.Button(window, text="Fortsett", command=w4) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
 
+    table[runder + 1][0] = 'Total score'
+    sc1 = 0
+    sc2 = 0
+    for i in range(1, rundenr):
+        sc1 += table[i][1]
+        sc2 += table[i][2]
+    table[runder + 1][1] = sc1 
+    table[runder + 1][2] = sc2 
+
     # Oppretter tabell
     class Table: 
         def __init__(self,window):  
             for i in range(total_rows):
-                self.e = Entry(window, width=12, fg='blue', 
-                                    font=('Arial',16,'bold')) 
+                self.e = Entry(window, width=12, fg='blue', font=('Arial',16,'bold')) 
                 self.e.grid(row=i, column=0) 
                 self.e.insert(END, table[0][i]) 
                 for j in range(1, total_columns): 
-                    self.e = Entry(window, width=5, fg='blue', 
-                                    font=('Arial',16,'bold')) 
+                    self.e = Entry(window, width=5, fg='blue', font=('Arial',16,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
+                self.e = Entry(window, width=12, fg='blue', font=('Arial',16,'bold')) 
+                self.e.grid(row=i, column=runder + 1) 
+                self.e.insert(END, table[runder + 1][i])
 
-    # Lager liste med resultater
-    table = list(range(runder + 1))
-    for i in range(0,runder + 1):
-        cols = list(range(3))
-        cols[0] = str(i)        
-        cols[1] = '0'
-        cols[2] = '0'
-        table[i] = cols
-    table[0][0] = "Team/Round"
-    table[0][1] = "Team 1"
-    table[0][2] = "Team 2"
+
 
     # Number of rows and colums in the list
-    total_columns = len(table) 
-    total_rows = len(table[0]) 
+    total_columns = runder + 2
+    total_rows = 3
     t = Table(window)
     # Tabell slutt
 
@@ -245,6 +250,9 @@ def window4():
         runder = 5
         clearFrame()
         window1()
+        for i in range(1,len(table)):
+            table[i][1] = '0'
+            table[i][2] = '0'
     
     global rundenr
     rundenr = 1
@@ -252,7 +260,7 @@ def window4():
     ns.place(relx=0.4, rely=0.8)
     score1 = 0
     score2 = 0
-    for i in range(1, len(table)):
+    for i in range(1, runder + 1):
         score1 += int(table[i][1])
         score2 += int(table[i][2])
     if score1 > score2:
