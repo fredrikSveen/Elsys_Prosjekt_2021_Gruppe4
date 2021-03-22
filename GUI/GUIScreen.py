@@ -11,23 +11,26 @@ runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
+#table = [[]]
 
-winnerTeam = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
-points = 2 # Input fra openCV (antall poeng til winnerTeam)
 
-totalStones = 4
+vinnerlag = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
+poeng = 2 # Input fra openCV (antall poeng til winnerTeam)
+
+totalStones = 2
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
 
-
 def pointsInTable(winnerTeam, points):
+    global table
     if winnerTeam == 1:
-        table[rundenr][1] = points
-        table[rundenr][2] = 0
+        table[rundenr][1] = str(points)
+        table[rundenr][2] = str(0)
     else:
-        table[rundenr][2] = points
-        table[rundenr][1] = 0
+        table[rundenr][2] = str(points)
+        table[rundenr][1] = str(0)
+
 
 #Funksjoner
 #roundKeeper(tar inn data fra pi-en):
@@ -50,7 +53,7 @@ def Avslutt(): # Åpner varslingsvindu
         avsluttBool = True
         w.destroy()
         clearFrame()
-        window3(table)
+        window3()
     
     avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
@@ -81,8 +84,8 @@ def window1(): # Åpner første vindu
     
     def Start():# Hopper til vindu 2
         clearFrame()
-        window2(table)
-  
+        window2()   
+        
     
     opp = tk.Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp
     opp.place(relx = 0.55, rely = 0.35)
@@ -93,7 +96,10 @@ def window1(): # Åpner første vindu
     start = tk.Button(window, text="Start", command=Start, font=("Arial Bold", 25)) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
 
-def window2(table): # Vinduet under spill
+def window2(): # Vinduet under spill
+
+    
+
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
     
@@ -104,7 +110,6 @@ def window2(table): # Vinduet under spill
     lag1.place(relx = 0.2, rely = 0.2)
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
     lag2.place(relx = 0.65, rely = 0.2)
-
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
     stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 1
@@ -119,7 +124,7 @@ def window2(table): # Vinduet under spill
     team2stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
-    # Forsøk på å endre "steiner" til "stein" dersom én stein igjen (fuker ikke)
+    # Forsøk på å endre "steiner" til "stein" dersom én stein igjen (funker ikke)
     if (stones1 == 1):
         #team1stonesText["text"] = "stein igjen"
         team1stonesText.config(text = "stein igjen")
@@ -146,16 +151,16 @@ def window2(table): # Vinduet under spill
 
         if (stones == totalStones):
             stones = 0
-            pointsInTable(winnerTeam, points)
+            #pointsInTable(vinnerlag, poeng) # Legger poeng i tabellen
             global rundenr
             rundenr+=1
             clearFrame()
-            window3(table)
+            window3()
             
     stonesButton=tk.Button(window, text="Steiner", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
   
-def window3(table):
+def window3():
     def w4(): # Åpner vindu 4
         clearFrame()
         window4()
@@ -194,6 +199,7 @@ def window3(table):
         fortsett = tk.Button(window, text="Fortsett", command=w4) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
 
+    global table
     # Oppretter tabell
     class Table: 
         def __init__(self,window):  
@@ -209,16 +215,17 @@ def window3(table):
                     self.e.insert(END, table[j][i])
     
             
+    # Lager liste med resultater
     table = list(range(runder + 1))
     for i in range(0,runder + 1):
         cols = list(range(3))
         cols[0] = str(i)        
-        cols[1] = ''
-        cols[2] = ''
+        cols[1] = str(3)
+        cols[2] = str(2)
         table[i] = cols
     table[0][0] = "Team/Round"
     table[0][1] = "Team 1"
-    table[0][2] = "Team 2" 
+    table[0][2] = "Team 2"
 
     # Number of rows and colums in the list
     total_columns = len(table) 
@@ -229,13 +236,11 @@ def window3(table):
 
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
         w3_2()
-        # avsluttBool = False
     else:
         w3_1()
-    
-    
 
 def window4():
+    #global table
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global runder
         runder = 5
