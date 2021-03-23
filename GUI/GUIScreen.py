@@ -8,6 +8,7 @@ runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
+winner = "blue"
 
 # Lager liste med resultater
 table = list(range(12))
@@ -18,13 +19,13 @@ for i in range(0,12):
     cols[2] = ''
     table[i] = cols
 table[0][0] = "Team/Round"
-table[0][1] = "Team 1"
-table[0][2] = "Team 2"
+table[0][1] = "Team blå"
+table[0][2] = "Team oransje"
 
 
 
-winnerTeam = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
-points = 2 # Input fra openCV (antall poeng til winnerTeam)
+winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
+points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
 
 
 # vinnerlag = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
@@ -34,15 +35,18 @@ totalStones = 2
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
-
-
-
 def pointsInTable(winnerTeam, points):
+    global winner
     if winnerTeam == 1:
         table[rundenr][1] = points
         table[rundenr][2] = 0
-    else:
+        winner = 1
+    elif winnerTeam == 2:
         table[rundenr][2] = points
+        table[rundenr][1] = 0
+        winner = 2
+    else:
+        table[rundenr][2] = 0
         table[rundenr][1] = 0
 
 #Funksjoner
@@ -107,22 +111,19 @@ def window1(): # Åpner første vindu
 
 def window2(): # Vinduet under spill
 
-
-
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
 
     avslutt = tk.Button(window, text="Avslutt nå", command=Avslutt, font=("Arial Bold", 30))
     avslutt.place(relx = 0.72, rely = 0.83)
     
-    lag1 = tk.Label(window, text="Team 1", font=("Arial bold", 40))  
+    lag1 = tk.Label(window, text="Team blå", font=("Arial bold", 40))  
     lag1.place(relx = 0.2, rely = 0.2)
-    lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
+    lag2 = tk.Label(window, text="Team oransje", font=("Arial bold", 40)) 
     lag2.place(relx = 0.65, rely = 0.2)
-
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
-    stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 1
+    stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
     
     team1stones = tk.Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
@@ -145,17 +146,26 @@ def window2(): # Vinduet under spill
     #simulasjon av steinkast
     def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
         global stones
+        global stones2
+        global stones1
         stones+=1
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
-        if (stones % 2 == 0):
-            global stones2
-            stones2 -= 1
-            team2stones["text"] = str(value2 - 1)
+        if winner == "blue":
+            if (stones % 2 == 0):
+                stones2 -= 1
+                team2stones["text"] = str(value2 - 1)
+            else:
+                stones1 -= 1
+                team1stones["text"] = str(value1 - 1)
         else:
-            global stones1
-            stones1 -= 1
-            team1stones["text"] = str(value1 - 1)
+            if (stones % 2 == 0):
+                stones1 -= 1
+                team1stones["text"] = str(value1 - 1)
+            else:
+                stones2 -= 1
+                team2stones["text"] = str(value2 - 1)
+        
 
         if (stones == totalStones):
             stones = 0
@@ -226,24 +236,18 @@ def window3():
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
 
-
-
     # Number of rows and colums in the list
     total_columns = runder + 2
     total_rows = 3
     t = Table(window)
     # Tabell slutt
-
+    
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
         w3_2()
         # avsluttBool = False
     else:
         w3_1()
     
-    
-
-
-
 def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global runder
@@ -264,11 +268,11 @@ def window4():
         score1 += int(table[i][1])
         score2 += int(table[i][2])
     if score1 > score2:
-         vinnerText = tk.Label(window, text="Vinneren er Team 1", font=("Arial Bold", 50))
+         vinnerText = tk.Label(window, text="The winner is Team Blue!", font=("Arial Bold", 50))
     elif score1 < score2:
-         vinnerText = tk.Label(window, text="Vinneren er Team 2", font=("Arial Bold", 50))
+         vinnerText = tk.Label(window, text="The winner is Team Orange!", font=("Arial Bold", 50))
     else: 
-         vinnerText = tk.Label(window, text="Det ble uavgjort", font=("Arial Bold", 50))
+         vinnerText = tk.Label(window, text="Det ble uavgjort!", font=("Arial Bold", 50))
     vinnerText.place(relx=0.2, rely=0.3)
         
 window1()
