@@ -31,7 +31,7 @@ points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har 
 # vinnerlag = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
 # poeng = 2 # Input fra openCV (antall poeng til winnerTeam)
 
-totalStones = 2
+totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 
@@ -117,10 +117,16 @@ def window2(): # Vinduet under spill
     avslutt = tk.Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
     avslutt.place(relx = 0.856, rely = 0.83)
     
-    lag1 = tk.Label(window, text="Team Blue", font=("Arial bold", 40))  
-    lag1.place(relx = 0.05, rely = 0.2)
-    lag2 = tk.Label(window, text="Team Orange", font=("Arial bold", 40)) 
-    lag2.place(relx = 0.45, rely = 0.2)
+    if winner == 'blue':
+        lag1 = tk.Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+        lag1.place(relx = 0.05, rely = 0.2)
+        lag2 = tk.Label(window, text="Team Orange", font=("Arial bold", 40)) 
+        lag2.place(relx = 0.45, rely = 0.2) 
+    else: 
+        lag1 = tk.Label(window, text="Team Blue", font=("Arial bold", 40))  
+        lag1.place(relx = 0.05, rely = 0.2)
+        lag2 = tk.Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+        lag2.place(relx = 0.45, rely = 0.2)         
 
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
@@ -156,17 +162,33 @@ def window2(): # Vinduet under spill
             if (stones % 2 == 0):
                 stones2 -= 1
                 team2stones["text"] = str(value2 - 1)
+                lag1 = tk.Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = tk.Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
             else:
                 stones1 -= 1
                 team1stones["text"] = str(value1 - 1)
+                lag1 = tk.Label(window, text="Team Blue", font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = tk.Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
         else:
             if (stones % 2 == 0):
                 stones1 -= 1
                 team1stones["text"] = str(value1 - 1)
+                lag1 = tk.Label(window, text="Team Blue", font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = tk.Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
             else:
                 stones2 -= 1
                 team2stones["text"] = str(value2 - 1)
-        
+                lag1 = tk.Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = tk.Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+    
 
         if (stones == totalStones):
             stones = 0
@@ -175,6 +197,7 @@ def window2(): # Vinduet under spill
             rundenr+=1
             clearFrame()
             window3()
+
 
     stonesButton=tk.Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
