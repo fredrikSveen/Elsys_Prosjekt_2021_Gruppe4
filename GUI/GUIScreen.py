@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import Button, Label, Tk, Entry, END
 window = tk.Tk()
-window.title("Curlingspill")
+window.title("Curling game")
 window.geometry('800x480')
 #Globale variabler:
 runder = 5
@@ -19,8 +19,8 @@ for i in range(0,12):
     cols[2] = ''
     table[i] = cols
 table[0][0] = "Team/Round"
-table[0][1] = "Team blå"
-table[0][2] = "Team oransje"
+table[0][1] = "Team Blue"
+table[0][2] = "Team Orange"
 
 
 
@@ -59,8 +59,8 @@ def clearFrame(): # Destroys all widgets from frame
 def Avslutt(): # Åpner varslingsvindu
     w = tk.Tk()
     w.geometry('400x240')  
-    v = tk.Label(w, text="Ved å avslutte nå vil ikke \n gjeldende runde være tellende", font=("Arial Bold", 10))
-    v.place(relx = 0.2, rely = 0.2)
+    v = tk.Label(w, text="By exiting now the\n current round won't count", font=("Arial Bold", 10))
+    v.place(relx = 0.3, rely = 0.2)
     def closeW(): # Lukker vinduet
         w.destroy()
     def A(): #Avsluttknapp i det lille vinduet
@@ -70,14 +70,15 @@ def Avslutt(): # Åpner varslingsvindu
         clearFrame()
         window3()
 
-    avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
+    avsluttSpill = tk.Button(w, text="End game",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
-    tilbake = tk.Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 10))
+    tilbake = tk.Button(w, text="Back to the game", command=closeW, font=("Arial Bold", 10))
     tilbake.place(relx = 0.2, rely = 0.4)
+
 def window1(): # Åpner første vindu
-    x = tk.Label(window, text="Hvor mange runder vil dere spille?", font=("Arial Bold", 20))
-    x.place(relx = 0.25, rely = 0.2)
+    x = tk.Label(window, text="How many rounds would you like to play?", font=("Arial Bold", 20))
+    x.place(relx = 0.15, rely = 0.2)
     l = tk.Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
     
@@ -110,39 +111,39 @@ def window1(): # Åpner første vindu
     start.place(relx = 0.45, rely = 0.8)
 
 def window2(): # Vinduet under spill
-
-    l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
+    l = tk.Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
 
-    avslutt = tk.Button(window, text="Avslutt nå", command=Avslutt, font=("Arial Bold", 30))
-    avslutt.place(relx = 0.72, rely = 0.83)
+    avslutt = tk.Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
+    avslutt.place(relx = 0.856, rely = 0.83)
     
-    lag1 = tk.Label(window, text="Team blå", font=("Arial bold", 40))  
-    lag1.place(relx = 0.2, rely = 0.2)
-    lag2 = tk.Label(window, text="Team oransje", font=("Arial bold", 40)) 
-    lag2.place(relx = 0.65, rely = 0.2)
+    lag1 = tk.Label(window, text="Team Blue", font=("Arial bold", 40))  
+    lag1.place(relx = 0.05, rely = 0.2)
+    lag2 = tk.Label(window, text="Team Orange", font=("Arial bold", 40)) 
+    lag2.place(relx = 0.45, rely = 0.2)
+
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
     stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
     
     team1stones = tk.Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
-    team1stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tekst)
+    team1stonesText = tk.Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tekst)
     team1stonesText.place(relx = 0.05, rely = 0.4)
     
     team2stones = tk.Label(window, text=str(stones2), font=("Arial bold", 30)) # Label antall steiner igjen team 2 (tall)
     team2stones.place(relx = 0.5, rely = 0.4)
-    team2stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
+    team2stonesText = tk.Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
     # Forsøk på å endre "steiner" til "stein" dersom én stein igjen (fuker ikke)
     if (stones1 == 1):
         #team1stonesText["text"] = "stein igjen"
-        team1stonesText.config(text = "stein igjen")
+        team1stonesText.config(text = "Stone(s) left")
     
     if (stones2 == 1):
         #team2stonesText["text"] = "stein igjen"
-        team2stonesText.config(text = "stein igjen")
+        team2stonesText.config(text = "Stone(s) left")
     #simulasjon av steinkast
     def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
         global stones
@@ -175,7 +176,7 @@ def window2(): # Vinduet under spill
             clearFrame()
             window3()
 
-    stonesButton=tk.Button(window, text="Steiner", command=s) # "Øke antall steiner"-knapp
+    stonesButton=tk.Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
 
 def window3():
@@ -189,8 +190,8 @@ def window3():
         def a2(): # Åpner et "sikker på at du vil avslutte"-vindu
             w2 = tk.Tk()
             w2.geometry('400x240')  
-            v2 = tk.Label(w2, text="Er du sikker på at du \n vil avslutte nå?", font=("Arial Bold", 10))
-            v2.place(relx = 0.2, rely = 0.2)
+            v2 = tk.Label(w2, text="Are you sure you\n want to quit now?", font=("Arial Bold", 10))
+            v2.place(relx = 0.35, rely = 0.2)
             def closeW2(): # Lukker det lille vinduet
                 w2.destroy()
             def a3(): # Lukker det lille vinduet og åpner vindu 4
@@ -198,18 +199,18 @@ def window3():
                 clearFrame()
                 window4()
             
-            avsluttSpill2 = tk.Button(w2, text="Avslutt spill",command=a3, font=("Arial Bold", 10)) # Avsluttknapp i det lille vinduet
+            avsluttSpill2 = tk.Button(w2, text="End game",command=a3, font=("Arial Bold", 10)) # Avsluttknapp i det lille vinduet
             avsluttSpill2.place(relx = 0.6, rely = 0.4)
             
-            tilbake2 = tk.Button(w2, text="Tilbake til spillet", command=closeW2, font=("Arial Bold", 10)) # Fortsettknapp i det lille vinduet
+            tilbake2 = tk.Button(w2, text="Back to the game", command=closeW2, font=("Arial Bold", 10)) # Fortsettknapp i det lille vinduet
             tilbake2.place(relx = 0.2, rely = 0.4)
-        nesteRunde = tk.Button(window, text="Neste runde", command=n_r) # "Neste runde"-knapp
+        nesteRunde = tk.Button(window, text="Next round", command=n_r) # "Neste runde"-knapp
         nesteRunde.place(relx=0.2, rely=0.8)
         
-        avslutt2 = tk.Button(window, text="Avslutt", command=a2) # Avsluttknapp
+        avslutt2 = tk.Button(window, text="Quit", command=a2) # Avsluttknapp
         avslutt2.place(relx=0.5, rely=0.8)
     def w3_2(): # vindu 3 versjon 2
-        fortsett = tk.Button(window, text="Fortsett", command=w4) # Fortsettknapp
+        fortsett = tk.Button(window, text="Continue", command=w4) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
 
     table[runder + 1][0] = 'Total score'
@@ -248,6 +249,7 @@ def window3():
     else:
         w3_1()
     
+    
 def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global runder
@@ -260,20 +262,20 @@ def window4():
     
     global rundenr
     rundenr = 1
-    ns = tk.Button(window, text="Nytt spill", command=nyttSpill, font=("Arial Bold", 30)) # "Nytt spill"-knapp
-    ns.place(relx=0.4, rely=0.8)
+    ns = tk.Button(window, text="New game", command=nyttSpill, font=("Arial Bold", 30)) # "Nytt spill"-knapp
+    ns.place(relx=0.35, rely=0.8)
     score1 = 0
     score2 = 0
     for i in range(1, runder + 1):
         score1 += int(table[i][1])
         score2 += int(table[i][2])
     if score1 > score2:
-         vinnerText = tk.Label(window, text="The winner is Team Blue!", font=("Arial Bold", 50))
+         vinnerText = tk.Label(window, text="The winner is Team Blue", font=("Arial Bold", 40))
     elif score1 < score2:
-         vinnerText = tk.Label(window, text="The winner is Team Orange!", font=("Arial Bold", 50))
+         vinnerText = tk.Label(window, text="The winner is Team Orange", font=("Arial Bold", 40))
     else: 
-         vinnerText = tk.Label(window, text="Det ble uavgjort!", font=("Arial Bold", 50))
-    vinnerText.place(relx=0.2, rely=0.3)
+         vinnerText = tk.Label(window, text="It's a tie", font=("Arial Bold", 50))
+    vinnerText.place(relx=0.1, rely=0.3)
         
 window1()
     
