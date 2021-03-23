@@ -293,9 +293,9 @@ def window4():
         score1 += int(table[i][1])
         score2 += int(table[i][2])
     if score1 > score2:
-         vinnerText = tk.Label(window, text="The winner is Team Blue", font=("Arial Bold", 40))
+         vinnerText = tk.Label(window, text="The winner is Team Blue", fg = 'blue', font=("Arial Bold", 40))
     elif score1 < score2:
-         vinnerText = tk.Label(window, text="The winner is Team Orange", font=("Arial Bold", 40))
+         vinnerText = tk.Label(window, text="The winner is Team Orange", fg = 'orange', font=("Arial Bold", 40))
     else: 
          vinnerText = tk.Label(window, text="It's a tie", font=("Arial Bold", 50))
     vinnerText.place(relx=0.1, rely=0.3)
