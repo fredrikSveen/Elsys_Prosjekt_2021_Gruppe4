@@ -8,7 +8,6 @@ runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
-#table = [[]]
 
 # Lager liste med resultater
 table = list(range(12))
@@ -39,14 +38,12 @@ stones2 = int(totalStones/2)
 
 
 def pointsInTable(winnerTeam, points):
-    global table
     if winnerTeam == 1:
-        table[rundenr][1] = str(points)
-        table[rundenr][2] = str(0)
+        table[rundenr][1] = points
+        table[rundenr][2] = 0
     else:
-        table[rundenr][2] = str(points)
-        table[rundenr][1] = str(0)
-
+        table[rundenr][2] = points
+        table[rundenr][1] = 0
 
 #Funksjoner
 #roundKeeper(tar inn data fra pi-en):
@@ -68,6 +65,7 @@ def Avslutt(): # Åpner varslingsvindu
         w.destroy()
         clearFrame()
         window3()
+
     avsluttSpill = tk.Button(w, text="Avslutt spill",command=A, font=("Arial Bold", 10))
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
@@ -110,6 +108,7 @@ def window1(): # Åpner første vindu
 def window2(): # Vinduet under spill
 
 
+
     l = tk.Label(window, text=f"Runde {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
 
@@ -120,6 +119,7 @@ def window2(): # Vinduet under spill
     lag1.place(relx = 0.2, rely = 0.2)
     lag2 = tk.Label(window, text="Team 2", font=("Arial bold", 40)) 
     lag2.place(relx = 0.65, rely = 0.2)
+
     
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
     stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 1
@@ -134,7 +134,7 @@ def window2(): # Vinduet under spill
     team2stonesText = tk.Label(window, text="steiner igjen", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
-    # Forsøk på å endre "steiner" til "stein" dersom én stein igjen (funker ikke)
+    # Forsøk på å endre "steiner" til "stein" dersom én stein igjen (fuker ikke)
     if (stones1 == 1):
         #team1stonesText["text"] = "stein igjen"
         team1stonesText.config(text = "stein igjen")
@@ -159,7 +159,7 @@ def window2(): # Vinduet under spill
 
         if (stones == totalStones):
             stones = 0
-            #pointsInTable(vinnerlag, poeng) # Legger poeng i tabellen
+            pointsInTable(winnerTeam, points)
             global rundenr
             rundenr+=1
             clearFrame()
@@ -236,13 +236,15 @@ def window3():
 
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
         w3_2()
+        # avsluttBool = False
     else:
         w3_1()
+    
+    
 
 
 
 def window4():
-    #global table
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global runder
         runder = 5
