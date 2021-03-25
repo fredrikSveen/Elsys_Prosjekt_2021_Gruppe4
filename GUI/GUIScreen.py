@@ -203,6 +203,8 @@ def window2(): # Vinduet under spill
     stonesButton.place(relx = 0.5, rely = 0.5)
 
 def window3():
+    for i in range(1,11):
+        table[i][0] = str(i)
     def w4(): # Åpner vindu 4
         clearFrame()
         window4()
@@ -253,10 +255,10 @@ def window3():
                 self.e.grid(row=i, column=0) 
                 self.e.insert(END, table[0][i]) 
                 for j in range(1, total_columns): 
-                    self.e = Entry(window, width=5, fg='blue', font=('Arial',16,'bold')) 
+                    self.e = Entry(window, width=4, fg='blue', font=('Arial',16,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
-                self.e = Entry(window, width=12, fg='blue', font=('Arial',16,'bold')) 
+                self.e = Entry(window, width=11, fg='blue', font=('Arial',16,'bold')) 
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
 
@@ -280,8 +282,8 @@ def window4():
         clearFrame()
         window1()
         for i in range(1,len(table)):
-            table[i][1] = '0'
-            table[i][2] = '0'
+            table[i][1] = ''
+            table[i][2] = ''
     
     global rundenr
     rundenr = 1
