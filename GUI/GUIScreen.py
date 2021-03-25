@@ -3,12 +3,18 @@ from tkinter import Button, Label, Tk, Entry, END
 window = tk.Tk()
 window.title("Curling game")
 window.geometry('800x480')
+
 #Globale variabler:
 runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
 winner = "blue"
+winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
+points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
+totalStones = 4
+stones1 = int(totalStones/2)
+stones2 = int(totalStones/2)
 
 # Lager liste med resultater
 table = list(range(12))
@@ -22,18 +28,6 @@ table[0][0] = "Team/Round"
 table[0][1] = "Team Blue"
 table[0][2] = "Team Orange"
 
-
-
-winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
-points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-
-
-# vinnerlag = 1 # input fra openCV (Team 1 = 1, Team 2 = 2)
-# poeng = 2 # Input fra openCV (antall poeng til winnerTeam)
-
-totalStones = 4
-stones1 = int(totalStones/2)
-stones2 = int(totalStones/2)
 
 def pointsInTable(winnerTeam, points):
     global winner
@@ -142,14 +136,6 @@ def window2(): # Vinduet under spill
     team2stonesText = tk.Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
-    # Forsøk på å endre "steiner" til "stein" dersom én stein igjen (fuker ikke)
-    if (stones1 == 1):
-        #team1stonesText["text"] = "stein igjen"
-        team1stonesText.config(text = "Stone(s) left")
-    
-    if (stones2 == 1):
-        #team2stonesText["text"] = "stein igjen"
-        team2stonesText.config(text = "Stone(s) left")
     #simulasjon av steinkast
     def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
         global stones
@@ -198,11 +184,10 @@ def window2(): # Vinduet under spill
             clearFrame()
             window3()
 
-
     stonesButton=tk.Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
 
-def window3():
+def window3(): # Vindu med resultater
     for i in range(1,11):
         table[i][0] = str(i)
     def w4(): # Åpner vindu 4
@@ -270,10 +255,8 @@ def window3():
     
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
         w3_2()
-        # avsluttBool = False
     else:
         w3_1()
-    
     
 def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
