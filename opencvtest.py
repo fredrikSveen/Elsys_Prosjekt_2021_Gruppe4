@@ -4,6 +4,8 @@ import math
 import numpy as np
 #import argparse
 import cv2
+from picamera import PiCamera
+from time import sleep
 # construct the argument parser and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required = True, help = "Path to the image")
@@ -11,7 +13,14 @@ import cv2
 
 # load the image, clone it for output, and then convert it to grayscale
 #image = cv2.imread(args["image"])
-im = cv2.imread("image2.jpg")
+camera = PiCamera()
+
+camera.resolution = (3280,2464)
+camera.start_preview()
+sleep(2)
+camera.stop_preview()
+camera.capture('image0.jpg')
+im = cv2.imread("image0.jpg")
 reshape = cv2.resize(im, (820, 616))
 output = reshape.copy()
 gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
