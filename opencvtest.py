@@ -11,7 +11,7 @@ import cv2
 
 # load the image, clone it for output, and then convert it to grayscale
 #image = cv2.imread(args["image"])
-im = cv2.imread("pi6.jpg")
+im = cv2.imread("image2.jpg")
 reshape = cv2.resize(im, (820, 616))
 output = reshape.copy()
 gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
@@ -126,8 +126,6 @@ while min(len(bluedist), len(reddist)) > 0:
 
 print("Blue points:", bluepoints)
 print("Red points:", redpoints)
-
-dot = cv2.circle(output, origo, radius=0, color=(0, 0, 255), thickness=1)
 
 cv2.imshow('blue', blue_mask)
 cv2.imshow('red', red_mask)
