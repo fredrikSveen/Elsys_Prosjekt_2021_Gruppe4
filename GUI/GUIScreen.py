@@ -1,4 +1,4 @@
-from shapeRecognition import *
+from shapeRecognition import takePoints
 from tkinter import Button, Label, Tk, Entry, END
 window = Tk()
 window.title("Curling game")
