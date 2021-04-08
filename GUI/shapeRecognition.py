@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 from picamera import PiCamera
 from time import sleep
-from GUIScreen import *
+from GUIScreen import winnerTeam, pointsInTable
 # construct the argument parser and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required = True, help = "Path to the image")
@@ -27,10 +27,10 @@ def takePoints():
     im = cv2.imread("image0.jpg")
     reshape = cv2.resize(im, (820, 616))
     output = reshape.copy()
-    gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
+    #gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
     # Konverterer bildet fra RGB-farger til HSV, for bedre fargegjenkjenning
     hsv = cv2.cvtColor(output, cv2.COLOR_BGR2HSV)
-    blurred = cv2.bilateralFilter(gray,10,30,75)
+    #blurred = cv2.bilateralFilter(gray,10,30,75)
     #blue_blurred = blurred.copy()
     #red_blurred = blurred.copy()
 
@@ -154,9 +154,9 @@ def takePoints():
     #cv2.waitKey(0)
     if bluepoints > 0:
         winnerTeam = 1
-        gui.pointsInTable(winnerTeam, bluepoints)
+        pointsInTable(winnerTeam, bluepoints)
     elif redpoints > 0:
         winnerTeam = 2
-        gui.pointsInTable(winnerTeam, redpoints)
+        pointsInTable(winnerTeam, redpoints)
 
 #Colorpicker?
