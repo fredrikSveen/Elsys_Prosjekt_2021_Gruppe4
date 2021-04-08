@@ -32,12 +32,12 @@ stones2 = int(totalStones/2)
 
 def takePoints():
     global winnerTeam
-    camera = PiCamera()
-    camera.resolution = (3280,2464)
-    camera.start_preview()
-    sleep(2)
-    camera.stop_preview()
-    camera.capture('image0.jpg')
+    #camera = PiCamera()
+    #camera.resolution = (3280,2464)
+    #camera.start_preview()
+    #sleep(2)
+    #camera.stop_preview()
+    #camera.capture('image0.jpg')
 
     #im = cv2.imread("image0.jpg")
     im = cv2.imread("image0.jpg")
