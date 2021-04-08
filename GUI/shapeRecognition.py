@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 from picamera import PiCamera
 from time import sleep
-import GUIScreen as gui
+from GUIScreen import *
 # construct the argument parser and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required = True, help = "Path to the image")
@@ -31,8 +31,8 @@ def takePoints():
     # Konverterer bildet fra RGB-farger til HSV, for bedre fargegjenkjenning
     hsv = cv2.cvtColor(output, cv2.COLOR_BGR2HSV)
     blurred = cv2.bilateralFilter(gray,10,30,75)
-    blue_blurred = blurred.copy()
-    red_blurred = blurred.copy()
+    #blue_blurred = blurred.copy()
+    #red_blurred = blurred.copy()
 
     #Fargedetection
     #Blå range

@@ -1,4 +1,4 @@
-import shapeRecognition as sr
+from shapeRecognition import *
 from tkinter import Button, Label, Tk, Entry, END
 window = Tk()
 window.title("Curling game")
@@ -179,7 +179,7 @@ def window2(): # Vinduet under spill
 
         if (stones == totalStones):
             stones = 0
-            sr.takePoints()
+            takePoints()
             pointsInTable(winnerTeam, points)
             global rundenr
             rundenr+=1
