@@ -10,7 +10,6 @@ import numpy as np
 import cv2
 from picamera import PiCamera
 from time import sleep
-from GUIScreen import winnerTeam, pointsInTable
 # construct the argument parser and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required = True, help = "Path to the image")
