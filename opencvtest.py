@@ -45,14 +45,14 @@ red_mask = cv2.inRange(hsv, low_red, high_red)
 
 redstones = []
 bluestones = []
-redcount = 0
-bluecount = 0
+#redcount = 0
+#bluecount = 0
 
 minDist = 10
 param1 = 300 #500
-param2 = 14#200 #smaller value-> more false circles
-minRadius = 26
-maxRadius = 33 #10
+param2 = 15#200 #smaller value-> more false circles
+minRadius = 27
+maxRadius = 35 #10
 blue_circles = cv2.HoughCircles(blue_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
 red_circles = cv2.HoughCircles(red_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
 
@@ -72,7 +72,7 @@ if blue_circles is not None:
         cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
         print(x,y, r, "blue")
         bluestones.append((x,y))
-        bluecount +=1
+        #bluecount +=1
 
 if red_circles is not None:
     red_circles = np.round(red_circles[0, :]).astype("int")
@@ -81,11 +81,11 @@ if red_circles is not None:
         cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
         print(x,y, r, "red")
         redstones.append((x,y))
-        redcount +=1
+        #redcount +=1
 print("The red stone coordinates are: ", redstones)
 print("The blue stone coordinates are: ", bluestones)
-print("Red count: ", redcount)
-print("Blue count: ", bluecount)
+#print("Red count: ", redcount)
+#print("Blue count: ", bluecount)
 
 
 bluedist = []
@@ -104,9 +104,14 @@ for i in range(len(redstones)):
     ydist = abs(redstones[i][1]-origo[1])
     reddist.append(math.sqrt(xdist**2 + ydist**2))
 
+bluedist[:] = [x for x in bluedist if x <= 325]
+reddist[:] = [x for x in reddist if x <= 325]
 
 bluedist.sort()
 reddist.sort()
+
+bluecount = len(bluedist)
+redcount = len(reddist)
 
 print("Blue stones distance, sorted:", bluedist)
 print("Red stones distance, sorted:", reddist)
@@ -116,10 +121,13 @@ redpoints = 0
 blueopen = True
 redopen = True
 
-if redcount == 0:
-    bluepoints = len(bluestones)
-if bluecount == 0:
-    redpoints = len(redstones)
+if bluecount == 0  and redcount == 0:
+    bluepoint = 0
+    redpoint = 0
+elif redcount == 0:
+    bluepoints = len(bluedist)
+elif bluecount == 0:
+    redpoints = len(reddist)
 
 while min(len(bluedist), len(reddist)) > 0:
     if bluedist[0] < reddist[0] and blueopen:
