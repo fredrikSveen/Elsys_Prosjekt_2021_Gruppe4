@@ -370,7 +370,6 @@ def window2(): # Vinduet under spill
         ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         ser1.flush()
         while stonesBefore == stones:
-            ser1.write(b"0\n")
             line = 0
             line = ser1.readline().decode('utf-8').rstrip()[0]
             if line != "":
