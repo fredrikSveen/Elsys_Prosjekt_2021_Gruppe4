@@ -356,6 +356,18 @@ def window2(): # Vinduet under spill
             clearFrame()
             window3()
 
+
+    #Automatisk registrering av passerte steiner.
+    global stones
+    global stones2
+    global stones1
+    global winnerTeam
+    global points
+    stones+=1
+    value1 = int(team1stones["text"])
+    value2 = int(team2stones["text"])
+    
+
     stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
 
