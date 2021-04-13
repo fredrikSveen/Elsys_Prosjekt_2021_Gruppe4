@@ -358,14 +358,42 @@ def window2(): # Vinduet under spill
 
 
     #Automatisk registrering av passerte steiner.
-    global stones
-    global stones2
-    global stones1
-    global winnerTeam
-    global points
-    stones+=1
     value1 = int(team1stones["text"])
     value2 = int(team2stones["text"])
+
+    if winner == "blue":
+        if (stones % 2 == 0):
+            stones2 -= 1
+            team2stones["text"] = str(value2 - 1)
+            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+            lag1.place(relx = 0.05, rely = 0.2)
+            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+            lag2.place(relx = 0.45, rely = 0.2)
+        else:
+            stones1 -= 1
+            team1stones["text"] = str(value1 - 1)
+            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+            lag1.place(relx = 0.05, rely = 0.2)
+            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+            lag2.place(relx = 0.45, rely = 0.2)
+    else:
+        if (stones % 2 == 0):
+            stones1 -= 1
+            team1stones["text"] = str(value1 - 1)
+            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+            lag1.place(relx = 0.05, rely = 0.2)
+            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+            lag2.place(relx = 0.45, rely = 0.2)
+        else:
+            stones2 -= 1
+            team2stones["text"] = str(value2 - 1)
+            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+            lag1.place(relx = 0.05, rely = 0.2)
+            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+            lag2.place(relx = 0.45, rely = 0.2)
+
+
+
     
 
     stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
