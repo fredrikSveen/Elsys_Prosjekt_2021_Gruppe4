@@ -357,40 +357,54 @@ def window2(): # Vinduet under spill
             window3()
 
 
-    #Automatisk registrering av passerte steiner.
-    value1 = int(team1stones["text"])
-    value2 = int(team2stones["text"])
+    while stones != totalStones:
+        #Automatisk registrering av passerte steiner.
+        value1 = int(team1stones["text"])
+        value2 = int(team2stones["text"])
+        stonesBefore = stones
 
-    if winner == "blue":
-        if (stones % 2 == 0):
-            stones2 -= 1
-            team2stones["text"] = str(value2 - 1)
-            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-            lag1.place(relx = 0.05, rely = 0.2)
-            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-            lag2.place(relx = 0.45, rely = 0.2)
+        ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser1.flush()
+        timer = 0
+        while stonesBefore == stones:
+            ser1.write(b"0\n")
+            line = int(ser1.readline().decode('utf-8').rstrip())
+            if line == 1:
+                stones += 1
+            print(line)
+            time.sleep(1)
+            
+
+        if winner == "blue":
+            if (stones % 2 == 0):
+                stones2 -= 1
+                team2stones["text"] = str(value2 - 1)
+                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+            else:
+                stones1 -= 1
+                team1stones["text"] = str(value1 - 1)
+                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
         else:
-            stones1 -= 1
-            team1stones["text"] = str(value1 - 1)
-            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-            lag1.place(relx = 0.05, rely = 0.2)
-            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-            lag2.place(relx = 0.45, rely = 0.2)
-    else:
-        if (stones % 2 == 0):
-            stones1 -= 1
-            team1stones["text"] = str(value1 - 1)
-            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-            lag1.place(relx = 0.05, rely = 0.2)
-            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-            lag2.place(relx = 0.45, rely = 0.2)
-        else:
-            stones2 -= 1
-            team2stones["text"] = str(value2 - 1)
-            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-            lag1.place(relx = 0.05, rely = 0.2)
-            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-            lag2.place(relx = 0.45, rely = 0.2)
+            if (stones % 2 == 0):
+                stones1 -= 1
+                team1stones["text"] = str(value1 - 1)
+                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+            else:
+                stones2 -= 1
+                team2stones["text"] = str(value2 - 1)
+                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
 
 
 
