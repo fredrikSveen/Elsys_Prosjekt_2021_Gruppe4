@@ -371,6 +371,7 @@ def window2(): # Vinduet under spill
         ser1.flush()
         while stonesBefore == stones:
             ser1.write(b"0\n")
+            line = 0
             line = int(ser1.readline().decode('utf-8').rstrip())
             if line == 1:
                 stones += 1
