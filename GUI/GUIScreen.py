@@ -9,7 +9,9 @@ import numpy as np
 #import argparse
 import cv2
 from picamera import PiCamera
-from time import sleep
+#from time import sleep
+import serial
+import time
 # construct the argument parser and parse the arguments
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required = True, help = "Path to the image")
@@ -274,6 +276,8 @@ def window1(): # Åpner første vindu
     start.place(relx = 0.45, rely = 0.8)
 
 def window2(): # Vinduet under spill
+    global rundenr
+    global stones
     l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
 
@@ -306,7 +310,7 @@ def window2(): # Vinduet under spill
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
     #simulasjon av steinkast
-    def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
+    """ def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
         global stones
         global stones2
         global stones1
@@ -354,7 +358,7 @@ def window2(): # Vinduet under spill
             global rundenr
             rundenr+=1
             clearFrame()
-            window3()
+            window3() """
 
 
     while stones != totalStones:
@@ -365,7 +369,6 @@ def window2(): # Vinduet under spill
 
         ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         ser1.flush()
-        timer = 0
         while stonesBefore == stones:
             ser1.write(b"0\n")
             line = int(ser1.readline().decode('utf-8').rstrip())
@@ -406,12 +409,19 @@ def window2(): # Vinduet under spill
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
 
+    stones = 0
+    takePoints()
+    pointsInTable(winnerTeam, points)
+    global rundenr
+    rundenr+=1
+    clearFrame()
+    window3()
 
 
     
 
-    stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
-    stonesButton.place(relx = 0.5, rely = 0.5)
+    #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
+    #stonesButton.place(relx = 0.5, rely = 0.5)
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
