@@ -417,6 +417,7 @@ def window2(): # Vinduet under spill
                 lag1.place(relx = 0.05, rely = 0.2)
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
+        
 
         
     if (stones == totalStones):
@@ -428,15 +429,12 @@ def window2(): # Vinduet under spill
         clearFrame()
         window3()
     else:
-        checkForStone()
-        
-    waitWindow()   
+        window.after(1000, checkForStone)
+
 
     #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     #stonesButton.place(relx = 0.5, rely = 0.5)
 
-def waitWindow():
-    window2()
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
