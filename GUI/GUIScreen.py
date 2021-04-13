@@ -313,7 +313,7 @@ def window2(): # Vinduet under spill
         team2stonesText.place(relx = 0.55, rely = 0.4)
 
         #simulasjon av steinkast
-    """ def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
+        """ def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
         global stones
         global stones2
         global stones1
