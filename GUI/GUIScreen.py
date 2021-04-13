@@ -429,11 +429,14 @@ def window2(): # Vinduet under spill
         window3()
     else:
         checkForStone()
-        window2()
         
+    waitWindow()   
 
     #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     #stonesButton.place(relx = 0.5, rely = 0.5)
+
+def waitWindow():
+    window2()
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
