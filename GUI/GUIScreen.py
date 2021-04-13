@@ -429,6 +429,7 @@ def window2(): # Vinduet under spill
         window3()
     else:
         checkForStone()
+        window2()
         
 
     #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
