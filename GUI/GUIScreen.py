@@ -276,7 +276,7 @@ def window1(): # Åpner første vindu
     start.place(relx = 0.45, rely = 0.8)
 
 def window2(): # Vinduet under spill
-    global rundenr
+    #global rundenr
     global stones
     l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
