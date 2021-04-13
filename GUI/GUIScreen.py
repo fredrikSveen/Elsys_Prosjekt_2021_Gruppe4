@@ -280,40 +280,40 @@ def window2(): # Vinduet under spill
     global stones
     global winner
 
-    while stones != totalStones:
-        l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
-        l.place(relx = 0.4)
+    
+    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
+    l.place(relx = 0.4)
 
-        avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
-        avslutt.place(relx = 0.856, rely = 0.83)
-        
-        if winner == 'blue':
-            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-            lag1.place(relx = 0.05, rely = 0.2)
-            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-            lag2.place(relx = 0.45, rely = 0.2) 
-        else: 
-            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-            lag1.place(relx = 0.05, rely = 0.2)
-            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-            lag2.place(relx = 0.45, rely = 0.2)         
+    avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
+    avslutt.place(relx = 0.856, rely = 0.83)
+    
+    if winner == 'blue':
+        lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+        lag1.place(relx = 0.05, rely = 0.2)
+        lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+        lag2.place(relx = 0.45, rely = 0.2) 
+    else: 
+        lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+        lag1.place(relx = 0.05, rely = 0.2)
+        lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+        lag2.place(relx = 0.45, rely = 0.2)         
 
-        
-        stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
-        stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
-        
-        team1stones = Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
-        team1stones.place(relx = 0, rely = 0.4)
-        team1stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tekst)
-        team1stonesText.place(relx = 0.05, rely = 0.4)
-        
-        team2stones = Label(window, text=str(stones2), font=("Arial bold", 30)) # Label antall steiner igjen team 2 (tall)
-        team2stones.place(relx = 0.5, rely = 0.4)
-        team2stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
-        team2stonesText.place(relx = 0.55, rely = 0.4)
+    
+    stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
+    stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
+    
+    team1stones = Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
+    team1stones.place(relx = 0, rely = 0.4)
+    team1stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tekst)
+    team1stonesText.place(relx = 0.05, rely = 0.4)
+    
+    team2stones = Label(window, text=str(stones2), font=("Arial bold", 30)) # Label antall steiner igjen team 2 (tall)
+    team2stones.place(relx = 0.5, rely = 0.4)
+    team2stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
+    team2stonesText.place(relx = 0.55, rely = 0.4)
 
-        #simulasjon av steinkast
-        """ def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
+    #simulasjon av steinkast
+    """ def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
         global stones
         global stones2
         global stones1
@@ -362,10 +362,13 @@ def window2(): # Vinduet under spill
             rundenr+=1
             clearFrame()
             window3() """
-
-
-    
+    def checkForStone():
         #Automatisk registrering av passerte steiner.
+        global stones
+        global stones2
+        global stones1
+        global winnerTeam
+        global points
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
         stonesBefore = stones
@@ -415,14 +418,17 @@ def window2(): # Vinduet under spill
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
 
-        if (stones == totalStones):
-            stones = 0
-            takePoints()
-            pointsInTable(winnerTeam, points)
-            #global rundenr
-            rundenr+=1
-            clearFrame()
-            window3()
+        
+    if (stones == totalStones):
+        stones = 0
+        takePoints()
+        pointsInTable(winnerTeam, points)
+        #global rundenr
+        rundenr+=1
+        clearFrame()
+        window3()
+    else:
+        checkForStone()
         
 
     #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
