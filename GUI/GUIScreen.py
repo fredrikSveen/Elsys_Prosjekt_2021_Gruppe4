@@ -412,7 +412,7 @@ def window2(): # Vinduet under spill
     stones = 0
     takePoints()
     pointsInTable(winnerTeam, points)
-    global rundenr
+    #global rundenr
     rundenr+=1
     clearFrame()
     window3()
