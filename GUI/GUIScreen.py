@@ -364,6 +364,7 @@ def window2(): # Vinduet under spill
             window3() """
     def checkForStone():
         #Automatisk registrering av passerte steiner.
+        print("test")
         global stones
         global stones2
         global stones1
@@ -418,18 +419,19 @@ def window2(): # Vinduet under spill
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
         
+        if (stones == totalStones):
+            stones = 0
+            takePoints()
+            pointsInTable(winnerTeam, points)
+            #global rundenr
+            rundenr+=1
+            clearFrame()
+            window3()
+        else:
+            window.after(1000, checkForStone)
 
         
-    if (stones == totalStones):
-        stones = 0
-        takePoints()
-        pointsInTable(winnerTeam, points)
-        #global rundenr
-        rundenr+=1
-        clearFrame()
-        window3()
     
-    window.after(1000, checkForStone)
         
 
 
