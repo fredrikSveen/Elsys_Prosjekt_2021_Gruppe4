@@ -428,8 +428,9 @@ def window2(): # Vinduet under spill
         rundenr+=1
         clearFrame()
         window3()
-    else:
-        window.after(1000, checkForStone)
+    
+    window.after(1000, checkForStone)
+        
 
 
     #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
