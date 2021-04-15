@@ -384,41 +384,42 @@ def window2(): # Vinduet under spill
                 lineInt = int(line[0])
                 if lineInt == 1:
                     stones += 1
+                    if winner == "blue":
+                        if (stones % 2 == 0):
+                            stones2 -= 1
+                            team2stones["text"] = str(value2 - 1)
+                            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                            lag1.place(relx = 0.05, rely = 0.2)
+                            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                            lag2.place(relx = 0.45, rely = 0.2)
+                        else:
+                            stones1 -= 1
+                            team1stones["text"] = str(value1 - 1)
+                            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+                            lag1.place(relx = 0.05, rely = 0.2)
+                            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                            lag2.place(relx = 0.45, rely = 0.2)
+                    else:
+                        if (stones % 2 == 0):
+                            stones1 -= 1
+                            team1stones["text"] = str(value1 - 1)
+                            lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+                            lag1.place(relx = 0.05, rely = 0.2)
+                            lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                            lag2.place(relx = 0.45, rely = 0.2)
+                        else:
+                            stones2 -= 1
+                            team2stones["text"] = str(value2 - 1)
+                            lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                            lag1.place(relx = 0.05, rely = 0.2)
+                            lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                            lag2.place(relx = 0.45, rely = 0.2)
             print(line)
             print(stones)
             time.sleep(1)
             
 
-        if winner == "blue":
-            if (stones % 2 == 0):
-                stones2 -= 1
-                team2stones["text"] = str(value2 - 1)
-                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-            else:
-                stones1 -= 1
-                team1stones["text"] = str(value1 - 1)
-                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-        else:
-            if (stones % 2 == 0):
-                stones1 -= 1
-                team1stones["text"] = str(value1 - 1)
-                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-            else:
-                stones2 -= 1
-                team2stones["text"] = str(value2 - 1)
-                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
+        
         
         if (stones == totalStones):
             stones = 0
@@ -431,7 +432,7 @@ def window2(): # Vinduet under spill
         else:
             window.after(1000, checkForStone)
 
-    checkForStone()  
+    window.after(500,checkForStone)  
     
         
 
