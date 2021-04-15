@@ -431,7 +431,7 @@ def window2(): # Vinduet under spill
         else:
             window.after(1000, checkForStone)
 
-        
+    checkForStone()  
     
         
 
