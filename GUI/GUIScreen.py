@@ -370,6 +370,7 @@ def window2(): # Vinduet under spill
         global stones1
         global winnerTeam
         global points
+        global rundenr
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
         stonesBefore = stones
