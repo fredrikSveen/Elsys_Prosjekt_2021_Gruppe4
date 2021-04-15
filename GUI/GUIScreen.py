@@ -246,6 +246,16 @@ def window1(): # Åpner første vindu
     x.place(relx = 0.15, rely = 0.2)
     l = Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
+
+    ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser1.flush()
+    timer = 0
+    while timer < 5:
+        ser1.write(b"0\n")
+        line = ser1.readline().decode('utf-8').rstrip()
+        print(line)
+        time.sleep(1)
+        timer += 1
     
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
