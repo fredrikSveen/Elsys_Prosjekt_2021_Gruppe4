@@ -282,11 +282,13 @@ def window4():
     ns.place(relx=0.35, rely=0.8)
     if sc1 > sc2:
          vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', font=("Arial Bold", 40))
+         vinnerText.place(relx=0.1, rely=0.3)
     elif sc1 < sc2:
          vinnerText = Label(window, text="The winner is Team Orange", fg = 'orange', font=("Arial Bold", 40))
+         vinnerText.place(relx=0.1, rely=0.3)
     else: 
          vinnerText = Label(window, text="It's a tie", font=("Arial Bold", 50))
-    vinnerText.place(relx=0.1, rely=0.3)
+         vinnerText.place(relx=0.3, rely=0.3)
         
 window1()
     
