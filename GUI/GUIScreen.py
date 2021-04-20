@@ -270,11 +270,11 @@ def window4():
         global runder
         avsluttBool=False
         runder = 5
-        clearFrame()
-        window1()
         for i in range(1,len(table)):
             table[i][1] = ''
             table[i][2] = ''
+        clearFrame()
+        window1()
     
     global rundenr
     rundenr = 1
