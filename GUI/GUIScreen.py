@@ -14,6 +14,8 @@ points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har 
 totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
+sc1=0
+sc2=0
 
 # Lager liste med resultater
 table = list(range(12))
@@ -58,7 +60,9 @@ def Avslutt(): # Åpner varslingsvindu
         w.destroy()
     def A(): #Avsluttknapp i det lille vinduet
         global avsluttBool
+        global stones
         avsluttBool = True
+        stones = 0
         w.destroy()
         clearFrame()
         window3()
@@ -93,7 +97,6 @@ def window1(): # Åpner første vindu
         clearFrame()
         window2()   
 
-
     opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp
     opp.place(relx = 0.55, rely = 0.35)
     
@@ -104,6 +107,9 @@ def window1(): # Åpner første vindu
     start.place(relx = 0.45, rely = 0.8)
 
 def window2(): # Vinduet under spill
+    global stones1
+    global stones2
+
     l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
     l.place(relx = 0.4)
 
@@ -173,8 +179,7 @@ def window2(): # Vinduet under spill
                 lag1.place(relx = 0.05, rely = 0.2)
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
-    
-
+        
         if (stones == totalStones):
             stones = 0
             pointsInTable(winnerTeam, points)
@@ -223,6 +228,8 @@ def window3(): # Vindu med resultater
         fortsett.place(relx=0.4, rely=0.8)
 
     table[runder + 1][0] = 'Total score'
+    global sc1
+    global sc2
     sc1 = 0
     sc2 = 0
     for i in range(1, rundenr):
@@ -259,7 +266,9 @@ def window3(): # Vindu med resultater
     
 def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
+        global avsluttBool
         global runder
+        avsluttBool=False
         runder = 5
         clearFrame()
         window1()
@@ -271,14 +280,9 @@ def window4():
     rundenr = 1
     ns = Button(window, text="New game", command=nyttSpill, font=("Arial Bold", 30)) # "Nytt spill"-knapp
     ns.place(relx=0.35, rely=0.8)
-    score1 = 0
-    score2 = 0
-    for i in range(1, runder + 1):
-        score1 += int(table[i][1])
-        score2 += int(table[i][2])
-    if score1 > score2:
+    if sc1 > sc2:
          vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', font=("Arial Bold", 40))
-    elif score1 < score2:
+    elif sc1 < sc2:
          vinnerText = Label(window, text="The winner is Team Orange", fg = 'orange', font=("Arial Bold", 40))
     else: 
          vinnerText = Label(window, text="It's a tie", font=("Arial Bold", 50))
