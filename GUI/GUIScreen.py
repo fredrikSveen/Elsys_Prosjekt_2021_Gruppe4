@@ -121,7 +121,7 @@ def window2(): # Vinduet under spill
         lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
         lag2.place(relx = 0.45, rely = 0.2)         
 
-    
+    total
     stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
     stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
     
