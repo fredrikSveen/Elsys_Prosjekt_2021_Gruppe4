@@ -31,7 +31,7 @@ extern const TProgmemPalette16 partyArty_p PROGMEM;
 
 //tellere for å bestemme hvilk fargekombinasjoner som skal vises 
 int i = 0;
-int k = 0; //gunntilstand, ingen fargekombinasjon vil vises
+int k = 1; //gunntilstand, ingen fargekombinasjon vil vises
 
 
 void setup() {
