@@ -288,7 +288,7 @@ def window4():
          vinnerText.place(relx=0.1, rely=0.3)
     else: 
          vinnerText = Label(window, text="It's a tie", font=("Arial Bold", 50))
-         vinnerText.place(relx=0.3, rely=0.3)
+         vinnerText.place(relx=0.4, rely=0.3)
         
 window1()
     
