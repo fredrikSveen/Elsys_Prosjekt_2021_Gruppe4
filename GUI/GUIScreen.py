@@ -565,6 +565,7 @@ def window4():
         score2 += int(table[i][2])
     if score1 > score2:
         vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', font=("Arial Bold", 40))
+        vinnerText.place(relx=0.1, rely=0.3)
         ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         ser1.flush()
         timer = 0
@@ -576,6 +577,7 @@ def window4():
             timer += 1
     elif score1 < score2:
         vinnerText = Label(window, text="The winner is Team Orange", fg = 'orange', font=("Arial Bold", 40))
+        vinnerText.place(relx=0.05, rely=0.3)
         ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         ser1.flush()
         timer = 0
@@ -587,7 +589,7 @@ def window4():
             timer += 1
     else: 
         vinnerText = Label(window, text="It's a tie", font=("Arial Bold", 50))
-    vinnerText.place(relx=0.1, rely=0.3)
+        vinnerText.place(relx=0.3, rely=0.3)
         
 window1()
     
