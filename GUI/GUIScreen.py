@@ -180,6 +180,9 @@ def takePoints():
         winnerTeam = 2
         points = redpoints
         #pointsInTable(winnerTeam, redpoints)
+    else:
+        winnerTeam = 0
+        points = 0
 
 
 
