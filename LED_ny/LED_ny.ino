@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
-#define LED_PIN     2   //utgang på ardunio
-#define NUM_LEDS    10  //antall LED lys oden skal virke på 
+#define LED_PIN     3   //utgang på ardunio
+#define NUM_LEDS    11  //antall LED lys koden skal virke på 
 #define BRIGHTNESS  64  
 #define LED_TYPE    WS2811 //type led strip 
 #define COLOR_ORDER GRB
@@ -49,14 +49,14 @@ void setup() {
 void loop()
 { 
 
-     //mottar nye k-verdier, i henhold til LCD-skjerm, via raspberry pi 
-//    if (Serial.available() > 0) 
-//    {
-//    String data = Serial.readStringUntil('\n');
+    //mottar nye k-verdier, i henhold til LCD-skjerm, via raspberry pi 
+    if (Serial.available() > 0) 
+    {
+    String data = Serial.readStringUntil('\n');
 //    Serial.print("You sent me: ");
 //    Serial.println(k);
-//    k = data.toInt();
-//    }
+    k = data.toInt();
+    }
     
 
     ChangePalettePeriodically(); //funksjon som endrer på fargekombinasjonene
@@ -82,6 +82,9 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex)
 
 void ChangePalettePeriodically()
 {
+        uint8_t secondHand = (millis() / 1000) % 60;
+        
+        
         //bestemmer når de forskjellige fargekombinasjoene skal vises,
         //avhengig av k-verdi sent av raspberry pi
         if(i == 0){
@@ -118,7 +121,7 @@ void ChangePalettePeriodically()
 //START
           if(i == 1)
           {
-            float secondHand = (millis() / 500) % 21; //tidsoppsett
+            secondHand = (millis() / 500) % 21; //tidsoppsett
             
             if( secondHand == 5)  { currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;}
             
@@ -129,7 +132,7 @@ void ChangePalettePeriodically()
 //BLÅ vinner runde
           else if (i == 2)
           {
-            float secondHand = (millis() / 500) % 13;
+            secondHand = (millis() / 500) % 13;
           
             if( secondHand == 5) {blinkyBlack(); currentBlending = NOBLEND;}
             if( secondHand == 6) {blinkyBlue(); currentBlending = NOBLEND;}
@@ -146,7 +149,7 @@ void ChangePalettePeriodically()
 //ORANSJE vinner runde
           else if(i == 3)
           {
-            float secondHand = (millis() / 500) % 13;
+            secondHand = (millis() / 500) % 13;
           
             if( secondHand == 5) {blinkyBlack(); currentBlending = NOBLEND;}
             if( secondHand == 6) {blinkyOrange();currentBlending = NOBLEND;}
@@ -163,7 +166,7 @@ void ChangePalettePeriodically()
 //BLÅ vinner spillet
         else if( i == 4)
         {
-          float secondHand = (millis() / 500) % 59;
+          secondHand = (millis() / 500) % 59;
           
           if( secondHand == 5)  {currentPalette = partyArty_p; currentBlending = LINEARBLEND;}
           if( secondHand == 20) {blinkyBlack(); currentBlending = NOBLEND;}
@@ -184,7 +187,7 @@ void ChangePalettePeriodically()
 //ORANSJE vinner spillet
         else if( i == 5)
         {
-          float secondHand = (millis() / 500) % 59;
+          secondHand = (millis() / 500) % 59;
           
           if( secondHand == 5)  {currentPalette = partyArty_p; currentBlending = LINEARBLEND;}
           if( secondHand == 20) {blinkyBlack(); currentBlending = NOBLEND;}
