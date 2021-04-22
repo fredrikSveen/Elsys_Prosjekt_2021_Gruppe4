@@ -10,8 +10,6 @@ void setup() {
 }
 
 int i = 0;
-int stones = 0;
-bool finish = false;
 
 void loop() {
   // put your main code here, to run repeatedly:
@@ -27,11 +25,15 @@ void loop() {
   distance = (duration/2) / 29.1;
 
   vec[i] = distance;
+  long average = (vec[1]+vec[2]+vec[3]+vec[4]+vec[0])/5;
 
-  if ((vec[1]+vec[2]+vec[3]+vec[4]+vec[0])/5 < 7) {
+  if (average < 7) {
     digitalWrite(led, HIGH);
-    stones++;
-    delay(1000);
+    int counter = 0;
+    while(counter < 300) {
+      Serial.print(1);
+      counter++;
+    }
   }
   else {
     digitalWrite(led, LOW);
@@ -42,17 +44,4 @@ void loop() {
   if (i == 5) {
     i = 0;
   }
-
-  if (stones == 16) {
-    stones = 0;
-    finish = true;
-  }
-  else {
-    finish = false;
-  }
-
-  Serial.print(stones);
-  //Serial.println(" cm");
-  Serial.println();
-  delay(10);
 }
