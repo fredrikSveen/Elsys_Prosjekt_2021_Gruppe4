@@ -25,7 +25,7 @@ runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
-winner = "blue"
+winner = 1
 winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
 totalStones = 4
@@ -319,7 +319,7 @@ def window2(): # Vinduet under spill
     avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
     avslutt.place(relx = 0.856, rely = 0.83)
     
-    if winner == 'blue':
+    if winner == 1:
         lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
         lag1.place(relx = 0.05, rely = 0.2)
         lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
@@ -416,7 +416,7 @@ def window2(): # Vinduet under spill
                 lineInt = int(line[0])
                 if lineInt == 1:
                     stones += 1
-                    if winner == "blue":
+                    if winner == 1:
                         if (stones % 2 == 0):
                             stones2 -= 1
                             team2stones["text"] = str(value2 - 1)
