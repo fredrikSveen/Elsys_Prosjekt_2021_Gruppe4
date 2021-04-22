@@ -27,16 +27,22 @@ void loop() {
   vec[i] = distance;
   long average = (vec[1]+vec[2]+vec[3]+vec[4]+vec[0])/5;
 
+  Serial.print(average);
   if (average < 7) {
-    digitalWrite(led, HIGH);
+    //digitalWrite(led, HIGH);
     int counter = 0;
-    while(counter < 300) {
+    while(counter < 50) {
       Serial.print(1);
+      delay(5);
       counter++;
+    }
+    delay(1000);
+    for(int i = 0; i < 6; i++){
+      vec[i] = 100;
     }
   }
   else {
-    digitalWrite(led, LOW);
+    //digitalWrite(led, LOW);
   }
 
   i++;
