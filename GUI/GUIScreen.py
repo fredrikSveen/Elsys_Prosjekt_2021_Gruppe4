@@ -403,7 +403,7 @@ def window2(): # Vinduet under spill
         value2 = int(team2stones["text"])
         stonesBefore = stones
 
-        ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser1 = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
         ser1.flush()
         while stonesBefore == stones:
             line = 0
