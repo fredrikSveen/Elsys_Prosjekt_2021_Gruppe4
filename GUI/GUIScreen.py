@@ -31,12 +31,13 @@ points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har 
 totalStones = 4
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
+camera = PiCamera()
+camera.resolution = (3280,2464)
 
 def takePoints():
     global winnerTeam
     global points
-    camera = PiCamera()
-    camera.resolution = (3280,2464)
+    global camera
     camera.start_preview()
     time.sleep(2)
     camera.stop_preview()
