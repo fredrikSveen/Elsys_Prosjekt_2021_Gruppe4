@@ -3,22 +3,12 @@ window = Tk()
 window.title("Curling game")
 window.geometry('800x480')
 # import the necessary packages
-#from email.mime import image
 import math
 import numpy as np
-#import argparse
 import cv2
 from picamera import PiCamera
-#from time import sleep
 import serial
 import time
-# construct the argument parser and parse the arguments
-#ap = argparse.ArgumentParser()
-#ap.add_argument("-i", "--image", required = True, help = "Path to the image")
-#args = vars(ap.parse_args())
-
-# load the image, clone it for output, and then convert it to grayscale
-#image = cv2.imread(args["image"])
 
 #Globale variabler:
 runder = 5
@@ -43,7 +33,6 @@ def takePoints():
     camera.stop_preview()
     camera.capture('image0.jpg')
 
-    #im = cv2.imread("image0.jpg")
     im = cv2.imread("image0.jpg")
     reshape = cv2.resize(im, (820, 616))
     output = reshape.copy()
@@ -74,7 +63,7 @@ def takePoints():
 
     minDist = 10
     param1 = 300 #500
-    param2 = 15#200 #smaller value-> more false circles
+    param2 = 15 #200 #smaller value-> more false circles
     minRadius = 27
     maxRadius = 35 #10
     blue_circles = cv2.HoughCircles(blue_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
@@ -116,7 +105,6 @@ def takePoints():
     reddist = []
     resolution = [820,616]
     origo = [resolution[0] / 2, resolution[1] / 2]
-    #houselimit = Størrelsen på boet i piksler??
 
     for i in range(len(bluestones)):
         xdist = abs(bluestones[i][0]-origo[0])
@@ -168,6 +156,7 @@ def takePoints():
     print("Blue points:", bluepoints)
     print("Red points:", redpoints)
 
+    #Functions available to show the picture qith red og blue mask
     #cv2.imshow('blue', blue_mask)
     #cv2.imshow('red', red_mask)
     #cv2.imshow("output", output)
@@ -183,12 +172,6 @@ def takePoints():
     else:
         winnerTeam = 0
         points = 0
-
-
-
-
-
-
 
 
 # Lager liste med resultater
@@ -274,8 +257,6 @@ def window1(): # Åpner første vindu
     timer = 0
     while timer < 5:
         ser1.write(b"0\n")
-        # line = ser1.readline().decode('utf-8').rstrip()
-        # print(line)
         time.sleep(1)
         timer += 1
     
@@ -319,6 +300,7 @@ def window2(): # Vinduet under spill
     avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
     avslutt.place(relx = 0.856, rely = 0.83)
     
+    #Coloring of the team name that starts the round
     if winner == 1:
         lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
         lag1.place(relx = 0.05, rely = 0.2)
@@ -344,59 +326,8 @@ def window2(): # Vinduet under spill
     team2stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30)) # Label antall steiner igjen team 2 (text)
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
-    #simulasjon av steinkast
-    """ def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
-        global stones
-        global stones2
-        global stones1
-        global winnerTeam
-        global points
-        stones+=1
-        value1 = int(team1stones["text"])
-        value2 = int(team2stones["text"])
-        if winner == "blue":
-            if (stones % 2 == 0):
-                stones2 -= 1
-                team2stones["text"] = str(value2 - 1)
-                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-            else:
-                stones1 -= 1
-                team1stones["text"] = str(value1 - 1)
-                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-        else:
-            if (stones % 2 == 0):
-                stones1 -= 1
-                team1stones["text"] = str(value1 - 1)
-                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-            else:
-                stones2 -= 1
-                team2stones["text"] = str(value2 - 1)
-                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
-    
-
-        if (stones == totalStones):
-            stones = 0
-            takePoints()
-            pointsInTable(winnerTeam, points)
-            global rundenr
-            rundenr+=1
-            clearFrame()
-            window3() """
     def checkForStone():
         #Automatisk registrering av passerte steiner.
-        print("test")
         global stones
         global stones2
         global stones1
@@ -407,15 +338,18 @@ def window2(): # Vinduet under spill
         value2 = int(team2stones["text"])
         stonesBefore = stones
 
+        #Opens connection to range sensor
         ser1 = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
         ser1.flush()
+        #Continues until a new stone i registrated bt the range sensor
         while stonesBefore == stones:
             line = 0
             line = ser1.readline().decode('utf-8').rstrip()
-            if line != "":
-                lineInt = int(line[0])
+            if line != "":  #Checks if the serial data is containing any thing.
+                lineInt = int(line[0]) #Checks the first character of the serial string, and check if it's a 1.
                 if lineInt == 1:
                     stones += 1
+                    #Logic for marking which team that is next up.
                     if winner == 1:
                         if (stones % 2 == 0):
                             stones2 -= 1
@@ -452,7 +386,7 @@ def window2(): # Vinduet under spill
             
 
         
-        
+        #Check if the round is finished
         if (stones == totalStones):
             stones = 0
             takePoints()
@@ -465,12 +399,6 @@ def window2(): # Vinduet under spill
             window.after(1000, checkForStone)
 
     window.after(500,checkForStone)  
-    
-        
-
-
-    #stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
-    #stonesButton.place(relx = 0.5, rely = 0.5)
 
 
 def window3(): # Vindu med resultater
