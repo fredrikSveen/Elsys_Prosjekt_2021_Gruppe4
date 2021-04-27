@@ -24,25 +24,31 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   duration = pulseIn(echoPin, HIGH);
-  distance = (duration/2) / 29.1;
+  distance = (duration/2) / 10;
 
   //Make an avegrage to prevent spikes int the sensor data.
   vec[i] = distance;
-  long average = (vec[1]+vec[2]+vec[3]+vec[4]+vec[0])/5;
+  long sum = 0;
+  for (int j = 0; j < 5; j++){
+    sum += vec[j];
+  }
+  long average = sum/5;
+  Serial.print(average);
+  Serial.println(" ");
 
-  if (average < 7) {
+  if (average < 22) {
     //Can be used in testing to indicate when something is closer than the border set from the user.
     //digitalWrite(led, HIGH);
     int counter = 0;
     //Loop for sending information to the central computer about a stone that passed.
     while(counter < 50) {
-      Serial.print(1);
+      //Serial.print(1);
       delay(5);
       counter++;
     }
     delay(1000);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
-    for(int i = 0; i < 6; i++){
+    for(int i = 0; i < 8; i++){
       vec[i] = 100;
     }
   }
