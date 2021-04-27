@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
 #define LED_PIN     3   //utgang på ardunio
-#define NUM_LEDS    11  //antall LED lys koden skal virke på 
+#define NUM_LEDS    211  //antall LED lys koden skal virke på 
 #define BRIGHTNESS  64  
 #define LED_TYPE    WS2811 //type led strip 
 #define COLOR_ORDER GRB
@@ -31,12 +31,12 @@ extern const TProgmemPalette16 partyArty_p PROGMEM;
 
 //tellere for å bestemme hvilk fargekombinasjoner som skal vises 
 int i = 0;
-int k = 1; //gunntilstand, ingen fargekombinasjon vil vises
+int k = 8; //gunntilstand, ingen fargekombinasjon vil vises
 
 
 void setup() {
   
-//    Serial.begin(9600);
+    Serial.begin(9600);
 
     delay( 3000 ); // power-up safety delay
     FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
@@ -53,8 +53,7 @@ void loop()
     if (Serial.available() > 0) 
     {
     String data = Serial.readStringUntil('\n');
-//    Serial.print("You sent me: ");
-//    Serial.println(k);
+    k = 6;
     k = data.toInt();
     }
     
@@ -83,7 +82,8 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex)
 void ChangePalettePeriodically()
 {
         uint8_t secondHand = (millis() / 1000) % 60;
-        
+
+              
         
         //bestemmer når de forskjellige fargekombinasjoene skal vises,
         //avhengig av k-verdi sent av raspberry pi
