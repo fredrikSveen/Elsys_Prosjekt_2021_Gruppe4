@@ -14,7 +14,7 @@ void setup() {
 int i = 0;
 int numberAverage = 4;
 long duration, distance;
-long vec[4] = {0, 0, 0, 0};
+long vec[4] = {200, 200, 200, 200};
 
 void loop() {
 
@@ -34,8 +34,8 @@ void loop() {
     sum += vec[j];
   }
   long average = sum/numberAverage;
-//  Serial.print(average);
-//  Serial.println(" ");
+  Serial.print(average);
+  Serial.println(" ");
 //  Serial.print(vec[0]);
 //  Serial.println(" ");
 //  Serial.print(vec[1]);
@@ -50,7 +50,7 @@ void loop() {
     //digitalWrite(led, HIGH);
     int counter = 0;
     //Loop for sending information to the central computer about a stone that passed.
-    while(counter < 50) {
+    while(counter < 70) {
       Serial.print(1);
       delay(5);
       counter++;
@@ -58,7 +58,7 @@ void loop() {
     delay(1000);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
     for(int k = 0; k < numberAverage; k++){
-      vec[k] = 200;
+      vec[k] = 150;
     }
   }
   else {

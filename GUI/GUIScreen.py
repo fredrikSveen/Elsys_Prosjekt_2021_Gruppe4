@@ -386,7 +386,7 @@ def window2(): # Vinduet under spill
                                 lag2.place(relx = 0.45, rely = 0.2)
             print(line)
             print(stones)
-            time.sleep(1)
+            time.sleep(0.1)
             
 
         
