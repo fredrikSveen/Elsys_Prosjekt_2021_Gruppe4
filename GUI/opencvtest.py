@@ -44,7 +44,7 @@ def takePoints():
     high_blue = np.array([126, 255, 255])
 
     #Rød range
-    low_red = np.array([1, 100, 150])
+    low_red = np.array([1, 100, 130])
     high_red = np.array([255, 255, 255])
 
     # Lager en "maske" som filtrerer bort alt i bildet bortsett fra det blå:
@@ -59,7 +59,7 @@ def takePoints():
     minDist = 10
     param1 = 300 #500
     param2 = 16 #200 #smaller value-> more false circles
-    minRadius = 28
+    minRadius = 27
     maxRadius = 35 #10
     blue_circles = cv2.HoughCircles(blue_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
     red_circles = cv2.HoughCircles(red_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
