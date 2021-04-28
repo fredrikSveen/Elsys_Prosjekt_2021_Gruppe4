@@ -1,3 +1,24 @@
+import math
+import numpy as np
+import cv2
+from picamera import PiCamera
+import serial
+import time
+
+#Globale variabler:
+runder = 5
+rundenr = 1
+avsluttBool = False
+stones = 0
+winner = 1
+winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
+points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
+totalStones = 6
+stones1 = int(totalStones/2)
+stones2 = int(totalStones/2)
+camera = PiCamera()
+camera.resolution = (3280,2464)
+
 def takePoints():
     global winnerTeam
     global points
