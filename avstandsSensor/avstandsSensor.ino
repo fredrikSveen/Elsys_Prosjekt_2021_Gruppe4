@@ -51,10 +51,11 @@ void loop() {
     int counter = 0;
     //Loop for sending information to the central computer about a stone that passed.
     while(counter < 70) {
-      Serial.println(1);
+      Serial.print(1);
       delay(5);
       counter++;
     }
+    Serial.println("");
     delay(1000);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
     for(int k = 0; k < numberAverage; k++){
