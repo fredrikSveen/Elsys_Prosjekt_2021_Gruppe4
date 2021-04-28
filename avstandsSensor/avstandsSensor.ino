@@ -13,10 +13,10 @@ void setup() {
 
 int i = 0;
 int numberAverage = 4;
+long duration, distance;
+long vec[4] = {0, 0, 0, 0};
 
 void loop() {
-  long duration, distance;
-  long vec[numberAverage] = {0, 0, 0, 0};
 
   //Measures the distance
   digitalWrite(trigPin, LOW);
@@ -34,10 +34,18 @@ void loop() {
     sum += vec[j];
   }
   long average = sum/numberAverage;
-  //Serial.print(average);
-  //Serial.println(" ");
+//  Serial.print(average);
+//  Serial.println(" ");
+//  Serial.print(vec[0]);
+//  Serial.println(" ");
+//  Serial.print(vec[1]);
+//  Serial.println(" "); 
+//  Serial.print(vec[2]);
+//  Serial.println(" ");
+//  Serial.print(vec[3]);
+//  Serial.println(" ");
 
-  if (average < 27) {
+  if (average < 120) {
     //Can be used in testing to indicate when something is closer than the border set from the user.
     //digitalWrite(led, HIGH);
     int counter = 0;
@@ -49,8 +57,8 @@ void loop() {
     }
     delay(1000);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
-    for(int i = 0; i < numberAverage; i++){
-      vec[i] = 100;
+    for(int k = 0; k < numberAverage; k++){
+      vec[k] = 200;
     }
   }
   else {
@@ -59,7 +67,7 @@ void loop() {
 
   i++;
 
-  if (i == 4) {
+  if (i == numberAverage) {
     i = 0;
   }
 }
