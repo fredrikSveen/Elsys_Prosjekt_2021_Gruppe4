@@ -58,7 +58,7 @@ def takePoints():
 
     minDist = 10
     param1 = 300 #500
-    param2 = 15 #200 #smaller value-> more false circles
+    param2 = 16 #200 #smaller value-> more false circles
     minRadius = 28
     maxRadius = 35 #10
     blue_circles = cv2.HoughCircles(blue_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
