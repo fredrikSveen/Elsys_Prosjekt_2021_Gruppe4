@@ -34,7 +34,7 @@ void loop() {
     sum += vec[j];
   }
   long average = sum/numberAverage;
-  Serial.println(average);
+//  Serial.println(average);
 //  Serial.println(" ");
 //  Serial.print(vec[0]);
 //  Serial.println(" ");
@@ -55,7 +55,6 @@ void loop() {
       delay(5);
       counter++;
     }
-    Serial.println("");
     delay(1000);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
     for(int k = 0; k < numberAverage; k++){

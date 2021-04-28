@@ -384,7 +384,7 @@ def window2(): # Vinduet under spill
                                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                                 lag2.place(relx = 0.45, rely = 0.2)
             print(line)
-            print(stones)
+            #print(stones)
             time.sleep(0.1)
             
 
