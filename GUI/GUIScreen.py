@@ -193,11 +193,11 @@ def pointsInTable(winnerTeam, points):
         table[rundenr][1] = points
         table[rundenr][2] = 0
         winner = 1
-        ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser1.flush()
+        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser0.flush()
         timer = 0
         while timer < 5:
-            ser1.write(b"1\n")
+            ser0.write(b"1\n")
             # line = ser1.readline().decode('utf-8').rstrip()
             # print(line)
             time.sleep(1)
@@ -206,11 +206,11 @@ def pointsInTable(winnerTeam, points):
         table[rundenr][2] = points
         table[rundenr][1] = 0
         winner = 2
-        ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser1.flush()
+        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser0.flush()
         timer = 0
         while timer < 5:
-            ser1.write(b"2\n")
+            ser0.write(b"2\n")
             # line = ser1.readline().decode('utf-8').rstrip()
             # print(line)
             time.sleep(1)
@@ -252,11 +252,11 @@ def window1(): # Åpner første vindu
     l = Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
 
-    ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-    ser1.flush()
+    ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser0.flush()
     timer = 0
     while timer < 5:
-        ser1.write(b"0\n")
+        ser0.write(b"0\n")
         time.sleep(1)
         timer += 1
     
@@ -495,11 +495,11 @@ def window4():
     if score1 > score2:
         vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', font=("Arial Bold", 40))
         vinnerText.place(relx=0.1, rely=0.3)
-        ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser1.flush()
+        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser0.flush()
         timer = 0
         while timer < 5:
-            ser1.write(b"3\n")
+            ser0.write(b"3\n")
             # line = ser1.readline().decode('utf-8').rstrip()
             # print(line)
             time.sleep(1)
@@ -507,11 +507,11 @@ def window4():
     elif score1 < score2:
         vinnerText = Label(window, text="The winner is Team Orange", fg = 'orange', font=("Arial Bold", 40))
         vinnerText.place(relx=0.05, rely=0.3)
-        ser1 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser1.flush()
+        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser0.flush()
         timer = 0
         while timer < 5:
-            ser1.write(b"4\n")
+            ser0.write(b"4\n")
             # line = ser1.readline().decode('utf-8').rstrip()
             # print(line)
             time.sleep(1)
