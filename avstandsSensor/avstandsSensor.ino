@@ -34,8 +34,8 @@ void loop() {
     sum += vec[j];
   }
   long average = sum/numberAverage;
-  Serial.print(average);
-  Serial.println(" ");
+  Serial.println(average);
+//  Serial.println(" ");
 //  Serial.print(vec[0]);
 //  Serial.println(" ");
 //  Serial.print(vec[1]);
@@ -51,7 +51,7 @@ void loop() {
     int counter = 0;
     //Loop for sending information to the central computer about a stone that passed.
     while(counter < 70) {
-      Serial.print(1);
+      Serial.println(1);
       delay(5);
       counter++;
     }
