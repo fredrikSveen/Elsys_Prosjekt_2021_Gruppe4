@@ -348,7 +348,8 @@ def window2(): # Vinduet under spill
             ser1.flush()
             line = ser1.readline().decode('utf-8').rstrip()
             if line != "":  #Checks if the serial data is containing any thing.
-                if line[0] = 1 
+                testline = int(line[0])
+                if testline == 1: 
                     lineInt = int(line[1]) #Checks the first character of the serial string, and check if it's a 1.
                     if lineInt == 1:
                         stones += 1
