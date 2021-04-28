@@ -155,7 +155,7 @@ def takePoints():
     cv2.imshow('blue', blue_mask)
     cv2.imshow('red', red_mask)
     cv2.imshow("output", output)
-    #cv2.waitKey(0)
+    cv2.waitKey(0)
     if bluepoints > 0:
         winnerTeam = 1
         points = bluepoints
