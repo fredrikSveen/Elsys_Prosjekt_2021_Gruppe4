@@ -344,6 +344,7 @@ def window2(): # Vinduet under spill
         #Continues until a new stone i registrated bt the range sensor
         while stonesBefore == stones:
             line = 0
+            ser1.flush()
             line = ser1.readline().decode('utf-8').rstrip()
             if line != "":  #Checks if the serial data is containing any thing.
                 lineInt = int(line[0]) #Checks the first character of the serial string, and check if it's a 1.

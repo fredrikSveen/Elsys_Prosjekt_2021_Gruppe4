@@ -12,10 +12,11 @@ void setup() {
 }
 
 int i = 0;
+int numberAverage = 4;
 
 void loop() {
   long duration, distance;
-  long vec[5] = {0, 0, 0, 0, 0};
+  long vec[numberAverage] = {0, 0, 0, 0};
 
   //Measures the distance
   digitalWrite(trigPin, LOW);
@@ -29,26 +30,26 @@ void loop() {
   //Make an avegrage to prevent spikes int the sensor data.
   vec[i] = distance;
   long sum = 0;
-  for (int j = 0; j < 5; j++){
+  for (int j = 0; j < numberAverage; j++){
     sum += vec[j];
   }
-  long average = sum/5;
-  Serial.print(average);
-  Serial.println(" ");
+  long average = sum/numberAverage;
+  //Serial.print(average);
+  //Serial.println(" ");
 
-  if (average < 22) {
+  if (average < 27) {
     //Can be used in testing to indicate when something is closer than the border set from the user.
     //digitalWrite(led, HIGH);
     int counter = 0;
     //Loop for sending information to the central computer about a stone that passed.
     while(counter < 50) {
-      //Serial.print(1);
+      Serial.print(1);
       delay(5);
       counter++;
     }
     delay(1000);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i < numberAverage; i++){
       vec[i] = 100;
     }
   }
@@ -58,7 +59,7 @@ void loop() {
 
   i++;
 
-  if (i == 5) {
+  if (i == 4) {
     i = 0;
   }
 }
