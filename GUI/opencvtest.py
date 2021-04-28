@@ -59,7 +59,7 @@ def takePoints():
     minDist = 10
     param1 = 300 #500
     param2 = 15 #200 #smaller value-> more false circles
-    minRadius = 27
+    minRadius = 29
     maxRadius = 35 #10
     blue_circles = cv2.HoughCircles(blue_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
     red_circles = cv2.HoughCircles(red_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
@@ -152,8 +152,8 @@ def takePoints():
     print("Red points:", redpoints)
 
     #Functions available to show the picture qith red og blue mask
-    #cv2.imshow('blue', blue_mask)
-    #cv2.imshow('red', red_mask)
+    cv2.imshow('blue', blue_mask)
+    cv2.imshow('red', red_mask)
     cv2.imshow("output", output)
     #cv2.waitKey(0)
     if bluepoints > 0:
