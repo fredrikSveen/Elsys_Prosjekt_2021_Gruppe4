@@ -44,8 +44,8 @@ def takePoints():
     high_blue = np.array([126, 255, 255])
 
     #Rød range
-    low_red = np.array([1, 100, 138])
-    high_red = np.array([255, 255, 255])
+    low_red = np.array([1, 100, 50])
+    high_red = np.array([255, 100, 100])
 
     # Lager en "maske" som filtrerer bort alt i bildet bortsett fra det blå:
     blue_mask = cv2.inRange(hsv, low_blue, high_blue)
