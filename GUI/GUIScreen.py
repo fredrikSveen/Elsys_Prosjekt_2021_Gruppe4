@@ -385,7 +385,7 @@ def window2(): # Vinduet under spill
                                 lag2.place(relx = 0.45, rely = 0.2)
             print(line)
             #print(stones)
-            time.sleep(0.1)
+            #time.sleep(0.1)
             
 
         
@@ -399,9 +399,9 @@ def window2(): # Vinduet under spill
             clearFrame()
             window3()
         else:
-            window.after(1000, checkForStone)
+            window.after(500, checkForStone)
 
-    window.after(500,checkForStone)  
+    #window.after(200,checkForStone)  
 
 
 def window3(): # Vindu med resultater
