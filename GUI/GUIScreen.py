@@ -398,10 +398,10 @@ def window2(): # Vinduet under spill
             rundenr+=1
             clearFrame()
             window3()
-        
-            #window.after(500, checkForStone)
+        else:
+            window.after(500, checkForStone)
 
-    window.after(200,checkForStone)  
+    window.after(500,checkForStone)  
 
 
 def window3(): # Vindu med resultater
