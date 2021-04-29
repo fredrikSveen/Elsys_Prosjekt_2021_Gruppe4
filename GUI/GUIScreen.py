@@ -398,7 +398,7 @@ def window2(): # Vinduet under spill
             rundenr+=1
             clearFrame()
             window3()
-        else:
+        
             #window.after(500, checkForStone)
 
     window.after(200,checkForStone)  
