@@ -399,9 +399,9 @@ def window2(): # Vinduet under spill
             clearFrame()
             window3()
         else:
-            window.after(500, checkForStone)
+            window.after(200, checkForStone)
 
-    window.after(500,checkForStone)  
+    window.after(200,checkForStone)  
 
 
 def window3(): # Vindu med resultater
