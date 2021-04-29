@@ -18,7 +18,7 @@ stones = 0
 winner = 1
 winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-totalStones = 16
+totalStones = 90
 stones1 = int(totalStones/2)
 stones2 = int(totalStones/2)
 camera = PiCamera()
@@ -347,8 +347,10 @@ def window2(): # Vinduet under spill
             ser1.flush()
             line = ser1.readline().decode('utf-8').rstrip()
             if line != "":  #Checks if the serial data is containing any thing.
+                testline = 0
                 testline = int(line[0])
-                if testline == 1: 
+                if testline == 1:
+                    lineint = 0 
                     lineInt = int(line[1]) #Checks the first character of the serial string, and check if it's a 1.
                     if lineInt == 1:
                         stones += 1
