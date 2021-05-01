@@ -12,9 +12,10 @@ void setup() {
 }
 
 int i = 0;
-int numberAverage = 4;
+int numberAverage = 10;
 long duration, distance;
-long vec[4] = {200, 200, 200, 200};
+//Array of values to average.
+long vec[10] = {200, 200, 200, 200, 200, 200, 200, 200, 200, 200}; 
 
 void loop() {
 
@@ -27,25 +28,16 @@ void loop() {
   duration = pulseIn(echoPin, HIGH);
   distance = (duration/2) / 10;
 
-  //Make an avegrage to prevent spikes int the sensor data.
+  //Make an avegrage to prevent spikes in the sensor data.
   vec[i] = distance;
   long sum = 0;
   for (int j = 0; j < numberAverage; j++){
     sum += vec[j];
   }
-  long average = sum/numberAverage;
-//  Serial.println(average);
-//  Serial.println(" ");
-//  Serial.print(vec[0]);
-//  Serial.println(" ");
-//  Serial.print(vec[1]);
-//  Serial.println(" "); 
-//  Serial.print(vec[2]);
-//  Serial.println(" ");
-//  Serial.print(vec[3]);
-//  Serial.println(" ");
+  int average = sum/numberAverage;
 
-  if (average < 120) {
+//Limit value found by testing
+  if (average < 100) {
     //Can be used in testing to indicate when something is closer than the border set from the user.
     //digitalWrite(led, HIGH);
     int counter = 0;
@@ -55,7 +47,7 @@ void loop() {
       delay(5);
       counter++;
     }
-    delay(1000);
+    delay(750);
     //Pumps up the average values to prevent really close objects to make the sensor indicate twice.
     for(int k = 0; k < numberAverage; k++){
       vec[k] = 150;
