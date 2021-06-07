@@ -35,11 +35,11 @@ def pointsInTable(winnerTeam, points):
     if winnerTeam == 1:
         table[rundenr][1] = points
         table[rundenr][2] = 0
-        winner = 1
+        winner = "blue"
     elif winnerTeam == 2:
         table[rundenr][2] = points
         table[rundenr][1] = 0
-        winner = 2
+        winner = "orange"
     else:
         table[rundenr][2] = 0
         table[rundenr][1] = 0
@@ -212,6 +212,57 @@ def window2(): # Vinduet under spill
 
     stonesButton=Button(window, text="Stones", command=s) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
+
+    def regret(): # Knapp for å angre stein
+        global stones
+        global stones2
+        global stones1
+        stones-=1
+        value1 = int(team1stones["text"])
+        value2 = int(team2stones["text"])
+        if (winner == "orange"):
+            if (stones % 2 == 0):
+                stones2 += 1
+                team2stones["text"] = str(value2 + 1)
+                
+                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+                
+
+            else:
+                stones1 += 1
+                team1stones["text"] = str(value1 + 1)
+
+                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+
+        if (winner == "blue"):
+            if (stones % 2 == 0):
+                stones1 += 1
+                team1stones["text"] = str(value1 + 1)
+
+                lag1 = Label(window, text="Team Blue", fg = 'blue', font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+                
+            else:
+                stones2 += 1
+                team2stones["text"] = str(value2 + 1)
+
+                lag1 = Label(window, text="Team Blue", font=("Arial bold", 40))  
+                lag1.place(relx = 0.05, rely = 0.2)
+                lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
+                lag2.place(relx = 0.45, rely = 0.2)
+    
+
+    regretStone = Button(window, text="Regret stone", command=regret)
+    regretStone.place(relx = 0.6, rely = 0.5)
+
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
