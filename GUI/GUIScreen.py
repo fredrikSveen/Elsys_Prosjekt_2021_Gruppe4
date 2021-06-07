@@ -11,9 +11,9 @@ stones = 0
 winner = "blue"
 winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-totalStones = 4
-stones1 = int(totalStones/2)
-stones2 = int(totalStones/2)
+stonesPer = int(4)
+stones1 = int(stonesPer)
+stones2 = int(stonesPer)
 sc1=0
 sc2=0
 
@@ -77,7 +77,9 @@ def window1(): # Åpner første vindu
     x = Label(window, text="How many rounds would you like to play?", font=("Arial Bold", 20))
     x.place(relx = 0.15, rely = 0.2)
     l = Label(window, text=str(runder), font=("Arial Bold", 60))
-    l.place(relx = 0.4, rely = 0.42)
+    l.place(relx = 0.3, rely = 0.42)
+    s = Label(window, text=str(stonesPer), font=("Arial Bold", 60))
+    s.place(relx=0.6, rely= 0.42)
     
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
@@ -92,16 +94,36 @@ def window1(): # Åpner første vindu
             l["text"] = f"{value - 1}"
             global runder
             runder -= 1
+
+    def pilOpp2(): # Øker antall steiner
+        value = int(s["text"])
+        if value < 8:
+            s["text"] = f"{value + 1}"
+            global stonesPer
+            stonesPer += 1
+    
+    def pilNed2():# Minker antall steiner
+        value = int(s["text"])
+        if value > 1:
+            s["text"] = f"{value - 1}"
+            global stonesPer
+            stonesPer -= 1
     
     def Start():# Hopper til vindu 2
         clearFrame()
         window2()   
 
-    opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp
-    opp.place(relx = 0.55, rely = 0.35)
+    opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp runder
+    opp.place(relx = 0.2, rely = 0.35)
     
-    ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30)) # Nedknapp
-    ned.place(relx = 0.55, rely = 0.53)
+    ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30)) # Nedknapp runder
+    ned.place(relx = 0.2, rely = 0.53)
+
+    opp = Button(window, text="\u2191", command=pilOpp2, font=("Arial Bold", 30)) # Oppknapp steiner
+    opp.place(relx = 0.5, rely = 0.35)
+    
+    ned = Button(window, text="\u2193", command=pilNed2, font=("Arial Bold", 30)) # Nedknapp steiner
+    ned.place(relx = 0.5, rely = 0.53)
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 25)) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
@@ -127,9 +149,9 @@ def window2(): # Vinduet under spill
         lag2 = Label(window, text="Team Orange", fg = 'orange', font=("Arial bold", 40)) 
         lag2.place(relx = 0.45, rely = 0.2)         
 
-    total
-    stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
-    stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
+    
+    stones1 = int(stonesPer) # Startverdi antall steiner igjen team 1
+    stones2 = int(stonesPer) # Startverdi antall steiner igjen team 2
     
     team1stones = Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
@@ -180,7 +202,7 @@ def window2(): # Vinduet under spill
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
         
-        if (stones == totalStones):
+        if (stones == stonesPer*2):
             stones = 0
             pointsInTable(winnerTeam, points)
             global rundenr
@@ -288,7 +310,7 @@ def window4():
          vinnerText.place(relx=0.1, rely=0.3)
     else: 
          vinnerText = Label(window, text="It's a tie", font=("Arial Bold", 50))
-         vinnerText.place(relx=0.4, rely=0.3)
+         vinnerText.place(relx=0.3, rely=0.3)
         
 window1()
     
