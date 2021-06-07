@@ -11,7 +11,7 @@ stones = 0
 winner = "blue"
 winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-stonesPer = int(4)
+stonesPer = int(1)
 stones1 = int(stonesPer)
 stones2 = int(stonesPer)
 sc1=0
@@ -315,14 +315,14 @@ def window3(): # Vindu med resultater
     class Table: 
         def __init__(self,window):  
             for i in range(total_rows):
-                self.e = Entry(window, width=12, fg='blue', font=('Arial',16,'bold')) 
+                self.e = Entry(window, width=12, fg='blue', font=('Arial',20,'bold')) 
                 self.e.grid(row=i, column=0) 
                 self.e.insert(END, table[0][i]) 
                 for j in range(1, total_columns): 
-                    self.e = Entry(window, width=8, fg='blue', font=('Arial',16,'bold')) 
+                    self.e = Entry(window, width=(4),  fg='blue', font=('Arial',20,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
-                self.e = Entry(window, width=11, fg='blue', font=('Arial',16,'bold')) 
+                self.e = Entry(window, width=11, fg='blue', font=('Arial',20,'bold')) 
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
 
