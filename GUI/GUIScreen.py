@@ -11,15 +11,9 @@ stones = 0
 winner = "blue"
 winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-<<<<<<< HEAD
 stonesPer = int(1)
 stones1 = int(stonesPer)
 stones2 = int(stonesPer)
-=======
-totalStones = 4
-stones1 = int(totalStones/2)
-stones2 = int(totalStones/2)
->>>>>>> 63846366aaeda9c5ad6ebca7c77947e1e5b218bd
 sc1=0
 sc2=0
 
@@ -116,7 +110,10 @@ def window2(): # Vinduet under spill
     global stones1
     global stones2
 
-    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
+    l = Label(window, text=f"Round {str(rundenr)}", font=("Times", 50), fg="yellow",
+    bg="black",
+    width=8,
+    height=1)
     l.place(relx = 0.4)
 
     avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
@@ -134,8 +131,8 @@ def window2(): # Vinduet under spill
         lag2.place(relx = 0.45, rely = 0.2)         
 
     
-    stones1 = int(totalStones/2) # Startverdi antall steiner igjen team 1
-    stones2 = int(totalStones/2) # Startverdi antall steiner igjen team 2
+    stones1 = stonesPer # Startverdi antall steiner igjen team 1
+    stones2 = stonesPer # Startverdi antall steiner igjen team 2
     
     team1stones = Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
@@ -186,7 +183,7 @@ def window2(): # Vinduet under spill
                 lag2 = Label(window, text="Team Orange", font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
         
-        if (stones == totalStones):
+        if (stones == stonesPer*2):
             stones = 0
             pointsInTable(winnerTeam, points)
             global rundenr
