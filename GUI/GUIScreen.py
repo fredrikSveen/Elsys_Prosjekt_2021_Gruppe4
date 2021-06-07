@@ -74,12 +74,12 @@ def Avslutt(): # Åpner varslingsvindu
     tilbake.place(relx = 0.2, rely = 0.4)
 
 def window1(): # Åpner første vindu
-    x = Label(window, text="How many rounds would you like to play?", font=("Arial Bold", 20))
-    x.place(relx = 0.15, rely = 0.2)
+    x = Label(window, text="Chose number of rounds and stones per team", font=("Bold", 20))
+    x.place(relx = 0.1, rely = 0.2)
     l = Label(window, text=str(runder), font=("Arial Bold", 60))
-    l.place(relx = 0.3, rely = 0.42)
+    l.place(relx = 0.4, rely = 0.42)
     s = Label(window, text=str(stonesPer), font=("Arial Bold", 60))
-    s.place(relx=0.6, rely= 0.42)
+    s.place(relx=0.7, rely= 0.42)
     
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
@@ -113,17 +113,17 @@ def window1(): # Åpner første vindu
         clearFrame()
         window2()   
 
-    opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp runder
-    opp.place(relx = 0.2, rely = 0.35)
+    opp = Button(window, text="\u2b99", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp runder
+    opp.place(relx = 0.3, rely = 0.35)
     
-    ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30)) # Nedknapp runder
-    ned.place(relx = 0.2, rely = 0.53)
+    ned = Button(window, text="\u2b9b", command=pilNed, font=("Arial Bold", 30)) # Nedknapp runder
+    ned.place(relx = 0.3, rely = 0.53)
 
-    opp = Button(window, text="\u2191", command=pilOpp2, font=("Arial Bold", 30)) # Oppknapp steiner
-    opp.place(relx = 0.5, rely = 0.35)
+    opp = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30)) # Oppknapp steiner
+    opp.place(relx = 0.6, rely = 0.35)
     
-    ned = Button(window, text="\u2193", command=pilNed2, font=("Arial Bold", 30)) # Nedknapp steiner
-    ned.place(relx = 0.5, rely = 0.53)
+    ned = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30)) # Nedknapp steiner
+    ned.place(relx = 0.6, rely = 0.53)
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 25)) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
@@ -268,7 +268,7 @@ def window3(): # Vindu med resultater
                 self.e.grid(row=i, column=0) 
                 self.e.insert(END, table[0][i]) 
                 for j in range(1, total_columns): 
-                    self.e = Entry(window, width=4, fg='blue', font=('Arial',16,'bold')) 
+                    self.e = Entry(window, width=8, fg='blue', font=('Arial',16,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
                 self.e = Entry(window, width=11, fg='blue', font=('Arial',16,'bold')) 
