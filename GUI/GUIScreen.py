@@ -11,15 +11,9 @@ stones = 0
 winner = "blue"
 winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-<<<<<<< HEAD
 stonesPer = int(1)
 stones1 = int(stonesPer)
 stones2 = int(stonesPer)
-=======
-totalStones = 4
-stones1 = int(totalStones/2)
-stones2 = int(totalStones/2)
->>>>>>> 63846366aaeda9c5ad6ebca7c77947e1e5b218bd
 sc1=0
 sc2=0
 
