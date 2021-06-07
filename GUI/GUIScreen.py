@@ -78,7 +78,9 @@ def window1(): # Åpner første vindu
     x.place(relx = 0.15, rely = 0.2)
     l = Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
-    
+    s = Label(window, text=str(stonesPer), font=("Arial Bold", 60))
+    s.place(relx=0.7, rely= 0.42)
+
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
         if value < 10:
@@ -92,16 +94,36 @@ def window1(): # Åpner første vindu
             l["text"] = f"{value - 1}"
             global runder
             runder -= 1
+
+    def pilOpp2(): # Øker antall steiner
+        value = int(s["text"])
+        if value < 8:
+            s["text"] = f"{value + 1}"
+            global stonesPer
+            stonesPer += 1
+    
+    def pilNed2():# Minker antall steiner
+        value = int(s["text"])
+        if value > 1:
+            s["text"] = f"{value - 1}"
+            global stonesPer
+            stonesPer -= 1
     
     def Start():# Hopper til vindu 2
         clearFrame()
         window2()   
 
-    opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp
-    opp.place(relx = 0.55, rely = 0.35)
+    opp = Button(window, text="\u2B99", command=pilOpp, font=("Arial Bold", 30)) # Oppknapp
+    opp.place(relx = 0.3, rely = 0.35)
     
-    ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30)) # Nedknapp
-    ned.place(relx = 0.55, rely = 0.53)
+    ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30)) # Nedknapp
+    ned.place(relx = 0.3, rely = 0.53)
+
+    opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30)) # Oppknapp steiner
+    opp2.place(relx = 0.6, rely = 0.35)
+    
+    ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30)) # Nedknapp steiner
+    ned2.place(relx = 0.6, rely = 0.53)
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 25)) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
