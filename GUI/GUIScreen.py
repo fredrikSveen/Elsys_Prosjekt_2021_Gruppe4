@@ -7,12 +7,12 @@ window.title("Curling game")
 window.geometry('800x480')
 
 #Globale variabler:
-runder = 2
+runder = 5
 rundenr = 1
 avsluttBool = False
 stones = 0
 winner = "blue"
-winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
+winnerTeam = 1 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
 stonesPer = int(1)
 stones1 = int(stonesPer)
@@ -305,7 +305,7 @@ def window3(): # Vindu med resultater
         def a2(): # Åpner et "sikker på at du vil avslutte"-vindu
             w2 = Tk()
             w2.config(bg=bakgrunn)
-            w2.geometry('400x240')  
+            w2.geometry('400x240')
             v2 = Label(w2, text="Are you sure you\n want to quit now?", font=("Arial Bold", 10), bg = bakgrunn)
             v2.place(relx = 0.35, rely = 0.2)
             def closeW2(): # Lukker det lille vinduet
@@ -409,10 +409,10 @@ def window4():
          vinnerText.place(relx=0.1, rely=0.3)
     elif sc1 < sc2:
          vinnerText = Label(window, text="The winner is Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial Bold", 40))
-         vinnerText.place(relx=0.1, rely=0.3)
+         vinnerText.place(relx=0.07, rely=0.3)
     else: 
          vinnerText = Label(window, text="It's a tie", bg = bakgrunn, font=("Arial Bold", 50))
-         vinnerText.place(relx=0.3, rely=0.3)
+         vinnerText.place(relx=0.35, rely=0.3)
         
 window1()
 
