@@ -4,7 +4,7 @@ window.title("Curling game")
 window.geometry('800x480')
 
 #Globale variabler:
-runder = 5
+runder = 1
 rundenr = 1
 avsluttBool = False
 stones = 0
@@ -74,7 +74,7 @@ def Avslutt(): # Åpner varslingsvindu
     tilbake.place(relx = 0.2, rely = 0.4)
 
 def window1(): # Åpner første vindu
-    x = Label(window, text="How many rounds would you like to play?", font=("Arial Bold", 20))
+    x = Label(window, text="Chose number of rounds and stones per team", font=("Arial Bold", 20))
     x.place(relx = 0.15, rely = 0.2)
     l = Label(window, text=str(runder), font=("Arial Bold", 60))
     l.place(relx = 0.4, rely = 0.42)
@@ -153,13 +153,8 @@ def window2(): # Vinduet under spill
         lag2.place(relx = 0.45, rely = 0.2)         
 
     
-<<<<<<< HEAD
     stones1 = stonesPer # Startverdi antall steiner igjen team 1
     stones2 = stonesPer # Startverdi antall steiner igjen team 2
-=======
-    stones1 = int(stonesPer) # Startverdi antall steiner igjen team 1
-    stones2 = int(stonesPer) # Startverdi antall steiner igjen team 2
->>>>>>> 595a6e96fed785973e16780770786cc486dea0a0
     
     team1stones = Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
@@ -324,14 +319,14 @@ def window3(): # Vindu med resultater
     class Table: 
         def __init__(self,window):  
             for i in range(total_rows):
-                self.e = Entry(window, width=12, fg='blue', font=('Arial',20,'bold')) 
+                self.e = Entry(window, width=12, fg='blue', font=('Arial',30,'bold')) 
                 self.e.grid(row=i, column=0) 
                 self.e.insert(END, table[0][i]) 
-                for j in range(1, total_columns): 
-                    self.e = Entry(window, width=3, fg='blue', font=('Arial',20,'bold')) 
+                for j in range(1, total_columns-1): 
+                    self.e = Entry(window, width=12,  fg='blue', font=('Arial',30,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
-                self.e = Entry(window, width=11, fg='blue', font=('Arial',20,'bold')) 
+                self.e = Entry(window, width=6, fg='blue', font=('Arial',30,'bold')) 
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
 
