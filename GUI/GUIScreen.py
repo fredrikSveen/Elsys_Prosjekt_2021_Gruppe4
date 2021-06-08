@@ -286,7 +286,7 @@ def window3(): # Vindu med resultater
             w2 = Tk()
             w2.config(bg=bakgrunn)
             w2.geometry('400x240')  
-            v2 = Label(w2, text="Are you sure you\n want to quit now?", font=("Arial Bold", 10))
+            v2 = Label(w2, text="Are you sure you\n want to quit now?", font=("Arial Bold", 10), bg = bakgrunn)
             v2.place(relx = 0.35, rely = 0.2)
             def closeW2(): # Lukker det lille vinduet
                 w2.destroy()
@@ -303,8 +303,8 @@ def window3(): # Vindu med resultater
         nesteRunde = Button(window, text="Next round", command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
         nesteRunde.place(relx=0.2, rely=0.8)
         
-        avslutt2 = Button(window, text="Quit", command=a2, bg = knapp, activebackground = aktivknapp) # Avsluttknapp
-        avslutt2.place(relx=0.5, rely=0.8)
+        avslutt2 = Button(window, text="Quit", font = ("Arial Bold", 30), command=a2, bg = knapp, activebackground = aktivknapp) # Avsluttknapp
+        avslutt2.place(relx = 0.856, rely = 0.83)
     def w3_2(): # vindu 3 versjon 2
         fortsett = Button(window, text="Continue", command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
@@ -323,23 +323,43 @@ def window3(): # Vindu med resultater
     # Oppretter tabell
     class Table: 
         def __init__(self,window):
-            skrift = 25
+            skrift = 24
+            kant = 1
+
+            self.e = Entry(window, width=12, font=('Arial',skrift,'bold'), bd = kant)
+            self.e.grid(row=0, column=0) 
+            self.e.insert(END, table[0][0]) 
+
+            self.e = Entry(window, width=12, font=('Arial',skrift,'bold'), fg = 'blue', bd = kant) 
+            self.e.grid(row=1, column=0) 
+            self.e.insert(END, table[0][1]) 
+
+            self.e = Entry(window, width=12, font=('Arial',skrift,'bold'), fg = 'orange', bd = kant) 
+            self.e.grid(row=2, column=0) 
+            self.e.insert(END, table[0][2]) 
+
             for i in range(total_rows):
-                self.e = Entry(window, width=12, font=('Arial',skrift,'bold')) 
-                self.e.grid(row=i, column=0) 
-                self.e.insert(END, table[0][i]) 
-                for j in range(1, total_columns-1): 
-                    self.e = Entry(window, width=floor(22/runder), font=('Arial',skrift,'bold')) 
+                for j in range(1, runder+1): 
+                    self.e = Entry(window, width=floor(20/runder), font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
-                self.e = Entry(window, width=32-floor(22/runder)*runder, fg='blue', font=('Arial',skrift,'bold')) 
-                self.e.grid(row=i, column=runder + 1) 
-                self.e.insert(END, table[runder + 1][i])
+            self.e = Entry(window, width=32-floor(20/runder)*runder, font=('Arial',skrift,'bold'), justify = 'left', bd = kant) 
+            self.e.grid(row=0, column=runder + 1) 
+            self.e.insert(END, table[runder + 1][0])
+
+            self.e = Entry(window, width=32-floor(20/runder)*runder, font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
+            self.e.grid(row=1, column=runder + 1) 
+            self.e.insert(END, table[runder + 1][1])
+
+            self.e = Entry(window, width=32-floor(20/runder)*runder, font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
+            self.e.grid(row=2, column=runder + 1) 
+            self.e.insert(END, table[runder + 1][2])
 
     # Number of rows and colums in the list
     total_columns = runder + 2
     total_rows = 3
     t = Table(window)
+
     # Tabell slutt
     
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
