@@ -1,4 +1,5 @@
-from tkinter import Button, Label, Tk, Entry, END
+from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas
+from PIL import ImageTk,Image
 window = Tk()
 window.config(bg = "palegreen")
 window.title("Curling game")
@@ -77,11 +78,15 @@ def Avslutt(): # Åpner varslingsvindu
     tilbake.place(relx = 0.2, rely = 0.4)
 
 def window1(): # Åpner første vindu
-    x = Label(window, text="Chose number of rounds and stones per team", font=("Arial Bold", 20))
-    x.place(relx = 0.15, rely = 0.2)
-    l = Label(window, text=str(runder), font=("Arial Bold", 60),bg = "palegreen")
+    x = Label(window, text="Choose number of rounds and stones per team", font=("Arial Bold", 32), bg = "palegreen")
+    x.place(relx = 0.05, rely = 0.1)
+    chooseRounds = Label(window, text="Rounds:", font=("Arial Bold", 20), bg = "palegreen")
+    chooseRounds.place(relx = 0.3, rely = 0.25)
+    chooseStones = Label(window, text="Stones:", font=("Arial Bold", 20), bg = "palegreen")
+    chooseStones.place(relx = 0.6, rely = 0.25)
+    l = Label(window, text=str(runder), font=("Arial Bold", 60), bg = "palegreen")
     l.place(relx = 0.4, rely = 0.42)
-    s = Label(window, text=str(stonesPer), font=("Arial Bold", 60),bg = "palegreen")
+    s = Label(window, text=str(stonesPer), font=("Arial Bold", 60), bg = "palegreen")
     s.place(relx=0.7, rely= 0.42)
 
     def pilOpp(): # Øker antall runder
@@ -128,19 +133,20 @@ def window1(): # Åpner første vindu
     ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = "palegreen", activebackground = aktivknapp) # Nedknapp steiner
     ned2.place(relx = 0.6, rely = 0.53)
     
-    start = Button(window, text="Start", command=Start, font=("Arial Bold", 25),bg = "palegreen", activebackground = aktivknapp) # Startknapp
-    start.place(relx = 0.45, rely = 0.8)
+    start = Button(window, text="Start", command=Start, font=("Arial Bold", 50),bg = "palegreen", activebackground = aktivknapp) # Startknapp
+    start.place(relx = 0.4, rely = 0.7)
 
 def window2(): # Vinduet under spill
     global stones1
     global stones2
 
-    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial", 50, 'bold italic'),bg = "palegreen")
-    l.place(relx = 0.4)
+    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial", 55, 'bold italic'),bg = "palegreen")
+    l.place(relx = 0.35)
 
-    avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30),bg = "palegreen", activebackground = aktivknapp)
+    avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 25),bg = "palegreen", activebackground = aktivknapp)
     avslutt.place(relx = 0.856, rely = 0.83)
     
+    # Forstørre Team Blue og Team oransje og midtstille. Dette må også gjøres i s- og regret-funksjonen
     if winner == 'blue':
         lag1 = Label(window, text="Team Blue", fg = 'blue', bg = "palegreen", font=("Arial bold", 40))  
         lag1.place(relx = 0.05, rely = 0.2)
@@ -263,9 +269,23 @@ def window2(): # Vinduet under spill
                     lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
                     lag2.place(relx = 0.45, rely = 0.2)
     
+    # Justere plasseringen(midtstilt?) og teksstørrelsen(større) til denne knappen
+    regretStone = Button(window, text="Regret stone", font=("Arial bold", 25), command=regret, bg = "palegreen", activebackground = aktivknapp)
+    regretStone.place(relx = 0.05, rely = 0.83)
 
-    regretStone = Button(window, text="Regret stone", command=regret, bg = "palegreen", activebackground = aktivknapp)
-    regretStone.place(relx = 0.6, rely = 0.5)
+    # photo = PhotoImage(file = "pinkLightning.png")
+    # pinkL = Label(window, image=photo)
+    # pinkL.pack()
+
+    # canvas = Canvas(window, width = 300, height = 300)      
+    # canvas.pack()      
+    # img = PhotoImage(file="pinkLightning.png")      
+    # canvas.create_image(20,20, anchor=NW, image=img)
+
+    # canvas = Canvas(window, width = 300, height = 300)  
+    # canvas.pack()  
+    # img = ImageTk.PhotoImage(Image.open("pinkLightning.png"))  
+    # canvas.create_image(20, 20, anchor=NW, image=img)
 
 
 def window3(): # Vindu med resultater
@@ -298,8 +318,8 @@ def window3(): # Vindu med resultater
         nesteRunde = Button(window, text="Next round", command=n_r, activebackground = aktivknapp) # "Neste runde"-knapp
         nesteRunde.place(relx=0.2, rely=0.8)
         
-        avslutt2 = Button(window, text="Quit", command=a2, activebackground = aktivknapp) # Avsluttknapp
-        avslutt2.place(relx=0.5, rely=0.8)
+        avslutt2 = Button(window, text="Quit", command=a2, font=("Arial Bold", 25), activebackground = aktivknapp) # Avsluttknapp
+        avslutt2.place(relx = 0.856, rely = 0.83)
     def w3_2(): # vindu 3 versjon 2
         fortsett = Button(window, text="Continue", command=w4, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
@@ -358,6 +378,8 @@ def window4():
     rundenr = 1
     ns = Button(window, text="New game", command=nyttSpill, font=("Arial Bold", 30), activebackground = aktivknapp) # "Nytt spill"-knapp
     ns.place(relx=0.35, rely=0.8)
+
+    # Forstørr og midtstill
     if sc1 > sc2:
          vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', bg = "palegreen", font=("Arial Bold", 40))
          vinnerText.place(relx=0.1, rely=0.3)
