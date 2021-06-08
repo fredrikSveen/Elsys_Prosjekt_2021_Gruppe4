@@ -332,7 +332,7 @@ def window3(): # Vindu med resultater
     # Number of rows and colums in the list
     total_columns = runder + 2
     total_rows = 3
-    #t = Table(window)
+    t = Table(window)
     # Tabell slutt
     
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
@@ -367,5 +367,6 @@ def window4():
          vinnerText.place(relx=0.3, rely=0.3)
         
 window1()
+
     
 window.mainloop()
