@@ -320,7 +320,7 @@ def window3(): # Vindu med resultater
                 self.e.grid(row=i, column=0) 
                 self.e.insert(END, table[0][i]) 
                 for j in range(1, total_columns): 
-                    self.e = Entry(window, width=(4),  fg='blue', font=('Arial',20,'bold')) 
+                    self.e = Entry(window, width=3, fg='blue', font=('Arial',20,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
                 self.e = Entry(window, width=11, fg='blue', font=('Arial',20,'bold')) 
