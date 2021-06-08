@@ -18,6 +18,7 @@ stones2 = int(stonesPer)
 sc1=0
 sc2=0
 aktivknapp = "forest green"
+oransjefarge = "darkorange3"
 
 # Lager liste med resultater
 table = list(range(12))
@@ -148,7 +149,7 @@ def window2(): # Vinduet under spill
     else: 
         lag1 = Label(window, text="Team Blue", font=("Arial bold", 40),bg = "palegreen")  
         lag1.place(relx = 0.05, rely = 0.2)
-        lag2 = Label(window, text="Team Orange", fg = 'darkorange3', bg = "palegreen", font=("Arial bold", 40)) 
+        lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
         lag2.place(relx = 0.45, rely = 0.2)         
 
     
@@ -194,7 +195,7 @@ def window2(): # Vinduet under spill
                 team1stones["text"] = str(value1 - 1)
                 lag1 = Label(window, text="Team Blue", bg = "palegreen", font=("Arial bold", 40))  
                 lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = 'darkorange3', font=("Arial bold", 40),bg = "palegreen") 
+                lag2 = Label(window, text="Team Orange", fg = oransjefarge, font=("Arial bold", 40),bg = "palegreen") 
                 lag2.place(relx = 0.45, rely = 0.2)
             else:
                 stones2 -= 1
@@ -230,7 +231,7 @@ def window2(): # Vinduet under spill
                     
                     lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = "palegreen")  
                     lag1.place(relx = 0.05, rely = 0.2)
-                    lag2 = Label(window, text="Team Orange", fg = 'darkorange3', bg = "palegreen", font=("Arial bold", 40)) 
+                    lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
                     lag2.place(relx = 0.45, rely = 0.2)
 
 
@@ -259,7 +260,7 @@ def window2(): # Vinduet under spill
 
                     lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = "palegreen")  
                     lag1.place(relx = 0.05, rely = 0.2)
-                    lag2 = Label(window, text="Team Orange", fg = 'darkorange3', bg = "palegreen", font=("Arial bold", 40)) 
+                    lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
                     lag2.place(relx = 0.45, rely = 0.2)
     
 
@@ -361,7 +362,7 @@ def window4():
          vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', bg = "palegreen", font=("Arial Bold", 40))
          vinnerText.place(relx=0.1, rely=0.3)
     elif sc1 < sc2:
-         vinnerText = Label(window, text="The winner is Team Orange", fg = 'orange', bg = "palegreen", font=("Arial Bold", 40))
+         vinnerText = Label(window, text="The winner is Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial Bold", 40))
          vinnerText.place(relx=0.1, rely=0.3)
     else: 
          vinnerText = Label(window, text="It's a tie", bg = "palegreen", font=("Arial Bold", 50))
