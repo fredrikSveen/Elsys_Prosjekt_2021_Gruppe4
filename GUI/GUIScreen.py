@@ -1,4 +1,5 @@
 from tkinter import Button, Label, Tk, Entry, END
+from math import floor 
 window = Tk()
 window.config(bg = "palegreen")
 window.title("Curling game")
@@ -19,6 +20,8 @@ sc1=0
 sc2=0
 aktivknapp = "forest green"
 oransjefarge = "darkorange3"
+knapp = "limegreen"
+bakgrunn = "palegreen"
 
 # Lager liste med resultater
 table = list(range(12))
@@ -47,7 +50,7 @@ def pointsInTable(winnerTeam, points):
         table[rundenr][2] = 0
         table[rundenr][1] = 0
 
-#Funksjoner
+#Funksjonercont
 #roundKeeper(tar inn data fra pi-en):
 #Øker rundenr med 1 hver gang en stein registreres
 def clearFrame(): # Destroys all widgets from frame
@@ -56,8 +59,9 @@ def clearFrame(): # Destroys all widgets from frame
        
 def Avslutt(): # Åpner varslingsvindu
     w = Tk()
+    w.config(bg=bakgrunn)
     w.geometry('400x240')  
-    v = Label(w, text="By exiting now the\n current round won't count", font=("Arial Bold", 10), bg = "palegreen")
+    v = Label(w, text="By exiting now the\n current round won't count", font=("Arial Bold", 10), bg = bakgrunn)
     v.place(relx = 0.3, rely = 0.2)
     def closeW(): # Lukker vinduet
         w.destroy()
@@ -70,18 +74,18 @@ def Avslutt(): # Åpner varslingsvindu
         clearFrame()
         window3()
 
-    avsluttSpill = Button(w, text="End game", command=A, font=("Arial Bold", 10),bg = "palegreen", activebackground = aktivknapp)
+    avsluttSpill = Button(w, text="End game", command=A, font=("Arial Bold", 10),bg = knapp, activebackground = aktivknapp)
     avsluttSpill.place(relx = 0.6, rely = 0.4)
     
-    tilbake = Button(w, text="Back to the game", command=closeW, font=("Arial Bold", 10),bg = "palegreen", activebackground = aktivknapp)
+    tilbake = Button(w, text="Back to the game", command=closeW, font=("Arial Bold", 10),bg = knapp, activebackground = aktivknapp)
     tilbake.place(relx = 0.2, rely = 0.4)
 
 def window1(): # Åpner første vindu
-    x = Label(window, text="Chose number of rounds and stones per team", font=("Arial Bold", 20))
+    x = Label(window, text="Chose number of rounds and stones per team", font=("Arial Bold", 20), bg = bakgrunn)
     x.place(relx = 0.15, rely = 0.2)
-    l = Label(window, text=str(runder), font=("Arial Bold", 60),bg = "palegreen")
+    l = Label(window, text=str(runder), font=("Arial Bold", 60),bg = bakgrunn)
     l.place(relx = 0.4, rely = 0.42)
-    s = Label(window, text=str(stonesPer), font=("Arial Bold", 60),bg = "palegreen")
+    s = Label(window, text=str(stonesPer), font=("Arial Bold", 60),bg = bakgrunn)
     s.place(relx=0.7, rely= 0.42)
 
     def pilOpp(): # Øker antall runder
@@ -116,54 +120,54 @@ def window1(): # Åpner første vindu
         clearFrame()
         window2()   
 
-    opp = Button(window, text="\u2B99", bg = "palegreen", command=pilOpp, font=("Arial Bold", 30), activebackground = aktivknapp) # Oppknapp
+    opp = Button(window, text="\u2B99", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Oppknapp
     opp.place(relx = 0.3, rely = 0.35)
     
-    ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = "palegreen", activebackground = aktivknapp) # Nedknapp
+    ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp
     ned.place(relx = 0.3, rely = 0.53)
 
-    opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = "palegreen", activebackground = aktivknapp) # Oppknapp steiner
+    opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Oppknapp steiner
     opp2.place(relx = 0.6, rely = 0.35)
     
-    ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = "palegreen", activebackground = aktivknapp) # Nedknapp steiner
+    ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp steiner
     ned2.place(relx = 0.6, rely = 0.53)
     
-    start = Button(window, text="Start", command=Start, font=("Arial Bold", 25),bg = "palegreen", activebackground = aktivknapp) # Startknapp
+    start = Button(window, text="Start", command=Start, font=("Arial Bold", 25),bg = knapp, activebackground = aktivknapp) # Startknapp
     start.place(relx = 0.45, rely = 0.8)
 
 def window2(): # Vinduet under spill
     global stones1
     global stones2
 
-    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial", 50, 'bold italic'),bg = "palegreen")
+    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial", 50, 'bold italic'),bg = bakgrunn)
     l.place(relx = 0.4)
 
-    avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30),bg = "palegreen", activebackground = aktivknapp)
+    avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp)
     avslutt.place(relx = 0.856, rely = 0.83)
     
     if winner == 'blue':
-        lag1 = Label(window, text="Team Blue", fg = 'blue', bg = "palegreen", font=("Arial bold", 40))  
+        lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
         lag1.place(relx = 0.05, rely = 0.2)
-        lag2 = Label(window, text="Team Orange", font=("Arial bold", 40),bg = "palegreen") 
+        lag2 = Label(window, text="Team Orange", font=("Arial bold", 40),bg = bakgrunn) 
         lag2.place(relx = 0.45, rely = 0.2) 
     else: 
-        lag1 = Label(window, text="Team Blue", font=("Arial bold", 40),bg = "palegreen")  
+        lag1 = Label(window, text="Team Blue", font=("Arial bold", 40),bg = bakgrunn)  
         lag1.place(relx = 0.05, rely = 0.2)
-        lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
+        lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial bold", 40)) 
         lag2.place(relx = 0.45, rely = 0.2)         
 
     
     stones1 = stonesPer # Startverdi antall steiner igjen team 1
     stones2 = stonesPer # Startverdi antall steiner igjen team 2
     
-    team1stones = Label(window, text=str(stones1), font=("Arial bold", 30),bg = "palegreen") # Label antall steiner igjen team 1 (tall)
+    team1stones = Label(window, text=str(stones1), font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
-    team1stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30),bg = "palegreen") # Label antall steiner igjen team 1 (tekst)
+    team1stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 1 (tekst)
     team1stonesText.place(relx = 0.05, rely = 0.4)
     
-    team2stones = Label(window, text=str(stones2), font=("Arial bold", 30),bg = "palegreen") # Label antall steiner igjen team 2 (tall)
+    team2stones = Label(window, text=str(stones2), font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 2 (tall)
     team2stones.place(relx = 0.5, rely = 0.4)
-    team2stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30),bg = "palegreen") # Label antall steiner igjen team 2 (text)
+    team2stonesText = Label(window, text="Stone(s) left", font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 2 (text)
     team2stonesText.place(relx = 0.55, rely = 0.4)
 
     #simulasjon av steinkast
@@ -178,31 +182,31 @@ def window2(): # Vinduet under spill
             if (stones % 2 == 0):
                 stones2 -= 1
                 team2stones["text"] = str(value2 - 1)
-                lag1 = Label(window, text="Team Blue", fg = 'blue', bg = "palegreen", font=("Arial bold", 40))  
+                lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
                 lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", bg = "palegreen", font=("Arial bold", 40)) 
+                lag2 = Label(window, text="Team Orange", bg = bakgrunn, font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
             else:
                 stones1 -= 1
                 team1stones["text"] = str(value1 - 1)
-                lag1 = Label(window, text="Team Blue", bg = "palegreen", font=("Arial bold", 40))  
+                lag1 = Label(window, text="Team Blue", bg = bakgrunn, font=("Arial bold", 40))  
                 lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = "darkorange3", bg = "palegreen", font=("Arial bold", 40)) 
+                lag2 = Label(window, text="Team Orange", fg = "darkorange3", bg = bakgrunn, font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
         else:
             if (stones % 2 == 0):
                 stones1 -= 1
                 team1stones["text"] = str(value1 - 1)
-                lag1 = Label(window, text="Team Blue", bg = "palegreen", font=("Arial bold", 40))  
+                lag1 = Label(window, text="Team Blue", bg = bakgrunn, font=("Arial bold", 40))  
                 lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", fg = oransjefarge, font=("Arial bold", 40),bg = "palegreen") 
+                lag2 = Label(window, text="Team Orange", fg = oransjefarge, font=("Arial bold", 40),bg = bakgrunn) 
                 lag2.place(relx = 0.45, rely = 0.2)
             else:
                 stones2 -= 1
                 team2stones["text"] = str(value2 - 1)
-                lag1 = Label(window, text="Team Blue", fg = 'blue', bg = "palegreen", font=("Arial bold", 40))  
+                lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
                 lag1.place(relx = 0.05, rely = 0.2)
-                lag2 = Label(window, text="Team Orange", bg = "palegreen", font=("Arial bold", 40)) 
+                lag2 = Label(window, text="Team Orange", bg = bakgrunn, font=("Arial bold", 40)) 
                 lag2.place(relx = 0.45, rely = 0.2)
         
         if (stones == stonesPer*2):
@@ -213,7 +217,7 @@ def window2(): # Vinduet under spill
             clearFrame()
             window3()
 
-    stonesButton=Button(window, text="Stones", command=s, bg = "palegreen", activebackground = aktivknapp) # "Øke antall steiner"-knapp
+    stonesButton=Button(window, text="Stones", command=s, bg = knapp, activebackground = aktivknapp) # "Øke antall steiner"-knapp
     stonesButton.place(relx = 0.5, rely = 0.5)
 
     def regret(): # Knapp for å angre stein
@@ -229,9 +233,9 @@ def window2(): # Vinduet under spill
                     stones2 += 1
                     team2stones["text"] = str(value2 + 1)
                     
-                    lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = "palegreen")  
+                    lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = bakgrunn)  
                     lag1.place(relx = 0.05, rely = 0.2)
-                    lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
+                    lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial bold", 40)) 
                     lag2.place(relx = 0.45, rely = 0.2)
 
 
@@ -239,9 +243,9 @@ def window2(): # Vinduet under spill
                     stones1 += 1
                     team1stones["text"] = str(value1 + 1)
 
-                    lag1 = Label(window, text="Team Blue", fg = 'blue', bg = "palegreen", font=("Arial bold", 40))  
+                    lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
                     lag1.place(relx = 0.05, rely = 0.2)
-                    lag2 = Label(window, text="Team Orange", font=("Arial bold", 40), bg = "palegreen") 
+                    lag2 = Label(window, text="Team Orange", font=("Arial bold", 40), bg = bakgrunn) 
                     lag2.place(relx = 0.45, rely = 0.2)
 
             if (winner == "blue"):
@@ -249,22 +253,22 @@ def window2(): # Vinduet under spill
                     stones1 += 1
                     team1stones["text"] = str(value1 + 1)
 
-                    lag1 = Label(window, text="Team Blue", fg = 'blue', bg = "palegreen", font=("Arial bold", 40))  
+                    lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
                     lag1.place(relx = 0.05, rely = 0.2)
-                    lag2 = Label(window, text="Team Orange", font=("Arial bold", 40), bg = "palegreen") 
+                    lag2 = Label(window, text="Team Orange", font=("Arial bold", 40), bg = bakgrunn) 
                     lag2.place(relx = 0.45, rely = 0.2)
                     
                 else:
                     stones2 += 1
                     team2stones["text"] = str(value2 + 1)
 
-                    lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = "palegreen")  
+                    lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = bakgrunn)  
                     lag1.place(relx = 0.05, rely = 0.2)
-                    lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial bold", 40)) 
+                    lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial bold", 40)) 
                     lag2.place(relx = 0.45, rely = 0.2)
     
 
-    regretStone = Button(window, text="Regret stone", command=regret, bg = "palegreen", activebackground = aktivknapp)
+    regretStone = Button(window, text="Regret stone", command=regret, bg = knapp, activebackground = aktivknapp)
     regretStone.place(relx = 0.6, rely = 0.5)
 
 
@@ -280,6 +284,7 @@ def window3(): # Vindu med resultater
             window2()
         def a2(): # Åpner et "sikker på at du vil avslutte"-vindu
             w2 = Tk()
+            w2.config(bg=bakgrunn)
             w2.geometry('400x240')  
             v2 = Label(w2, text="Are you sure you\n want to quit now?", font=("Arial Bold", 10))
             v2.place(relx = 0.35, rely = 0.2)
@@ -290,18 +295,18 @@ def window3(): # Vindu med resultater
                 clearFrame()
                 window4()
             
-            avsluttSpill2 = Button(w2, text="End game",command=a3, font=("Arial Bold", 10), activebackground = aktivknapp) # Avsluttknapp i det lille vinduet
+            avsluttSpill2 = Button(w2, text="End game",command=a3, font=("Arial Bold", 10),bg = knapp, activebackground = aktivknapp) # Avsluttknapp i det lille vinduet
             avsluttSpill2.place(relx = 0.6, rely = 0.4)
             
-            tilbake2 = Button(w2, text="Back to the game", command=closeW2, font=("Arial Bold", 10), activebackground = aktivknapp) # Fortsettknapp i det lille vinduet
+            tilbake2 = Button(w2, text="Back to the game", command=closeW2, font=("Arial Bold", 10), bg = knapp, activebackground = aktivknapp) # Fortsettknapp i det lille vinduet
             tilbake2.place(relx = 0.2, rely = 0.4)
-        nesteRunde = Button(window, text="Next round", command=n_r, activebackground = aktivknapp) # "Neste runde"-knapp
+        nesteRunde = Button(window, text="Next round", command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
         nesteRunde.place(relx=0.2, rely=0.8)
         
-        avslutt2 = Button(window, text="Quit", command=a2, activebackground = aktivknapp) # Avsluttknapp
+        avslutt2 = Button(window, text="Quit", command=a2, bg = knapp, activebackground = aktivknapp) # Avsluttknapp
         avslutt2.place(relx=0.5, rely=0.8)
     def w3_2(): # vindu 3 versjon 2
-        fortsett = Button(window, text="Continue", command=w4, activebackground = aktivknapp) # Fortsettknapp
+        fortsett = Button(window, text="Continue", command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.4, rely=0.8)
 
     table[runder + 1][0] = 'Total score'
@@ -317,17 +322,17 @@ def window3(): # Vindu med resultater
 
     # Oppretter tabell
     class Table: 
-        def __init__(self,window):  
+        def __init__(self,window):
+            skrift = 25
             for i in range(total_rows):
-                self.e = Entry(window, width=12, fg='blue', font=('Arial',30,'bold')) 
+                self.e = Entry(window, width=12, font=('Arial',skrift,'bold')) 
                 self.e.grid(row=i, column=0) 
-
                 self.e.insert(END, table[0][i]) 
                 for j in range(1, total_columns-1): 
-                    self.e = Entry(window, width=12,  fg='blue', font=('Arial',30,'bold')) 
+                    self.e = Entry(window, width=floor(22/runder), font=('Arial',skrift,'bold')) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
-                self.e = Entry(window, width=6, fg='blue', font=('Arial',30,'bold')) 
+                self.e = Entry(window, width=32-floor(22/runder)*runder, fg='blue', font=('Arial',skrift,'bold')) 
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
 
@@ -359,13 +364,13 @@ def window4():
     ns = Button(window, text="New game", command=nyttSpill, font=("Arial Bold", 30), activebackground = aktivknapp) # "Nytt spill"-knapp
     ns.place(relx=0.35, rely=0.8)
     if sc1 > sc2:
-         vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', bg = "palegreen", font=("Arial Bold", 40))
+         vinnerText = Label(window, text="The winner is Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial Bold", 40))
          vinnerText.place(relx=0.1, rely=0.3)
     elif sc1 < sc2:
-         vinnerText = Label(window, text="The winner is Team Orange", fg = oransjefarge, bg = "palegreen", font=("Arial Bold", 40))
+         vinnerText = Label(window, text="The winner is Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial Bold", 40))
          vinnerText.place(relx=0.1, rely=0.3)
     else: 
-         vinnerText = Label(window, text="It's a tie", bg = "palegreen", font=("Arial Bold", 50))
+         vinnerText = Label(window, text="It's a tie", bg = bakgrunn, font=("Arial Bold", 50))
          vinnerText.place(relx=0.3, rely=0.3)
         
 window1()
