@@ -132,7 +132,10 @@ def window2(): # Vinduet under spill
     global stones1
     global stones2
 
-    l = Label(window, text=f"Round {str(rundenr)}", font=("Arial Bold", 40))
+    l = Label(window, text=f"Round {str(rundenr)}", font=("Times", 50), fg="yellow",
+    bg="black",
+    width=8,
+    height=1)
     l.place(relx = 0.4)
 
     avslutt = Button(window, text="Quit", command=Avslutt, font=("Arial Bold", 30))
@@ -150,8 +153,13 @@ def window2(): # Vinduet under spill
         lag2.place(relx = 0.45, rely = 0.2)         
 
     
+<<<<<<< HEAD
+    stones1 = stonesPer # Startverdi antall steiner igjen team 1
+    stones2 = stonesPer # Startverdi antall steiner igjen team 2
+=======
     stones1 = int(stonesPer) # Startverdi antall steiner igjen team 1
     stones2 = int(stonesPer) # Startverdi antall steiner igjen team 2
+>>>>>>> 595a6e96fed785973e16780770786cc486dea0a0
     
     team1stones = Label(window, text=str(stones1), font=("Arial bold", 30)) # Label antall steiner igjen team 1 (tall)
     team1stones.place(relx = 0, rely = 0.4)
