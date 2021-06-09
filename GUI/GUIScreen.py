@@ -320,8 +320,7 @@ def window2(): # Vinduet under spill
     img = ImageTk.PhotoImage(pinkL.resize((100, 100))) 
     label = Label(window, image=img, bg = bakgrunn)
     label.image = img
-    label.place(relx = 0.05, rely = 0.83, anchor = 'center')
-    label.pack()
+    label.place(relx = 0.3, rely = 0.25)
 
 
 
