@@ -1,5 +1,5 @@
-from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas
-from PIL import ImageTk,Image
+from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas, NE, SE, SW
+from PIL import ImageTk, Image
 window = Tk()
 window.config(bg = "palegreen")
 window.title("Curling game")
@@ -22,6 +22,11 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
+#img = ImageTk.PhotoImage(Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png"))
+#photo = PhotoImage(file = "/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
+pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
+
+
 
 # Lager liste med resultater
 table = list(range(12))
@@ -276,8 +281,12 @@ def window2(): # Vinduet under spill
     regretStone = Button(window, text="Regret stone", font=("Arial bold", 25), command=regret, bg = "palegreen", activebackground = aktivknapp)
     regretStone.place(relx = 0.05, rely = 0.83)
 
-    # photo = PhotoImage(file = "pinkLightning.png")
+    # Forsøk på å legge inn bilde:
+
+    
+    # global photo
     # pinkL = Label(window, image=photo)
+    # pinkL.place(relx=0.4, rely=0.2)
     # pinkL.pack()
 
     # canvas = Canvas(window, width = 300, height = 300)      
@@ -289,6 +298,32 @@ def window2(): # Vinduet under spill
     # canvas.pack()  
     # img = ImageTk.PhotoImage(Image.open("pinkLightning.png"))  
     # canvas.create_image(20, 20, anchor=NW, image=img)
+
+    # global img
+    # c = Canvas(window, width=500, height=500)
+    # c.pack()
+    # c.create_image(0, 0, image=img, anchor=NW)
+
+    # myImage = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
+    # myImage.show()
+
+    # img = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
+    # img = img.resize((250, 250))
+    # tkimage = ImageTk.PhotoImage(img)
+    # Label(window, image=tkimage).grid()
+
+    # load = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning2.jpeg")
+    # render = ImageTk.PhotoImage(load)
+    # img = Label(window, image=render)
+    # img.place(x=100, y=100)
+
+    img = ImageTk.PhotoImage(pinkL.resize((100, 100))) 
+    label = Label(window, image=img, bg = bakgrunn)
+    label.image = img
+    label.place(relx = 0.05, rely = 0.83, anchor = 'center')
+    label.pack()
+
+
 
 
 def window3(): # Vindu med resultater
