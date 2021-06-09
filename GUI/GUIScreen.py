@@ -1,5 +1,6 @@
-from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas, NE, SE, SW
-from PIL import ImageTk, Image
+from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas
+#from PIL import ImageTk,Image
+from math import floor
 window = Tk()
 window.config(bg = "palegreen")
 window.title("Curling game")
@@ -13,20 +14,15 @@ stones = 0
 winner = "blue"
 winnerTeam = 1 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
-stonesPer = int(1)
-stones1 = int(stonesPer)
-stones2 = int(stonesPer)
+stonesPer = 1
+stones1 = stonesPer
+stones2 = stonesPer
 sc1=0
 sc2=0
 aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
-#img = ImageTk.PhotoImage(Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png"))
-#photo = PhotoImage(file = "/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
-pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
-
-
 
 # Lager liste med resultater
 table = list(range(12))
@@ -281,12 +277,8 @@ def window2(): # Vinduet under spill
     regretStone = Button(window, text="Regret stone", font=("Arial bold", 25), command=regret, bg = knapp, activebackground = aktivknapp)
     regretStone.place(relx = 0, rely = 0.858)
 
-    # Forsøk på å legge inn bilde:
-
-    
-    # global photo
+    # photo = PhotoImage(file = "pinkLightning.png")
     # pinkL = Label(window, image=photo)
-    # pinkL.place(relx=0.4, rely=0.2)
     # pinkL.pack()
 
     # canvas = Canvas(window, width = 300, height = 300)      
@@ -423,8 +415,10 @@ def window4():
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global avsluttBool
         global runder
+        global stonesPer
         avsluttBool=False
         runder = 5
+        stonesPer = 1
         for i in range(1,len(table)):
             table[i][1] = ''
             table[i][2] = ''
