@@ -1,5 +1,5 @@
 from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas
-#from PIL import ImageTk,Image
+from PIL import ImageTk,Image
 from math import floor
 window = Tk()
 window.config(bg = "palegreen")
@@ -23,6 +23,7 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
+pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
 
 # Lager liste med resultater
 table = list(range(12))
