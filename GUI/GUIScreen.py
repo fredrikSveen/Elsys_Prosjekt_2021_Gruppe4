@@ -1,6 +1,7 @@
-from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas
+from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas, BOTH
 from PIL import ImageTk,Image
 from math import floor
+from itertools import count
 window = Tk()
 window.config(bg = "palegreen")
 window.title("Curling game")
@@ -23,7 +24,94 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
-pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
+pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/versusPink2.png")
+blueStone = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/blueStone.png")
+orangeStone = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/orangeStone.png")
+#gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
+filGif = '/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/curlingGif.gif'
+filConfetti = '/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/confetti.gif'
+bluePoints = 0
+orangePoints = 0
+
+
+class ImageLabel(Label): # Gif
+    """a label that displays images, and plays them if they are gifs"""
+    def load(self, im):
+        if isinstance(im, str):
+            im = Image.open(im)
+            #im = im.resize(300, 200)
+        self.loc = 0
+        self.frames = []
+    
+        try:
+            for i in count(1):
+                self.frames.append(ImageTk.PhotoImage(im.copy()))
+                im.seek(i)
+        except EOFError:
+            pass
+
+        try:
+            self.delay = im.info['duration']
+        except:
+            self.delay = 100
+
+        if len(self.frames) == 1:
+            self.config(image=self.frames[0])
+        else:
+            self.next_frame()
+
+    def unload(self):
+        self.config(image="")
+        self.frames = None
+
+    def next_frame(self):
+        if self.frames:
+            self.loc += 1
+            self.loc %= len(self.frames)
+            self.config(image=self.frames[self.loc])
+            self.after(self.delay, self.next_frame)
+            self.config(heigh = 200)
+            self.config(width = 800)
+
+class ImageLabel2(Label): # Gif
+    """a label that displays images, and plays them if they are gifs"""
+    def load(self, im):
+        if isinstance(im, str):
+            im = Image.open(im)
+            #im = im.resize(300, 200)
+        self.loc = 0
+        self.frames = []
+    
+        try:
+            for i in count(1):
+                self.frames.append(ImageTk.PhotoImage(im.copy()))
+                im.seek(i)
+        except EOFError:
+            pass
+
+        try:
+            self.delay = im.info['duration']
+        except:
+            self.delay = 100
+
+        if len(self.frames) == 1:
+            self.config(image=self.frames[0])
+        else:
+            self.next_frame()
+
+    def unload(self):
+        self.config(image="")
+        self.frames = None
+
+    def next_frame(self):
+        if self.frames:
+            self.loc += 1
+            self.loc %= len(self.frames)
+            self.config(image=self.frames[self.loc])
+            self.after(self.delay, self.next_frame)
+            self.config(bg = bakgrunn)
+    
+    
 
 # Lager liste med resultater
 table = list(range(12))
@@ -310,13 +398,43 @@ def window2(): # Vinduet under spill
     # img = Label(window, image=render)
     # img.place(x=100, y=100)
 
-    img = ImageTk.PhotoImage(pinkL.resize((100, 100))) 
+    # Versus:
+    img = ImageTk.PhotoImage(pinkL.rotate(0, expand = 1).resize((150, 200))) 
     label = Label(window, image=img, bg = bakgrunn)
     label.image = img
-    label.place(relx = 0.3, rely = 0.25)
+    label.place(relx = 0.3, rely = 0.2)
 
+    # Blue stone:
+    img2 = ImageTk.PhotoImage(blueStone.rotate(0, expand = 1).resize((150, 120))) 
+    label2 = Label(window, image=img2, bg = bakgrunn)
+    label2.image = img2
+    label2.place(relx = 0.1, rely = 0.6)
 
+    # Orange stone:
+    orangeStone2 = orangeStone.transpose(Image.FLIP_LEFT_RIGHT)
+    img3 = ImageTk.PhotoImage(orangeStone2.rotate(0, expand = 1).resize((150, 120))) 
+    label3 = Label(window, image=img3, bg = bakgrunn)
+    label3.image = img3
+    label3.place(relx = 0.5, rely = 0.6)
 
+    # img2 = ImageTk.PhotoImage(gif.resize((250, 150))) 
+    # label2 = Label(window, image=img2, bg = bakgrunn)
+    # label2.image = img2
+    # label2.place(relx = 0.3, rely = 0.65)
+
+    # frames = [PhotoImage(file = fil, format = 'gif -index %i' %(i)) for i in range(212)]
+    # def update(ind):
+    #     frame = frames[ind]
+    #     ind += 1
+    #     label.configure(image=frame)
+    #     window.after(212, update, ind)
+    # label2 = Label(window)
+    # label2.place(relx = 0.3, rely = 0.65)
+    # window.after(0, update, 0)
+
+    
+
+    
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
@@ -347,13 +465,19 @@ def window3(): # Vindu med resultater
             tilbake2 = Button(w2, text="Back to the game", command=closeW2, font=("Arial Bold", 16), bg = knapp, activebackground = aktivknapp) # Fortsettknapp i det lille vinduet
             tilbake2.place(relx = 0.25, rely = 0.4)
         nesteRunde = Button(window, text="Next round", font = ("Arial Bold", 30), command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
-        nesteRunde.place(relx=0.35, rely=0.6)
+        nesteRunde.place(relx=0.35, rely=0.7)
         
         avslutt2 = Button(window, text="Quit", command=a2, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Avsluttknapp
         avslutt2.place(relx = 0.856, rely = 0.83)
     def w3_2(): # vindu 3 versjon 2
         fortsett = Button(window, text="Continue", font =("Arial Bold", 30), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.36, rely=0.6)
+    
+    lbl = ImageLabel(window)
+    lbl.place(relx = 0, rely = 0.25)
+    lbl.load(filGif)
+    # lbl.next_frame.config(heigh = 200)
+    # lbl.next_frame.config(width = 800)
 
     table[runder + 1][0] = 'Total score'
     global sc1
@@ -406,6 +530,99 @@ def window3(): # Vindu med resultater
     total_rows = 3
     t = Table(window)
     # Tabell slutt
+
+    def Manually():
+        clearFrame()
+
+        x = Label(window, text="Enter points", font=("Arial Bold", 50), bg = bakgrunn)
+        x.place(relx = 0.3, rely = 0.1)
+        tb = Label(window, text="Team Blue:", font=("Arial Bold", 20), bg = bakgrunn)
+        tb.place(relx = 0.27, rely = 0.25)
+        to = Label(window, text="Team Orange:", font=("Arial Bold", 20), bg = bakgrunn)
+        to.place(relx = 0.57, rely = 0.25)
+        l = Label(window, text=str(0), font=("Arial Bold", 60), bg = bakgrunn)
+        l.place(relx = 0.4, rely = 0.42)
+        s = Label(window, text=str(0), font=("Arial Bold", 60), bg = bakgrunn)
+        s.place(relx=0.7, rely= 0.42)
+
+        def pilOpp(): # Øker poeng team blue
+            value = int(l["text"])
+            if value < stonesPer:
+                global bluePoints
+                global orangePoints
+                if orangePoints > 0:
+                    bluePoints = 0
+                    l["text"] = f"{value}"
+                else:
+                    bluePoints += 1
+                    l["text"] = f"{value + 1}"
+
+        def pilNed():# Minker poeng team blue
+            value = int(l["text"])
+            if value > 0:
+                l["text"] = f"{value - 1}"
+                global bluePoints
+                bluePoints -= 1
+
+        def pilOpp2(): # Øker poeng team orange
+            value = int(s["text"])
+            if value < stonesPer:
+                
+                global orangePoints
+                global bluePoints
+                if bluePoints > 0:
+                    orangePoints = 0
+                    s["text"] = f"{value}"
+                else:
+                    orangePoints += 1
+                    s["text"] = f"{value + 1}"
+                
+        def pilNed2():# Minker poeng team orange
+            value = int(s["text"])
+            if value > 0:
+                s["text"] = f"{value - 1}"
+                global orangePoints
+                orangePoints -= 1
+        
+        def Cont():
+            global table
+            global bluePoints
+            global orangePoints
+            table[rundenr-1][1] = bluePoints
+            table[rundenr-1][2] = orangePoints
+            bluePoints = 0
+            orangePoints = 0
+            clearFrame()
+            window3()
+ 
+
+        opp = Button(window, text="\u2B99", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp)
+        opp.place(relx = 0.3, rely = 0.35)
+        
+        ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        ned.place(relx = 0.3, rely = 0.53)
+
+        opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        opp2.place(relx = 0.6, rely = 0.35)
+        
+        ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        ned2.place(relx = 0.6, rely = 0.53)
+        
+        cont = Button(window, text="Continue", command=Cont, font=("Arial Bold", 40),bg = knapp, activebackground = aktivknapp)
+        cont.place(relx = 0.39, rely = 0.77)
+    
+    def Recalc():
+        global rundenr
+        rundenr -= 1
+        pointsInTable(winnerTeam, points)
+        rundenr += 1
+
+
+    manually = Button(window, text="Add points manually", font=("Arial bold", 30), command=Manually, bg = knapp, activebackground = aktivknapp)
+    manually.place(relx = 0.41, rely = 0.83)
+
+    recalc = Button(window, text="Recalculate points", font=("Arial bold", 30), command=Recalc, bg = knapp, activebackground = aktivknapp)
+    recalc.place(relx = 0.01, rely = 0.83) 
     
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
         w3_2()
@@ -413,6 +630,7 @@ def window3(): # Vindu med resultater
         w3_1()
     
 def window4():
+    
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global avsluttBool
         global runder
@@ -428,6 +646,11 @@ def window4():
     
     global rundenr
     rundenr = 1
+
+    confetti = ImageLabel2(window)
+    confetti.pack()
+    confetti.load(filConfetti)
+    
     ns = Button(window, text="New game", command=nyttSpill, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # "Nytt spill"-knapp
     ns.place(relx=0.35, rely=0.6)
 
@@ -441,6 +664,8 @@ def window4():
     else: 
          vinnerText = Label(window, text="It's a tie", bg = bakgrunn, font=("Arial Bold", 50))
          vinnerText.place(relx=0.35, rely=0.3)
+    
+    
         
 window1()
 
