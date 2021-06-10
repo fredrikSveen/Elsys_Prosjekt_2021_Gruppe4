@@ -27,6 +27,13 @@ value1=0
 value2=0
 #pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
 
+pos1x=0.05
+pos1y=0.2
+pos2x=0.5
+pos3x=0.07
+pos3y=0.4
+pos4x = 0.55
+
 # Lager liste med resultater
 table = list(range(12))
 for i in range(0,12):
@@ -156,28 +163,35 @@ def window2(): # Vinduet under spill
     # Forstørre Team Blue og Team oransje og midtstille. Dette må også gjøres i s- og regret-funksjonen
     if winner == 'blue':
         lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-        lag1.place(relx = 0.05, rely = 0.2)
         lag2 = Label(window, text="Team Orange", font=("Arial bold", 40),bg = bakgrunn) 
-        lag2.place(relx = 0.45, rely = 0.2) 
     else: 
         lag1 = Label(window, text="Team Blue", font=("Arial bold", 40),bg = bakgrunn)  
-        lag1.place(relx = 0.05, rely = 0.2)
         lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial bold", 40)) 
-        lag2.place(relx = 0.45, rely = 0.2)         
+        
+    lag1.place(relx = pos1x, rely = pos1y)
+    lag2.place(relx = pos2x, rely = pos1y)         
 
     
     stones1 = stonesPer # Startverdi antall steiner igjen team 1
     stones2 = stonesPer # Startverdi antall steiner igjen team 2
     
     team1stones = Label(window, text=str(stones1), font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 1 (tall)
-    team1stones.place(relx = 0, rely = 0.4)
-    team1stonesText = Label(window, text="Stones left", font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 1 (tekst)
-    team1stonesText.place(relx = 0.05, rely = 0.4)
+    if stones1==1:
+        team1stonesText = Label(window, text="Stone   left", font=("Arial bold", 30),bg = bakgrunn)
+    else:
+        team1stonesText = Label(window, text="Stones left", font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 1 (tekst)
+    
     
     team2stones = Label(window, text=str(stones2), font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 2 (tall)
-    team2stones.place(relx = 0.5, rely = 0.4)
-    team2stonesText = Label(window, text="Stones left", font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 2 (text)
-    team2stonesText.place(relx = 0.55, rely = 0.4)
+    if stones2==1:
+        team2stonesText = Label(window, text="Stone   left", font=("Arial bold", 30),bg = bakgrunn)
+    else:
+        team2stonesText = Label(window, text="Stones left", font=("Arial bold", 30),bg = bakgrunn) # Label antall steiner igjen team 2 (text)
+    
+    team1stones.place(relx = pos3x, rely = pos3y)
+    team1stonesText.place(relx = pos3x+0.05, rely = pos3y)
+    team2stones.place(relx = pos4x, rely = pos3y)
+    team2stonesText.place(relx = pos4x+0.05, rely = pos3y)
 
     #simulasjon av steinkast
     def s(): # Funksjon til knapp som øker antall steiner kastet ved trykk på knapp, samt reduserer antall steiner igjen på hvert lag
@@ -198,9 +212,9 @@ def window2(): # Vinduet under spill
                     team2stonesText["text"] = "Stones left"
                 team2stones["text"] = str(value2 - 1)
                 lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
+                lag1.place(relx = pos1x, rely = pos1y)
                 lag2 = Label(window, text="Team Orange", bg = bakgrunn, font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
+                lag2.place(relx = pos2x, rely = pos1y)
             else:
                 stones1 -= 1
                 if stones1 == 1:
@@ -209,9 +223,9 @@ def window2(): # Vinduet under spill
                     team1stonesText["text"] = "Stones left"
                 team1stones["text"] = str(value1 - 1)
                 lag1 = Label(window, text="Team Blue", bg = bakgrunn, font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
+                lag1.place(relx = pos1x, rely = pos1y)
                 lag2 = Label(window, text="Team Orange", fg = "darkorange3", bg = bakgrunn, font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
+                lag2.place(relx = pos2x, rely = pos1y)
         else:
             if (stones % 2 == 0):
                 stones1 -= 1
@@ -221,9 +235,9 @@ def window2(): # Vinduet under spill
                     team1stonesText["text"] = "Stones left"
                 team1stones["text"] = str(value1 - 1)
                 lag1 = Label(window, text="Team Blue", bg = bakgrunn, font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
+                lag1.place(relx = pos1x, rely = pos1y)
                 lag2 = Label(window, text="Team Orange", fg = oransjefarge, font=("Arial bold", 40),bg = bakgrunn) 
-                lag2.place(relx = 0.45, rely = 0.2)
+                lag2.place(relx = pos2x, rely = pos1y)
             else:
                 stones2 -= 1
                 if stones2 == 1:
@@ -232,9 +246,9 @@ def window2(): # Vinduet under spill
                     team2stonesText["text"] = "Stones left"
                 team2stones["text"] = str(value2 - 1)
                 lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-                lag1.place(relx = 0.05, rely = 0.2)
+                lag1.place(relx = pos1x, rely = pos1y)
                 lag2 = Label(window, text="Team Orange", bg = bakgrunn, font=("Arial bold", 40)) 
-                lag2.place(relx = 0.45, rely = 0.2)
+                lag2.place(relx = pos2x, rely = pos1y)
 
 
 
@@ -269,9 +283,9 @@ def window2(): # Vinduet under spill
                     team2stones["text"] = str(value2 + 1)
                     
                     lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = bakgrunn)  
-                    lag1.place(relx = 0.05, rely = 0.2)
+                    lag1.place(relx = pos1x, rely = pos1y)
                     lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial bold", 40)) 
-                    lag2.place(relx = 0.45, rely = 0.2)
+                    lag2.place(relx = pos2x, rely = pos1y)
 
 
                 else:
@@ -283,9 +297,9 @@ def window2(): # Vinduet under spill
                     team1stones["text"] = str(value1 + 1)
 
                     lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-                    lag1.place(relx = 0.05, rely = 0.2)
+                    lag1.place(relx = pos1x, rely = pos1y)
                     lag2 = Label(window, text="Team Orange", font=("Arial bold", 40), bg = bakgrunn) 
-                    lag2.place(relx = 0.45, rely = 0.2)
+                    lag2.place(relx = pos2x, rely = pos1y)
 
             if (winner == "blue"):
                 if (stones % 2 == 0):
@@ -297,9 +311,9 @@ def window2(): # Vinduet under spill
                     team1stones["text"] = str(value1 + 1)
 
                     lag1 = Label(window, text="Team Blue", fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-                    lag1.place(relx = 0.05, rely = 0.2)
+                    lag1.place(relx = pos1x, rely = pos1y)
                     lag2 = Label(window, text="Team Orange", font=("Arial bold", 40), bg = bakgrunn) 
-                    lag2.place(relx = 0.45, rely = 0.2)
+                    lag2.place(relx = pos2x, rely = pos1y)
                     
                 else:
                     stones2 += 1
@@ -310,9 +324,9 @@ def window2(): # Vinduet under spill
                     team2stones["text"] = str(value2 + 1)
 
                     lag1 = Label(window, text="Team Blue", font=("Arial bold", 40), bg = bakgrunn)  
-                    lag1.place(relx = 0.05, rely = 0.2)
+                    lag1.place(relx = pos1x, rely = pos1y)
                     lag2 = Label(window, text="Team Orange", fg = oransjefarge, bg = bakgrunn, font=("Arial bold", 40)) 
-                    lag2.place(relx = 0.45, rely = 0.2)
+                    lag2.place(relx = pos2x, rely = pos1y)
     
     # Justere plasseringen(midtstilt?) og teksstørrelsen(større) til denne knappen
     regretStone = Button(window, text="Regret stone", font=("Arial bold", 25), command=regret, bg = knapp, activebackground = aktivknapp)
