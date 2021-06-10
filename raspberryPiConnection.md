@@ -12,4 +12,4 @@ Nå finnes det to måter å koble til på. Enten ved hjelp av nettverkskabel ell
 
 For å koble til fysisk, må du ha en ethernet-kabel og en pc med ethernet kontakt. Koble så Raspberry Pi sammen med PCen, med kabelen.
 
-Så åpner du *VNC Viewer* og skriver `raspberry.local` i feltet øverst.
+Så åpner du *VNC Viewer* og skriver `raspberry.local` i feltet øverst. 
