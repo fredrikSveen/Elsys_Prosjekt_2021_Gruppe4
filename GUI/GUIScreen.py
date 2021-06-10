@@ -110,8 +110,8 @@ class ImageLabel2(Label): # Gif
             self.config(image=self.frames[self.loc])
             self.after(self.delay, self.next_frame)
             self.config(bg = bakgrunn)
-    
-    
+
+
 
 # Lager liste med resultater
 table = list(range(12))
@@ -432,9 +432,9 @@ def window2(): # Vinduet under spill
     # label2.place(relx = 0.3, rely = 0.65)
     # window.after(0, update, 0)
 
-    
 
-    
+
+
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
@@ -472,7 +472,7 @@ def window3(): # Vindu med resultater
     def w3_2(): # vindu 3 versjon 2
         fortsett = Button(window, text="Continue", font =("Arial Bold", 30), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.36, rely=0.6)
-    
+
     lbl = ImageLabel(window)
     lbl.place(relx = 0, rely = 0.25)
     lbl.load(filGif)
@@ -530,7 +530,7 @@ def window3(): # Vindu med resultater
     total_rows = 3
     t = Table(window)
     # Tabell slutt
-
+    
     def Manually():
         clearFrame()
 
@@ -623,14 +623,14 @@ def window3(): # Vindu med resultater
 
     recalc = Button(window, text="Recalculate points", font=("Arial bold", 30), command=Recalc, bg = knapp, activebackground = aktivknapp)
     recalc.place(relx = 0.01, rely = 0.83) 
-    
+
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
         w3_2()
     else:
         w3_1()
     
 def window4():
-    
+
     def nyttSpill(): # Starter spillet på nytt (åpner vindu 1)
         global avsluttBool
         global runder
@@ -650,7 +650,7 @@ def window4():
     confetti = ImageLabel2(window)
     confetti.pack()
     confetti.load(filConfetti)
-    
+
     ns = Button(window, text="New game", command=nyttSpill, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # "Nytt spill"-knapp
     ns.place(relx=0.35, rely=0.6)
 
@@ -664,9 +664,9 @@ def window4():
     else: 
          vinnerText = Label(window, text="It's a tie", bg = bakgrunn, font=("Arial Bold", 50))
          vinnerText.place(relx=0.35, rely=0.3)
-    
-    
         
+
+
 window1()
 
     
