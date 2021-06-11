@@ -36,17 +36,20 @@ orangePoints = 0
 
 class ImageLabel(Label): # Gif
     """a label that displays images, and plays them if they are gifs"""
+    
     def load(self, im):
         if isinstance(im, str):
             im = Image.open(im)
             #im = im.resize(300, 200)
+            
         self.loc = 0
         self.frames = []
-    
+        
         try:
             for i in count(1):
                 self.frames.append(ImageTk.PhotoImage(im.copy()))
                 im.seek(i)
+
         except EOFError:
             pass
 
@@ -59,6 +62,8 @@ class ImageLabel(Label): # Gif
             self.config(image=self.frames[0])
         else:
             self.next_frame()
+    
+    
 
     def unload(self):
         self.config(image="")
