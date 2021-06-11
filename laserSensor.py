@@ -104,11 +104,12 @@ if __name__ == '__main__':
             sleep(0.1)
 
             
-            print("LED on")
-            GPIO.output(18,GPIO.HIGH)
-            sleep(1)
-            print("LED off")
-            GPIO.output(18,GPIO.LOW)
+            if (ADC_output_code > 2000):
+                print("LED on")
+                GPIO.output(18,GPIO.HIGH)
+                sleep(1)
+                print("LED off")
+                GPIO.output(18,GPIO.LOW)
 
     except (KeyboardInterrupt):
         print('\n', "Exit on Ctrl-C: Good bye!")
