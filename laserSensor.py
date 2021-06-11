@@ -5,6 +5,10 @@ import spidev
 from time import sleep
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(18,GPIO.OUT)
+
 # uses the "spidev" package ('sudo pip3 install spidev')
 # check dtparam=spi=on --> in /boot/config.txt or (set via 'sudo raspi-config')
 
@@ -99,9 +103,7 @@ if __name__ == '__main__':
             
             sleep(0.1)
 
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setwarnings(False)
-            GPIO.setup(18,GPIO.OUT)
+            
             print("LED on")
             GPIO.output(18,GPIO.HIGH)
             sleep(1)
