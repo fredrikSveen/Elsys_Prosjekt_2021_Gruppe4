@@ -90,16 +90,11 @@ if __name__ == '__main__':
         while True:
             ADC_output_code = MCP3201.readADC_MSB()
             ADC_voltage = MCP3201.convert_to_voltage(ADC_output_code)
-            print("MCP3201 output code (MSB-mode): %d" % ADC_output_code)
-            print("MCP3201 voltage: %0.2f V" % ADC_voltage)
             
             sleep(0.01)  # wait minimum of 100 ms between ADC measurements
             
             ADC_output_code = MCP3201.readADC_LSB()
             ADC_voltage = MCP3201.convert_to_voltage(ADC_output_code)
-            print("MCP3201 output code (LSB-mode): %d" % ADC_output_code)
-            print("MCP3201 voltage: %0.2f V" % ADC_voltage)
-            print()
             
             sleep(0.1)
 
@@ -110,6 +105,7 @@ if __name__ == '__main__':
                 sleep(1)
                 print("LED off")
                 GPIO.output(18,GPIO.LOW)
+                break
 
     except (KeyboardInterrupt):
         print('\n', "Exit on Ctrl-C: Good bye!")
