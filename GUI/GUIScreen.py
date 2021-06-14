@@ -717,13 +717,13 @@ def window4():
     # Forstørr og midtstill
     if sc1 > sc2:
          vinnerText = Label(window, text="Vinneren er " + name1, fg = 'blue', bg = bakgrunn, font=("Arial Bold", 40))
-         vinnerText.place(relx=0.1, rely=0.3)
+         vinnerText.place(relx=0.14, rely=0.3)
     elif sc1 < sc2:
          vinnerText = Label(window, text="Vinneren er " + name2, fg = oransjefarge, bg = bakgrunn, font=("Arial Bold", 40))
-         vinnerText.place(relx=0.07, rely=0.3)
+         vinnerText.place(relx=0.1, rely=0.3)
     else: 
          vinnerText = Label(window, text="Det ble uavgjort", bg = bakgrunn, font=("Arial Bold", 50))
-         vinnerText.place(relx=0.35, rely=0.3)
+         vinnerText.place(relx=0.17, rely=0.3)
         
 
 
