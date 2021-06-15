@@ -29,7 +29,7 @@ pinkL = Image.open("GUI\Images\persusPink2.png")
 blueStone = Image.open("GUI\Images\plueStone.png")
 orangeStone = Image.open("GUI\Images\orangeStone.png")
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
-filGif = 'GUI\Images\curlingGif.gif'
+filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
 filConfetti = 'GUI\Images\confetti.gif' 
 bluePoints = 0
 orangePoints = 0
