@@ -457,7 +457,8 @@ def window1(): # Åpner første vindu
         timer += 1 """
     
     
-
+    
+    print("test")
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
         if value < 10:
