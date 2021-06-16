@@ -76,6 +76,8 @@ table[0][0] = "Lag/Runde"
 table[0][1] = name1
 table[0][2] = name2
 
+print("test")
+
 class MCP3201(object):
     """
     Functions for reading the MCP3201 12-bit A/D converter using the SPI bus either in MSB- or LSB-mode
