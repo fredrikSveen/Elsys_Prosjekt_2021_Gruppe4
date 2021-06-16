@@ -15,7 +15,7 @@ import serial
 import time
 import spidev
 import RPi.GPIO as GPIO
-window.iconphoto(False, PhotoImage(file='GUI\Images\yellowStone.png'))
+window.iconphoto(False, PhotoImage(file='Images/yellowStone.png'))
 
 #Globale variabler:
 runder = 2
