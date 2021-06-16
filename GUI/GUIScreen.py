@@ -565,7 +565,7 @@ def window2(): # Vinduet under spill
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
         
-        #Opens connection to range sensor
+        """     #Opens connection to range sensor
         ser1 = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
         ser1.flush()
         #Continues until a new stone i registrated by the range sensor
@@ -630,7 +630,7 @@ def window2(): # Vinduet under spill
                                 lag2.place(relx = pos2x, rely = pos1y)
             print(line)
             #print(stones)
-            #time.sleep(0.1)
+            #time.sleep(0.1) """
             
         if __name__ == '__main__':
             SPI_bus = 0
