@@ -102,7 +102,7 @@ if __name__ == '__main__':
             sleep(0.1)
 
             
-            if (ADC_output_code > 20000):
+            if (ADC_output_code > 2000):
                 print("LED on")
                 
                 sleep(1)
