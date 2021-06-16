@@ -76,7 +76,6 @@ table[0][0] = "Lag/Runde"
 table[0][1] = name1
 table[0][2] = name2
 
-print("test")
 
 class MCP3201(object):
     """
@@ -449,13 +448,13 @@ def window1(): # Åpner første vindu
     s = Label(window, text=str(stonesPer), font=("Arial Bold", 60), bg = bakgrunn)
     s.place(relx=0.7, rely= 0.42)
 
-    ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    """ ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser0.flush()
     timer = 0
     while timer < 5:
         ser0.write(b"0\n")
         time.sleep(1)
-        timer += 1
+        timer += 1 """
     
     
 
@@ -1062,7 +1061,6 @@ def window4():
          vinnerText.place(relx=0.17, rely=0.3)
         
 
-print("test")
 window1()
 
     
