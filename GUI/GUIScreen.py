@@ -36,12 +36,12 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
-pinkL = Image.open("GUI\Images\persusPink2.png")
-blueStone = Image.open("GUI\Images\plueStone.png")
-orangeStone = Image.open("GUI\Images\orangeStone.png")
+pinkL = Image.open("Images/persusPink2.png")
+blueStone = Image.open("Images/plueStone.png")
+orangeStone = Image.open("Images/orangeStone.png")
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
-filGif = 'GUI\Images\curlingGif.gif'
-filConfetti = 'GUI\Images\confetti.gif' 
+filGif = 'Images/curlingGif.gif'
+filConfetti = 'Images/confetti.gif' 
 bluePoints = 0
 orangePoints = 0
 name1 = "Blått Lag"
