@@ -27,10 +27,54 @@ winnerTeam = 2 # input fra openCV (Team Blue = 1, Team Orange = 2, uavgjort = 0)
 points = 2 # Input fra openCV (antall poeng til winnerTeam, dersom uavgjort har ikke denne verdien noe å si)
 camera = PiCamera()
 camera.resolution = (3280,2464)
+stonesPer = 1
+stones1 = stonesPer
+stones2 = stonesPer
+sc1=0
+sc2=0
+aktivknapp = "forest green"
+oransjefarge = "darkorange3"
+knapp = "limegreen"
+bakgrunn = "palegreen"
+pinkL = Image.open("GUI\Images\persusPink2.png")
+blueStone = Image.open("GUI\Images\plueStone.png")
+orangeStone = Image.open("GUI\Images\orangeStone.png")
+#gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
+filGif = 'GUI\Images\curlingGif.gif'
+filConfetti = 'GUI\Images\confetti.gif' 
+bluePoints = 0
+orangePoints = 0
+name1 = "Blått Lag"
+name2 = "Oransje Lag"
+stoneLeft = "Stein igjen"
+stonesLeft = "Steiner igjen"
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(18,GPIO.OUT)
+
+value1=0
+value2=0
+#pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
+
+pos1x=0.03 #X-koordinat til Team Blue tekst
+pos1y=0.2 #Y-koordinat til team blue og team orange tekst
+pos2x=0.57 #X-koordinat til Team Orange tekst
+pos3x=0.02 #X-koordinat til Team Blue stones tekst
+pos3y=0.4 #Y-koordinat til team blue og team orange stones tekst
+pos4x = 0.6 #X-koordinat til Team Orange stones tekst
+
+# Lager liste med resultater
+table = list(range(12))
+for i in range(0,12):
+    cols = list(range(3))
+    cols[0] = str(i)        
+    cols[1] = ''
+    cols[2] = ''
+    table[i] = cols
+table[0][0] = "Lag/Runde"
+table[0][1] = name1
+table[0][2] = name2
 
 class MCP3201(object):
     """
@@ -247,29 +291,6 @@ def takePoints():
         winnerTeam = 0
         points = 0
 
-stonesPer = 1
-stones1 = stonesPer
-stones2 = stonesPer
-sc1=0
-sc2=0
-aktivknapp = "forest green"
-oransjefarge = "darkorange3"
-knapp = "limegreen"
-bakgrunn = "palegreen"
-pinkL = Image.open("GUI\Images\persusPink2.png")
-blueStone = Image.open("GUI\Images\plueStone.png")
-orangeStone = Image.open("GUI\Images\orangeStone.png")
-#gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
-filGif = 'GUI\Images\curlingGif.gif'
-filConfetti = 'GUI\Images\confetti.gif' 
-bluePoints = 0
-orangePoints = 0
-name1 = "Blått Lag"
-name2 = "Oransje Lag"
-stoneLeft = "Stein igjen"
-stonesLeft = "Steiner igjen"
-
-
 class ImageLabel(Label): # Gif
     """a label that displays images, and plays them if they are gifs"""
     
@@ -351,31 +372,6 @@ class ImageLabel2(Label): # Gif
             self.config(image=self.frames[self.loc])
             self.after(self.delay, self.next_frame)
             self.config(bg = bakgrunn)
-
-
-value1=0
-value2=0
-#pinkL = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/pinkLightning.png")
-
-pos1x=0.03 #X-koordinat til Team Blue tekst
-pos1y=0.2 #Y-koordinat til team blue og team orange tekst
-pos2x=0.57 #X-koordinat til Team Orange tekst
-pos3x=0.02 #X-koordinat til Team Blue stones tekst
-pos3y=0.4 #Y-koordinat til team blue og team orange stones tekst
-pos4x = 0.6 #X-koordinat til Team Orange stones tekst
-
-# Lager liste med resultater
-table = list(range(12))
-for i in range(0,12):
-    cols = list(range(3))
-    cols[0] = str(i)        
-    cols[1] = ''
-    cols[2] = ''
-    table[i] = cols
-table[0][0] = "Lag/Runde"
-table[0][1] = name1
-table[0][2] = name2
-
 
 def pointsInTable(winnerTeam, points):
     global winner
