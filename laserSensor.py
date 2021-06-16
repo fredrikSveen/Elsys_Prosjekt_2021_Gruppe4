@@ -85,11 +85,14 @@ if __name__ == '__main__':
     SPI_bus = 0
     CE = 0
     MCP3201 = MCP3201(SPI_bus, CE)
+    sleep(2)
+    GPIO.output(18,GPIO.HIGH)
     
     try:
         while True:
             ADC_output_code = MCP3201.readADC_MSB()
             ADC_voltage = MCP3201.convert_to_voltage(ADC_output_code)
+            print("MCP3201 output code (MSB-mode): %d" % ADC_output_code)
             
             sleep(0.01)  # wait minimum of 100 ms between ADC measurements
             
@@ -101,10 +104,10 @@ if __name__ == '__main__':
             
             if (ADC_output_code > 2000):
                 print("LED on")
-                GPIO.output(18,GPIO.HIGH)
+                
                 sleep(1)
                 print("LED off")
-                GPIO.output(18,GPIO.LOW)
+                #GPIO.output(18,GPIO.LOW)
                 break
 
     except (KeyboardInterrupt):
