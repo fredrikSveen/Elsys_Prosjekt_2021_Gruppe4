@@ -820,10 +820,6 @@ def window2(): # Vinduet under spill
     # label2.place(relx = 0.3, rely = 0.65)
     # window.after(0, update, 0)
 
-
-
-
-
 def window3(): # Vindu med resultater
     for i in range(1,11):
         table[i][0] = str(i)
@@ -1066,7 +1062,7 @@ def window4():
          vinnerText.place(relx=0.17, rely=0.3)
         
 
-
+print("test")
 window1()
 
     
