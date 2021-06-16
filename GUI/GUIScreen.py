@@ -234,7 +234,7 @@ def window1(): # Åpner første vindu
         clearFrame()
         window2()   
 
-    opp = Button(window, text="\u2B99", command=pilOpp, font=('Arial', 30, 'bold'), bg = knapp, activebackground = aktivknapp) # Oppknapp
+    opp = Button(window, text=u"\u2B99", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Oppknapp
     opp.place(relx = 0.3, rely = 0.35)
     
     ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp
