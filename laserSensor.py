@@ -119,3 +119,5 @@ if __name__ == '__main__':
 
     finally:
         print()
+        GPIO.output(18,GPIO.LOW)
+
