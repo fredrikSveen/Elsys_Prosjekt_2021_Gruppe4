@@ -148,7 +148,7 @@ def takePoints():
     global points
     global camera
     camera.start_preview()
-    time.sleep(2)
+    time.sleep(1)
     camera.stop_preview()
     camera.capture('image0.jpg')
 
@@ -491,16 +491,16 @@ def window1(): # Åpner første vindu
         clearFrame()
         window2()   
 
-    opp = Button(window, text="\u2B99", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Oppknapp
+    opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Oppknapp
     opp.place(relx = 0.3, rely = 0.35)
     
-    ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp
+    ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp
     ned.place(relx = 0.3, rely = 0.53)
 
-    opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Oppknapp steiner
+    opp2 = Button(window, text="\u2191", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Oppknapp steiner
     opp2.place(relx = 0.6, rely = 0.35)
     
-    ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp steiner
+    ned2 = Button(window, text="\u2193", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp steiner
     ned2.place(relx = 0.6, rely = 0.53)
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 40),bg = knapp, activebackground = aktivknapp) # Startknapp
@@ -562,6 +562,7 @@ def window2(): # Vinduet under spill
         stonesBefore = stones
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
+        GPIO.output(18,GPIO.HIGH)
         
         """     #Opens connection to range sensor
         ser1 = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
@@ -648,13 +649,12 @@ def window2(): # Vinduet under spill
                     time.sleep(0.1)
 
                     
-                    if (ADC_output_code > 2000):
+                    if (ADC_output_code < 2000):
                         print("LED on")
-                        GPIO.output(18,GPIO.HIGH)
                         stones += 1
-                        time.sleep(0.6)
+                        time.sleep(0.5)
                         print("LED off")
-                        GPIO.output(18,GPIO.LOW)
+                        
                         break
 
             except (KeyboardInterrupt):
@@ -672,6 +672,7 @@ def window2(): # Vinduet under spill
         #Check if the round is finished
         if (stones == stonesPer*2):
             stones = 0
+            GPIO.output(18,GPIO.LOW)
             takePoints()
             pointsInTable(winnerTeam, points)
             #global rundenr
@@ -973,16 +974,16 @@ def window3(): # Vindu med resultater
             window3()
  
 
-        opp = Button(window, text="\u2B99", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp)
+        opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp)
         opp.place(relx = 0.3, rely = 0.35)
         
-        ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
         ned.place(relx = 0.3, rely = 0.53)
 
-        opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        opp2 = Button(window, text="\u2191", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
         opp2.place(relx = 0.6, rely = 0.35)
         
-        ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        ned2 = Button(window, text="\u2193", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
         ned2.place(relx = 0.6, rely = 0.53)
         
         cont = Button(window, text="Fortsett", command=Cont, font=("Arial Bold", 35),bg = knapp, activebackground = aktivknapp)
