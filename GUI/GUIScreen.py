@@ -3,9 +3,9 @@ from PIL import ImageTk,Image
 from math import floor
 from itertools import count
 window = Tk()
-window.config(bg = "palegreen")
 window.title("Curling game")
 window.geometry('800x480')
+window.config(bg='white')
 window.iconphoto(False, PhotoImage(file='GUI\Images\yellowStone.png'))
 
 #Globale variabler:
@@ -28,6 +28,7 @@ bakgrunn = "palegreen"
 pinkL = Image.open("GUI\Images\persusPink2.png")
 blueStone = Image.open("GUI\Images\plueStone.png")
 orangeStone = Image.open("GUI\Images\orangeStone.png")
+logo = Image.open('GUI\Images\logoTrans.png')
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
 filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
 filConfetti = 'GUI\Images\confetti.gif' 
@@ -190,7 +191,17 @@ def Avslutt(): # Åpner varslingsvindu
     tilbake = Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 16),bg = knapp, activebackground = aktivknapp)
     tilbake.place(relx = 0.3, rely = 0.4)
 
+def logoWindow():
+    img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
+    label4 = Label(window, image=img4, bg = 'white')
+    label4.image = img4
+    label4.pack()
+    window.after(5000,clearFrame)
+    window.after(5000, window1)
+
+
 def window1(): # Åpner første vindu
+    window.config(bg = "palegreen")
     x = Label(window, text="Velg antall runder og steiner per lag", font=("Arial Bold", 20), bg = bakgrunn)
     x.place(relx = 0.2, rely = 0.1)
     chooseRounds = Label(window, text="Runder:", font=("Arial Bold", 20), bg = bakgrunn)
@@ -727,7 +738,8 @@ def window4():
         
 
 
-window1()
+logoWindow()
+
 
     
 window.mainloop()
