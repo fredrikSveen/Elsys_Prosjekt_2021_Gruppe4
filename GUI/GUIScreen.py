@@ -504,7 +504,7 @@ def logoWindow():
     window.after(100, defineCenter)
     window.after(50, startLyssekvens)
     window.after(3000,clearFrame)
-    window.after(3000, window1)
+    window.after(3200, window1)
 
 
 def window1(): # Åpner første vindu
@@ -624,6 +624,7 @@ def window2(): # Vinduet under spill
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
         GPIO.output(18,GPIO.HIGH)
+        beginning = True
                     
         if __name__ == '__main__':
             SPI_bus = 0
@@ -632,6 +633,12 @@ def window2(): # Vinduet under spill
             
             try:
                 while stonesBefore == stones:
+
+                    if beginning:
+                        for i in range(4):
+                            ADC_output_code = MCP3201X.readADC_MSB()
+                            time.sleep(0.005)
+                        beginning = False
                     
                     ADC_output_code = MCP3201X.readADC_MSB()
                     time.sleep(0.005)  # wait minimum of 100 ms between ADC measurements
