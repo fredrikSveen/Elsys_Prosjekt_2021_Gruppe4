@@ -1052,8 +1052,11 @@ def window3(): # Vindu med resultater
     def Recalc():
         global rundenr
         rundenr -= 1
+        takePoints()
         pointsInTable(winnerTeam, points)
         rundenr += 1
+        clearFrame()
+        window3()
 
 
     manually = Button(window, text="Legg til poeng manuelt", font=("Arial bold", 21), command=Manually, bg = knapp, activebackground = aktivknapp)
