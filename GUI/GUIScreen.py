@@ -652,7 +652,7 @@ def window2(): # Vinduet under spill
                     print(ADC_output_code)
 
                     
-                    if (ADC_output_code < 2000):
+                    if (ADC_output_code < 120):
                         print("LED on")
                         stones += 1
 
