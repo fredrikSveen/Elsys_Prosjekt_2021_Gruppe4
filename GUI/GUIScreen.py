@@ -305,9 +305,9 @@ def takePoints():
 def defineCenter():
     global camera
     global origo
-    camera.start_preview()
-    time.sleep(1)
-    camera.stop_preview()
+    #camera.start_preview()
+    #time.sleep(1)
+    #camera.stop_preview()
     #Tar bilde og lager bildet som "im"
     camera.capture('center0.jpg')
     im = cv2.imread("center0.jpg")
@@ -330,6 +330,8 @@ def defineCenter():
         area = cv2.contourArea(contour)
         if ((len(approx) > 15) & (len(approx) < 35) & (area < 82000) & (area > 71000) ):
             contour_list.append(contour)
+    if contour_list == []:
+        defineCenter() 
 
     M = cv2.moments(contour_list[0])
     cX = int(M["m10"] / M["m00"])
