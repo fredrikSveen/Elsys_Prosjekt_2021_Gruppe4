@@ -17,7 +17,7 @@ import time
 import spidev
 import RPi.GPIO as GPIO
 window.config(bg='hot pink')
-window.iconphoto(False, PhotoImage(file="Images/yellowStone.png"))
+window.iconphoto(False, PhotoImage(file="/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/yellowStone.png"))
 
 #Globale variabler:
 runder = 2
@@ -38,14 +38,14 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
-logo = Image.open("Images/logoTrans.png")
-pinkL = Image.open("Images/persusPink2.png")
-blueStone = Image.open("Images/plueStone.png")
-orangeStone = Image.open("Images/orangeStone.png")
+logo = Image.open("/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/logoTrans.png")
+pinkL = Image.open("/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/persusPink2.png")
+blueStone = Image.open("/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/plueStone.png")
+orangeStone = Image.open("/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/orangeStone.png")
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
 #filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
-curlingStones = Image.open('Images/curlingStones.png')
-filConfetti = 'Images/confetti.gif' 
+curlingStones = Image.open("/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/curlingStones.png")
+filConfetti = "/home/pi/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/confetti.gif" 
 bluePoints = 0
 orangePoints = 0
 name1 = "Blått Lag"
