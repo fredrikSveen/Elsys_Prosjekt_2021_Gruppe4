@@ -438,10 +438,19 @@ def Avslutt(): # Åpner varslingsvindu
     tilbake.place(relx = 0.3, rely = 0.4)
 
 def logoWindow():
+    def startLyssekvens():
+        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser0.flush()
+        timer = 0
+        while timer < 5:
+            ser0.write(b"0\n")
+            time.sleep(1)
+            timer += 1
     img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
     label4 = Label(window, image=img4, bg = 'white')
     label4.image = img4
     label4.pack()
+    window.after(50, startLyssekvens)
     window.after(500,clearFrame)
     window.after(500, window1)
 
@@ -458,16 +467,7 @@ def window1(): # Åpner første vindu
     l.place(relx = 0.4, rely = 0.42)
     s = Label(window, text=str(stonesPer), font=("Arial Bold", 60), bg = bakgrunn)
     s.place(relx=0.7, rely= 0.42)
-
-    def startLyssekvens():
-        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser0.flush()
-        timer = 0
-        while timer < 5:
-            ser0.write(b"0\n")
-            time.sleep(1)
-            timer += 1
-    
+ 
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
         if value < 10:
@@ -514,8 +514,6 @@ def window1(): # Åpner første vindu
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 40),bg = knapp, activebackground = aktivknapp) # Startknapp
     start.place(relx = 0.389, rely = 0.73)
-
-    window.after(50, startLyssekvens)
 
 def window2(): # Vinduet under spill
     global stones1
