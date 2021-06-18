@@ -585,7 +585,7 @@ def window2(): # Vinduet under spill
     avslutt.place(relx = 0.843, rely = 0.872)
     
     # Forstørre Team Blue og Team oransje og midtstille. Dette må også gjøres i s- og regret-funksjonen
-    if winner == 'blue':
+    if winner == 2:
         lag1 = Label(window, text=name1, fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
         lag2 = Label(window, text=name2, font=("Arial bold", 40),bg = bakgrunn) 
     else: 
