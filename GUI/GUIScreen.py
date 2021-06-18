@@ -341,9 +341,9 @@ def defineCenter():
     print(cX)
     print(cY)
     origo = [cX, cY]
-    cv2.drawContours(image, contour_list,  -1, (255,0,0), 2)
+    """     cv2.drawContours(image, contour_list,  -1, (255,0,0), 2)
     cv2.imshow('Objects Detected',image)
-    cv2.waitKey(0)
+    cv2.waitKey(0) """
 
 class ImageLabel(Label): # Gif
     """a label that displays images, and plays them if they are gifs"""
