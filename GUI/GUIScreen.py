@@ -197,8 +197,8 @@ def logoWindow():
     label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
     label4.pack()
-    window.after(5000,clearFrame)
-    window.after(5000, window1)
+    window.after(3000,clearFrame)
+    window.after(3000, window1)
 
 
 def window1(): # Åpner første vindu
