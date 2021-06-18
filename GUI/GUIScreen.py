@@ -634,17 +634,17 @@ def window2(): # Vinduet under spill
         if __name__ == '__main__':
             SPI_bus = 0
             CE = 0
-            MCP3201 = MCP3201(SPI_bus, CE)
+            MCP3201X = MCP3201(SPI_bus, CE)
             
             try:
                 while stonesBefore == stones:
-                    ADC_output_code = MCP3201.readADC_MSB()
-                    ADC_voltage = MCP3201.convert_to_voltage(ADC_output_code)
+                    ADC_output_code = MCP3201X.readADC_MSB()
+                    ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
                     
                     time.sleep(0.01)  # wait minimum of 100 ms between ADC measurements
                     
-                    ADC_output_code = MCP3201.readADC_LSB()
-                    ADC_voltage = MCP3201.convert_to_voltage(ADC_output_code)
+                    ADC_output_code = MCP3201X.readADC_LSB()
+                    ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
                     
                     time.sleep(0.1)
 
