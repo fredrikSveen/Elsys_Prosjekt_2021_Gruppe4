@@ -150,6 +150,7 @@ def takePoints():
     global winnerTeam
     global points
     global camera
+    global origo
     camera.start_preview()
     time.sleep(1)
     camera.stop_preview()
@@ -233,8 +234,6 @@ def takePoints():
 
     bluedist = []
     reddist = []
-    resolution = [820,616]
-    origo = [resolution[0] / 2, resolution[1] / 2]
 
     for i in range(len(bluestones)):
         xdist = abs(bluestones[i][0]-origo[0])
