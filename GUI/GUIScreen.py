@@ -654,6 +654,54 @@ def window2(): # Vinduet under spill
                     if (ADC_output_code < 2000):
                         print("LED on")
                         stones += 1
+
+                        if winner == 1:
+                            if (stones % 2 == 0):
+                                stones2 -= 1
+                                if stones2 == 1:
+                                    team2stonesText["text"] = stoneLeft
+                                if stones2 == 0 or stones2>1:
+                                    team2stonesText["text"] = stonesLeft
+                                team2stones["text"] = str(value2 - 1)
+                                lag1 = Label(window, text=name1, fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
+                                lag1.place(relx = pos1x, rely = pos1y)
+                                lag2 = Label(window, text=name2, bg = bakgrunn, font=("Arial bold", 40)) 
+                                lag2.place(relx = pos2x, rely = pos1y)
+                            else:
+                                stones1 -= 1
+                                if stones1 == 1:
+                                    team1stonesText["text"] = stoneLeft
+                                if stones1 == 0 or stones1>1:
+                                    team1stonesText["text"] = stonesLeft
+                                team1stones["text"] = str(value1 - 1)
+                                lag1 = Label(window, text=name1, bg = bakgrunn, font=("Arial bold", 40))  
+                                lag1.place(relx = pos1x, rely = pos1y)
+                                lag2 = Label(window, text=name2, fg = "darkorange3", bg = bakgrunn, font=("Arial bold", 40)) 
+                                lag2.place(relx = pos2x, rely = pos1y)
+                        else:
+                            if (stones % 2 == 0):
+                                stones1 -= 1
+                                if stones1 == 1:
+                                    team1stonesText["text"] = stoneLeft
+                                if stones1 == 0 or stones1>1:
+                                    team1stonesText["text"] = stonesLeft
+                                team1stones["text"] = str(value1 - 1)
+                                lag1 = Label(window, text=name1, bg = bakgrunn, font=("Arial bold", 40))  
+                                lag1.place(relx = pos1x, rely = pos1y)
+                                lag2 = Label(window, text=name2, fg = oransjefarge, font=("Arial bold", 40),bg = bakgrunn) 
+                                lag2.place(relx = pos2x, rely = pos1y)
+                            else:
+                                stones2 -= 1
+                                if stones2 == 1:
+                                    team2stonesText["text"] = stoneLeft
+                                if stones2 == 0 or stones2>1:
+                                    team2stonesText["text"] = stonesLeft
+                                team2stones["text"] = str(value2 - 1)
+                                lag1 = Label(window, text=name1, fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
+                                lag1.place(relx = pos1x, rely = pos1y)
+                                lag2 = Label(window, text=name2, bg = bakgrunn, font=("Arial bold", 40)) 
+                                lag2.place(relx = pos2x, rely = pos1y)
+
                         time.sleep(0.5)
                         print("LED off")
                         
