@@ -343,7 +343,7 @@ def defineCenter():
     print(cY)
     origo = [cX, cY]
 
-    window.after(3000,clearFrame)
+    clearFrame()
     window.after(3200, window1)
 
     """     cv2.drawContours(image, contour_list,  -1, (255,0,0), 2)
