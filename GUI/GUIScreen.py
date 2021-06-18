@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas, BOTH
 from PIL import ImageTk,Image
