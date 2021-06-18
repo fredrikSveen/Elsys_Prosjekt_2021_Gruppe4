@@ -42,8 +42,8 @@ blueStone = Image.open("Images/plueStone.png")
 orangeStone = Image.open("Images/orangeStone.png")
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
 #filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
-curlingStones = Image.open('GUI\Images\curlingStones.png')
-filConfetti = 'GUI\Images\confetti.gif' 
+curlingStones = Image.open('Images/curlingStones.png')
+filConfetti = 'Images/confetti.gif' 
 bluePoints = 0
 orangePoints = 0
 name1 = "Blått Lag"
