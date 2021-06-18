@@ -3,7 +3,6 @@ from PIL import ImageTk,Image
 from math import floor
 from itertools import count
 window = Tk()
-window.config(bg = "palegreen")
 window.title("Curling game")
 window.geometry('800x480')
 # import the necessary packages
@@ -15,6 +14,7 @@ import serial
 import time
 import spidev
 import RPi.GPIO as GPIO
+window.config(bg='white')
 window.iconphoto(False, PhotoImage(file="Images/yellowStone.png"))
 
 #Globale variabler:
@@ -36,11 +36,12 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
+logo = Image.open('Images/logoTrans.png')
 pinkL = Image.open("Images/persusPink2.png")
 blueStone = Image.open("Images/plueStone.png")
 orangeStone = Image.open("Images/orangeStone.png")
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
-filGif = 'Images/curlingGif.gif'
+filGif = 'Images/curlingGifTheOneAndOnly.gif'
 filConfetti = 'Images/confetti.gif' 
 bluePoints = 0
 orangePoints = 0
@@ -436,7 +437,17 @@ def Avslutt(): # Åpner varslingsvindu
     tilbake = Button(w, text="Tilbake til spillet", command=closeW, font=("Arial Bold", 16),bg = knapp, activebackground = aktivknapp)
     tilbake.place(relx = 0.3, rely = 0.4)
 
+def logoWindow():
+    img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
+    label4 = Label(window, image=img4, bg = 'white')
+    label4.image = img4
+    label4.pack()
+    window.after(500,clearFrame)
+    window.after(500, window1)
+
+
 def window1(): # Åpner første vindu
+    window.config(bg = "palegreen")
     x = Label(window, text="Velg antall runder og steiner per lag", font=("Arial Bold", 20), bg = bakgrunn)
     x.place(relx = 0.2, rely = 0.1)
     chooseRounds = Label(window, text="Runder:", font=("Arial Bold", 20), bg = bakgrunn)
@@ -513,7 +524,7 @@ def window2(): # Vinduet under spill
     l = Label(window, text=f"Runde {str(rundenr)}", font=("Arial", 55, 'bold italic'),bg = bakgrunn)
     l.place(relx = 0.3)
 
-    avslutt = Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 22),bg = knapp, activebackground = aktivknapp)
+    avslutt = Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 21),bg = knapp, activebackground = aktivknapp)
     avslutt.place(relx = 0.843, rely = 0.872)
     
     # Forstørre Team Blue og Team oransje og midtstille. Dette må også gjøres i s- og regret-funksjonen
@@ -800,7 +811,7 @@ def window2(): # Vinduet under spill
                     lag2.place(relx = pos2x, rely = pos1y)
     
     # Justere plasseringen(midtstilt?) og teksstørrelsen(større) til denne knappen
-    regretStone = Button(window, text="Angre stein", font=("Arial bold", 22), command=regret, bg = knapp, activebackground = aktivknapp)
+    regretStone = Button(window, text="Angre stein", font=("Arial bold", 21), command=regret, bg = knapp, activebackground = aktivknapp)
     regretStone.place(relx = 0.0005, rely = 0.872)
 
 
@@ -898,13 +909,13 @@ def window3(): # Vindu med resultater
             
             tilbake2 = Button(w2, text="Tilbake til spillet", command=closeW2, font=("Arial Bold", 16), bg = knapp, activebackground = aktivknapp) # Fortsettknapp i det lille vinduet
             tilbake2.place(relx = 0.3, rely = 0.4)
-        nesteRunde = Button(window, text="Neste runde", font = ("Arial Bold", 22), command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
+        nesteRunde = Button(window, text="Neste runde", font = ("Arial Bold", 21), command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
         nesteRunde.place(relx=0.37, rely=0.7)
         
-        avslutt2 = Button(window, text="Avslutt", command=a2, font=("Arial Bold", 22), bg = knapp, activebackground = aktivknapp) # Avsluttknapp
+        avslutt2 = Button(window, text="Avslutt", command=a2, font=("Arial Bold", 21), bg = knapp, activebackground = aktivknapp) # Avsluttknapp
         avslutt2.place(relx = 0.843, rely = 0.872)
     def w3_2(): # vindu 3 versjon 2
-        fortsett = Button(window, text="Fortsett", font =("Arial Bold", 22), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
+        fortsett = Button(window, text="Fortsett", font =("Arial Bold", 21), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.41, rely=0.7)
 
     lbl = ImageLabel(window)
@@ -943,11 +954,11 @@ def window3(): # Vindu med resultater
             self.e.insert(END, table[0][2])
             for i in range(total_rows):
                 for j in range(1, runder+1): 
-                    self.e = Entry(window, width=floor(25/runder), font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
+                    self.e = Entry(window, width=floor(24/runder), font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
                
-                self.e = Entry(window, width=33-floor(25/runder)*runder, font=('Arial',skrift,'bold'), justify = 'center', bd = kant)
+                self.e = Entry(window, width=32-floor(24/runder)*runder, font=('Arial',skrift,'bold'), justify = 'center', bd = kant)
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
  
@@ -1045,10 +1056,10 @@ def window3(): # Vindu med resultater
         rundenr += 1
 
 
-    manually = Button(window, text="Legg til poeng manuelt", font=("Arial bold", 22), command=Manually, bg = knapp, activebackground = aktivknapp)
+    manually = Button(window, text="Legg til poeng manuelt", font=("Arial bold", 21), command=Manually, bg = knapp, activebackground = aktivknapp)
     manually.place(relx = 0.0005, rely = 0.872)
 
-    recalc = Button(window, text="Sjekk poeng på nytt", font=("Arial bold", 22), command=Recalc, bg = knapp, activebackground = aktivknapp)
+    recalc = Button(window, text="Sjekk poeng på nytt", font=("Arial bold", 21), command=Recalc, bg = knapp, activebackground = aktivknapp)
     recalc.place(relx = 0.45, rely = 0.872) 
 
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
@@ -1112,7 +1123,9 @@ def window4():
          vinnerText.place(relx=0.17, rely=0.3)
         
 
-window1()
+
+logoWindow()
+
 
     
 window.mainloop()
