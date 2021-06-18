@@ -569,80 +569,11 @@ def window2(): # Vinduet under spill
         global stones2
         global value1
         global value2
-        global SPI_bus
-        global CE
         stonesBefore = stones
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
         GPIO.output(18,GPIO.HIGH)
-        
-        """     #Opens connection to range sensor
-        ser1 = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
-        ser1.flush()
-        #Continues until a new stone i registrated by the range sensor
-        while stonesBefore == stones:
-            line = 0
-            ser1.flush()
-            line = ser1.readline().decode('utf-8').rstrip()
-            if line != "":  #Checks if the serial data is containing any thing.
-                testline = 0
-                testline = int(line[0])
-                if testline == 1:
-                    lineint = 0 
-                    lineInt = int(line[1]) #Checks the first character of the serial string, and check if it's a 1.
-                    if lineInt == 1:
-                        stones += 1
-                        #Logic for marking which team that is next up.
-                        if winner == 1:
-                            if (stones % 2 == 0):
-                                stones2 -= 1
-                                if stones2 == 1:
-                                    team2stonesText["text"] = stoneLeft
-                                if stones2 == 0 or stones2>1:
-                                    team2stonesText["text"] = stonesLeft
-                                team2stones["text"] = str(value2 - 1)
-                                lag1 = Label(window, text=name1, fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-                                lag1.place(relx = pos1x, rely = pos1y)
-                                lag2 = Label(window, text=name2, bg = bakgrunn, font=("Arial bold", 40)) 
-                                lag2.place(relx = pos2x, rely = pos1y)
-                            else:
-                                stones1 -= 1
-                                if stones1 == 1:
-                                    team1stonesText["text"] = stoneLeft
-                                if stones1 == 0 or stones1>1:
-                                    team1stonesText["text"] = stonesLeft
-                                team1stones["text"] = str(value1 - 1)
-                                lag1 = Label(window, text=name1, bg = bakgrunn, font=("Arial bold", 40))  
-                                lag1.place(relx = pos1x, rely = pos1y)
-                                lag2 = Label(window, text=name2, fg = "darkorange3", bg = bakgrunn, font=("Arial bold", 40)) 
-                                lag2.place(relx = pos2x, rely = pos1y)
-                        else:
-                            if (stones % 2 == 0):
-                                stones1 -= 1
-                                if stones1 == 1:
-                                    team1stonesText["text"] = stoneLeft
-                                if stones1 == 0 or stones1>1:
-                                    team1stonesText["text"] = stonesLeft
-                                team1stones["text"] = str(value1 - 1)
-                                lag1 = Label(window, text=name1, bg = bakgrunn, font=("Arial bold", 40))  
-                                lag1.place(relx = pos1x, rely = pos1y)
-                                lag2 = Label(window, text=name2, fg = oransjefarge, font=("Arial bold", 40),bg = bakgrunn) 
-                                lag2.place(relx = pos2x, rely = pos1y)
-                            else:
-                                stones2 -= 1
-                                if stones2 == 1:
-                                    team2stonesText["text"] = stoneLeft
-                                if stones2 == 0 or stones2>1:
-                                    team2stonesText["text"] = stonesLeft
-                                team2stones["text"] = str(value2 - 1)
-                                lag1 = Label(window, text=name1, fg = 'blue', bg = bakgrunn, font=("Arial bold", 40))  
-                                lag1.place(relx = pos1x, rely = pos1y)
-                                lag2 = Label(window, text=name2, bg = bakgrunn, font=("Arial bold", 40)) 
-                                lag2.place(relx = pos2x, rely = pos1y)
-            print(line)
-            #print(stones)
-            #time.sleep(0.1) """
-            
+                    
         if __name__ == '__main__':
             SPI_bus = 0
             CE = 0
@@ -662,7 +593,7 @@ def window2(): # Vinduet under spill
                     print(ADC_output_code)
 
                     
-                    if (ADC_output_code < 250):
+                    if (ADC_output_code < 500):
                         print("LED on")
                         
                         if winner == 1:
