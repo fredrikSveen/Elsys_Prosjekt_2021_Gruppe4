@@ -652,10 +652,9 @@ def window2(): # Vinduet under spill
                     print(ADC_output_code)
 
                     
-                    if (ADC_output_code < 120):
+                    if (ADC_output_code < 250):
                         print("LED on")
-                        stones += 1
-
+                        
                         if winner == 1:
                             if (stones % 2 == 0):
                                 stones2 -= 1
@@ -702,9 +701,8 @@ def window2(): # Vinduet under spill
                                 lag1.place(relx = pos1x, rely = pos1y)
                                 lag2 = Label(window, text=name2, bg = bakgrunn, font=("Arial bold", 40)) 
                                 lag2.place(relx = pos2x, rely = pos1y)
-
-                        time.sleep(0.5)
-                        print("LED off")
+                        stones += 1
+                        time.sleep(0.3)
                         
                         break
 
