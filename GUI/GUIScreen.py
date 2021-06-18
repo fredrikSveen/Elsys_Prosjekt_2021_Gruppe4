@@ -623,10 +623,11 @@ def window2(): # Vinduet under spill
         stonesBefore = stones
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
-        GPIO.output(18,GPIO.HIGH)
         beginning = True
                     
         if __name__ == '__main__':
+            GPIO.output(18,GPIO.HIGH)
+            time.sleep(0.01)
             SPI_bus = 0
             CE = 0
             MCP3201X = MCP3201(SPI_bus, CE)
@@ -728,8 +729,6 @@ def window2(): # Vinduet under spill
             window3()
         else:
             window.after(200, checkForStone)
-
-    window.after(200,checkForStone)  
 
     #stonesButton=Button(window, text="Steiner", command=s, font=("Arial bold", 20), bg = knapp, activebackground = aktivknapp) # "Øke antall steiner"-knapp
     #stonesButton.place(relx = 0.4, rely = 0.7)
@@ -867,6 +866,8 @@ def window2(): # Vinduet under spill
     # label2 = Label(window)
     # label2.place(relx = 0.3, rely = 0.65)
     # window.after(0, update, 0)
+
+    window.after(200,checkForStone)  
 
 def window3(): # Vindu med resultater
     for i in range(1,11):
