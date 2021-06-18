@@ -468,8 +468,6 @@ def window1(): # Åpner første vindu
             time.sleep(1)
             timer += 1
     
-    window.after(50, startLyssekvens)
-    
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
         if value < 10:
@@ -516,6 +514,8 @@ def window1(): # Åpner første vindu
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 40),bg = knapp, activebackground = aktivknapp) # Startknapp
     start.place(relx = 0.389, rely = 0.73)
+
+    window.after(50, startLyssekvens)
 
 def window2(): # Vinduet under spill
     global stones1
@@ -654,7 +654,7 @@ def window2(): # Vinduet under spill
                     ADC_output_code = MCP3201X.readADC_MSB()
                     ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
                     
-                    time.sleep(0.01)  # wait minimum of 100 ms between ADC measurements
+                    time.sleep(0.005)  # wait minimum of 100 ms between ADC measurements
                     
                     #ADC_output_code = MCP3201X.readADC_LSB()
                     #ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
