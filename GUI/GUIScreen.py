@@ -499,7 +499,7 @@ def logoWindow():
         ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         ser0.flush()
         timer = 0
-        while timer < 3:
+        while timer < 5:
             ser0.write(b"0\n")
             time.sleep(0.1)
             timer += 1
