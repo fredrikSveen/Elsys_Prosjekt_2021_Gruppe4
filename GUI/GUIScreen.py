@@ -1,3 +1,5 @@
+#!/usr/bin/python3.7
+
 from tkinter import Button, Label, Tk, Entry, END, PhotoImage, NW, Canvas, BOTH
 from PIL import ImageTk,Image
 from math import floor
