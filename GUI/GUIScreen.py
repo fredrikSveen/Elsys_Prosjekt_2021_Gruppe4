@@ -459,17 +459,17 @@ def window1(): # Åpner første vindu
     s = Label(window, text=str(stonesPer), font=("Arial Bold", 60), bg = bakgrunn)
     s.place(relx=0.7, rely= 0.42)
 
-    """ ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-    ser0.flush()
-    timer = 0
-    while timer < 5:
-        ser0.write(b"0\n")
-        time.sleep(1)
-        timer += 1 """
+    def startLyssekvens():
+        ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser0.flush()
+        timer = 0
+        while timer < 5:
+            ser0.write(b"0\n")
+            time.sleep(1)
+            timer += 1
     
+    window.after(50, startLyssekvens)
     
-    
-    print("test")
     def pilOpp(): # Øker antall runder
         value = int(l["text"])
         if value < 10:
@@ -656,10 +656,10 @@ def window2(): # Vinduet under spill
                     
                     time.sleep(0.01)  # wait minimum of 100 ms between ADC measurements
                     
-                    ADC_output_code = MCP3201X.readADC_LSB()
-                    ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
+                    #ADC_output_code = MCP3201X.readADC_LSB()
+                    #ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
                     
-                    time.sleep(0.1)
+                    #time.sleep(0.1)
                     print(ADC_output_code)
 
                     
