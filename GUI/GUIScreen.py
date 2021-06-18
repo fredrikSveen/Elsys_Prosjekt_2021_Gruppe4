@@ -343,8 +343,8 @@ def defineCenter():
     print(cY)
     origo = [cX, cY]
 
-    clearFrame()
-    window.after(3200, window1)
+    window.after(3000,clearFrame)
+    window.after(3000, window1)
 
     """     cv2.drawContours(image, contour_list,  -1, (255,0,0), 2)
     cv2.imshow('Objects Detected',image)
@@ -501,9 +501,9 @@ def logoWindow():
         timer = 0
         while timer < 5:
             ser0.write(b"0\n")
-            time.sleep(1)
+            time.sleep(0.2)
             timer += 1
-        window.after(200, defineCenter)
+        window.after(100, defineCenter)
     img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
     label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
