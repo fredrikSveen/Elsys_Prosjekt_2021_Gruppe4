@@ -728,7 +728,7 @@ def window2(): # Vinduet under spill
         if (stones == stonesPer*2):
             stones = 0
             GPIO.output(18,GPIO.LOW)
-            time.sleep(1)
+            time.sleep(1.7)
             takePoints()
             pointsInTable(winnerTeam, points)
             #global rundenr
