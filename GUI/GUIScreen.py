@@ -15,7 +15,7 @@ import time
 import spidev
 import RPi.GPIO as GPIO
 window.config(bg='hot pink')
-window.iconphoto(False, PhotoImage(file="~/Elsys_Prosjekt_2021_Gruppe4/Images/yellowStone.png"))
+window.iconphoto(False, PhotoImage(file="~/Elsys_Prosjekt_2021_Gruppe4/GUI/Images/yellowStone.png"))
 
 #Globale variabler:
 runder = 2
