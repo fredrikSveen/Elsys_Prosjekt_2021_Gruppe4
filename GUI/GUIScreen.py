@@ -25,10 +25,10 @@ aktivknapp = "forest green"
 oransjefarge = "darkorange3"
 knapp = "limegreen"
 bakgrunn = "palegreen"
-logo = Image.open('Images/logoTrans.png')
-pinkL = Image.open("Images/persusPink2.png")
-blueStone = Image.open("Images/plueStone.png")
-orangeStone = Image.open("Images/orangeStone.png")
+logo = Image.open('GUI/Images/logoTrans.png')
+pinkL = Image.open("GUI/Images/persusPink2.png")
+blueStone = Image.open("GUI/Images/plueStone.png")
+orangeStone = Image.open("GUI/Images/orangeStone.png")
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
 #filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
 curlingStones = Image.open('GUI\Images\curlingStones.png')
@@ -197,6 +197,8 @@ def logoWindow():
     label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
     label4.pack()
+    scanner = Label(window, text='Sørg for at boet er tomt', font=("Arial bold", 40)) 
+    scanner.place(relx = 0.15, rely = 0.8)
     window.after(3000,clearFrame)
     window.after(3000, window1)
 
@@ -376,7 +378,7 @@ def window2(): # Vinduet under spill
             window3()
 
     stonesButton=Button(window, text="Steiner", command=s, font=("Arial bold", 20), bg = knapp, activebackground = aktivknapp) # "Øke antall steiner"-knapp
-    stonesButton.place(relx = 0.4, rely = 0.7)
+    stonesButton.place(relx = 0.4, rely = 1.7)
 
     def regret(): # Knapp for å angre stein
         global stones
