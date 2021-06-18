@@ -499,9 +499,9 @@ def logoWindow():
         ser0 = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
         ser0.flush()
         timer = 0
-        while timer < 5:
+        while timer < 3:
             ser0.write(b"0\n")
-            time.sleep(0.2)
+            time.sleep(0.1)
             timer += 1
         window.after(100, defineCenter)
     img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
