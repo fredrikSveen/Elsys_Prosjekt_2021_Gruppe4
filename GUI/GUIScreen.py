@@ -559,6 +559,8 @@ def window2(): # Vinduet under spill
         global stones2
         global value1
         global value2
+        global SPI_bus
+        global CE
         stonesBefore = stones
         value1 = int(team1stones["text"])
         value2 = int(team2stones["text"])
