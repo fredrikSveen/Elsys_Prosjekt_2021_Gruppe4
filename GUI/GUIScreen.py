@@ -15,7 +15,7 @@ import time
 import spidev
 import RPi.GPIO as GPIO
 window.config(bg='hot pink')
-window.iconphoto(False, PhotoImage(file="Images/yellowStone.png"))
+window.iconphoto(False, PhotoImage(file="Elsys_Prosjekt_2021_Gruppe4/Images/yellowStone.png"))
 
 #Globale variabler:
 runder = 2
@@ -245,8 +245,8 @@ def takePoints():
         ydist = abs(redstones[i][1]-origo[1])
         reddist.append(math.sqrt(xdist**2 + ydist**2))
 
-    bluedist[:] = [x for x in bluedist if x <= 325]
-    reddist[:] = [x for x in reddist if x <= 325]
+    bluedist[:] = [x for x in bluedist if x <= 256]
+    reddist[:] = [x for x in reddist if x <= 256]
 
     bluedist.sort()
     reddist.sort()
