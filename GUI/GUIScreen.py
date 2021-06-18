@@ -5,7 +5,7 @@ from itertools import count
 window = Tk()
 window.title("Curling game")
 window.geometry('800x480')
-window.config(bg='white')
+window.config(bg='hot pink')
 window.iconphoto(False, PhotoImage(file='GUI\Images\yellowStone.png'))
 
 #Globale variabler:
@@ -30,7 +30,8 @@ blueStone = Image.open("GUI\Images\plueStone.png")
 orangeStone = Image.open("GUI\Images\orangeStone.png")
 logo = Image.open('GUI\Images\logoTrans.png')
 #gif = Image.open("/Users/Lillemina/Elsys_Prosjekt_2021_Gruppe4/GUI/curlingGif.gif", format="gif -index 2")
-filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
+#filGif = 'GUI\Images\curlingGifTheOneAndOnly.gif'
+curlingStones = Image.open('GUI\Images\curlingStones.png')
 filConfetti = 'GUI\Images\confetti.gif' 
 bluePoints = 0
 orangePoints = 0
@@ -193,11 +194,11 @@ def Avslutt(): # Åpner varslingsvindu
 
 def logoWindow():
     img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
-    label4 = Label(window, image=img4, bg = 'white')
+    label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
     label4.pack()
-    window.after(500,clearFrame)
-    window.after(500, window1)
+    window.after(5000,clearFrame)
+    window.after(5000, window1)
 
 
 def window1(): # Åpner første vindu
@@ -550,11 +551,16 @@ def window3(): # Vindu med resultater
         fortsett = Button(window, text="Fortsett", font =("Arial Bold", 22), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.41, rely=0.7)
 
-    lbl = ImageLabel(window)
-    lbl.place(relx = 0, rely = 0.25)
-    lbl.load(filGif)
+    #lbl = ImageLabel(window)
+    #lbl.place(relx = 0, rely = 0.25)
+    #lbl.load(filGif)
     # lbl.next_frame.config(heigh = 200)
     # lbl.next_frame.config(width = 800)
+
+    img5 = ImageTk.PhotoImage(curlingStones.rotate(0, expand = 1).resize((548, 175))) 
+    label5 = Label(window, image=img5, bg = bakgrunn)
+    label5.image = img5
+    label5.place(relx = 0.15, rely = 0.3)
 
     table[runder + 1][0] = 'Poeng'
     global sc1
