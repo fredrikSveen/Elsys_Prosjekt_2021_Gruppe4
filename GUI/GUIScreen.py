@@ -649,6 +649,7 @@ def window2(): # Vinduet under spill
                     ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
                     
                     time.sleep(0.1)
+                    print(ADC_output_code)
 
                     
                     if (ADC_output_code < 2000):
