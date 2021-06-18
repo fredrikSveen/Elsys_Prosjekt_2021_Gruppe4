@@ -248,16 +248,16 @@ def window1(): # Åpner første vindu
 
     unicode_char = '\u2B99'
 
-    opp = Button(window, text=u'\u2B9D', command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Oppknapp
+    opp = Button(window, text=u'\u2191', command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp) # Oppknapp
     opp.place(relx = 0.3, rely = 0.35)
     
-    ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp
+    ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp
     ned.place(relx = 0.3, rely = 0.53)
 
-    opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Oppknapp steiner
+    opp2 = Button(window, text="\u2191", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Oppknapp steiner
     opp2.place(relx = 0.6, rely = 0.35)
     
-    ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp steiner
+    ned2 = Button(window, text="\u2193", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp) # Nedknapp steiner
     ned2.place(relx = 0.6, rely = 0.53)
     
     start = Button(window, text="Start", command=Start, font=("Arial Bold", 40),bg = knapp, activebackground = aktivknapp) # Startknapp
@@ -270,7 +270,7 @@ def window2(): # Vinduet under spill
     l = Label(window, text=f"Runde {str(rundenr)}", font=("Arial", 55, 'bold italic'),bg = bakgrunn)
     l.place(relx = 0.3)
 
-    avslutt = Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 22),bg = knapp, activebackground = aktivknapp)
+    avslutt = Button(window, text="Avslutt", command=Avslutt, font=("Arial Bold", 21),bg = knapp, activebackground = aktivknapp)
     avslutt.place(relx = 0.843, rely = 0.872)
     
     # Forstørre Team Blue og Team oransje og midtstille. Dette må også gjøres i s- og regret-funksjonen
@@ -442,7 +442,7 @@ def window2(): # Vinduet under spill
                     lag2.place(relx = pos2x, rely = pos1y)
     
     # Justere plasseringen(midtstilt?) og teksstørrelsen(større) til denne knappen
-    regretStone = Button(window, text="Angre stein", font=("Arial bold", 22), command=regret, bg = knapp, activebackground = aktivknapp)
+    regretStone = Button(window, text="Angre stein", font=("Arial bold", 21), command=regret, bg = knapp, activebackground = aktivknapp)
     regretStone.place(relx = 0.0005, rely = 0.872)
 
 
@@ -544,13 +544,13 @@ def window3(): # Vindu med resultater
             
             tilbake2 = Button(w2, text="Tilbake til spillet", command=closeW2, font=("Arial Bold", 16), bg = knapp, activebackground = aktivknapp) # Fortsettknapp i det lille vinduet
             tilbake2.place(relx = 0.3, rely = 0.4)
-        nesteRunde = Button(window, text="Neste runde", font = ("Arial Bold", 22), command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
+        nesteRunde = Button(window, text="Neste runde", font = ("Arial Bold", 21), command=n_r, bg = knapp, activebackground = aktivknapp) # "Neste runde"-knapp
         nesteRunde.place(relx=0.37, rely=0.7)
         
-        avslutt2 = Button(window, text="Avslutt", command=a2, font=("Arial Bold", 22), bg = knapp, activebackground = aktivknapp) # Avsluttknapp
+        avslutt2 = Button(window, text="Avslutt", command=a2, font=("Arial Bold", 21), bg = knapp, activebackground = aktivknapp) # Avsluttknapp
         avslutt2.place(relx = 0.843, rely = 0.872)
     def w3_2(): # vindu 3 versjon 2
-        fortsett = Button(window, text="Fortsett", font =("Arial Bold", 22), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
+        fortsett = Button(window, text="Fortsett", font =("Arial Bold", 21), command=w4, bg = knapp, activebackground = aktivknapp) # Fortsettknapp
         fortsett.place(relx=0.41, rely=0.7)
 
     #lbl = ImageLabel(window)
@@ -594,11 +594,11 @@ def window3(): # Vindu med resultater
             self.e.insert(END, table[0][2])
             for i in range(total_rows):
                 for j in range(1, runder+1): 
-                    self.e = Entry(window, width=floor(25/runder), font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
+                    self.e = Entry(window, width=floor(24/runder), font=('Arial',skrift,'bold'), justify = 'center', bd = kant) 
                     self.e.grid(row=i, column=j) 
                     self.e.insert(END, table[j][i])
                
-                self.e = Entry(window, width=33-floor(25/runder)*runder, font=('Arial',skrift,'bold'), justify = 'center', bd = kant)
+                self.e = Entry(window, width=32-floor(24/runder)*runder, font=('Arial',skrift,'bold'), justify = 'center', bd = kant)
                 self.e.grid(row=i, column=runder + 1) 
                 self.e.insert(END, table[runder + 1][i])
  
@@ -674,16 +674,16 @@ def window3(): # Vindu med resultater
             window3()
  
 
-        opp = Button(window, text="\u2B99", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp)
+        opp = Button(window, text="\u2191", command=pilOpp, font=("Arial Bold", 30), bg = knapp, activebackground = aktivknapp)
         opp.place(relx = 0.3, rely = 0.35)
         
-        ned = Button(window, text="\u2B9b", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        ned = Button(window, text="\u2193", command=pilNed, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
         ned.place(relx = 0.3, rely = 0.53)
 
-        opp2 = Button(window, text="\u2B99", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        opp2 = Button(window, text="\u2191", command=pilOpp2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
         opp2.place(relx = 0.6, rely = 0.35)
         
-        ned2 = Button(window, text="\u2B9b", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
+        ned2 = Button(window, text="\u2193", command=pilNed2, font=("Arial Bold", 30),bg = knapp, activebackground = aktivknapp)
         ned2.place(relx = 0.6, rely = 0.53)
         
         cont = Button(window, text="Fortsett", command=Cont, font=("Arial Bold", 35),bg = knapp, activebackground = aktivknapp)
@@ -696,10 +696,10 @@ def window3(): # Vindu med resultater
         rundenr += 1
 
 
-    manually = Button(window, text="Legg til poeng manuelt", font=("Arial bold", 22), command=Manually, bg = knapp, activebackground = aktivknapp)
+    manually = Button(window, text="Legg til poeng manuelt", font=("Arial bold", 21), command=Manually, bg = knapp, activebackground = aktivknapp)
     manually.place(relx = 0.0005, rely = 0.872)
 
-    recalc = Button(window, text="Sjekk poeng på nytt", font=("Arial bold", 22), command=Recalc, bg = knapp, activebackground = aktivknapp)
+    recalc = Button(window, text="Sjekk poeng på nytt", font=("Arial bold", 21), command=Recalc, bg = knapp, activebackground = aktivknapp)
     recalc.place(relx = 0.45, rely = 0.872) 
 
     if avsluttBool or (runder < rundenr): #Bestemmer hvilken versjon av vindu 3
