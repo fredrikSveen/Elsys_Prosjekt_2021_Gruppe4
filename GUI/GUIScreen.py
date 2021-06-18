@@ -503,12 +503,13 @@ def logoWindow():
             ser0.write(b"0\n")
             time.sleep(1)
             timer += 1
+        window.after(200, defineCenter)
     img4 = ImageTk.PhotoImage(logo.rotate(0, expand = 1).resize((600, 480))) 
     label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
     label4.pack()
-    window.after(50, startLyssekvens)
-    window.after(200, defineCenter)
+    window.after(100, startLyssekvens)
+    
 
 
 
