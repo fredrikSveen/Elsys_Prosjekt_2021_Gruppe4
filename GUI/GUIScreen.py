@@ -342,6 +342,10 @@ def defineCenter():
     print(cX)
     print(cY)
     origo = [cX, cY]
+
+    window.after(3000,clearFrame)
+    window.after(3200, window1)
+
     """     cv2.drawContours(image, contour_list,  -1, (255,0,0), 2)
     cv2.imshow('Objects Detected',image)
     cv2.waitKey(0) """
@@ -503,10 +507,10 @@ def logoWindow():
     label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
     label4.pack()
-    window.after(100, defineCenter)
     window.after(50, startLyssekvens)
-    window.after(3000,clearFrame)
-    window.after(3200, window1)
+    window.after(200, defineCenter)
+
+
 
 
 def window1(): # Åpner første vindu
