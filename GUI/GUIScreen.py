@@ -50,6 +50,7 @@ name1 = "Blått Lag"
 name2 = "Oransje Lag"
 stoneLeft = "Stein igjen"
 stonesLeft = "Steiner igjen"
+origo = [0,0]
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -157,21 +158,29 @@ def takePoints():
     im = cv2.imread("image0.jpg")
     reshape = cv2.resize(im, (820, 616))
     output = reshape.copy()
-    #gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
+
+    mask = cv2.threshold(gray, 230, 255, cv2.THRESH_BINARY)[1]
+
+    green = np.copy(output)
+
+    green[mask>0]=(0,128,0)
+
     # Konverterer bildet fra RGB-farger til HSV, for bedre fargegjenkjenning
-    hsv = cv2.cvtColor(output, cv2.COLOR_BGR2HSV)
-    #blurred = cv2.bilateralFilter(gray,10,30,75)
-    #blue_blurred = blurred.copy()
-    #red_blurred = blurred.copy()
+    hsv = cv2.cvtColor(green, cv2.COLOR_BGR2HSV)
+    #Bildet blurres for å kunne finne sirkelkanter enklere
+    blurred = cv2.bilateralFilter(gray,10,30,75)
+    blue_blurred = blurred.copy()
+    red_blurred = blurred.copy()
 
     #Fargedetection
-    #Blå range
-    low_blue = np.array([94, 80, 1])
+    #Blått deteksjonsområde
+    low_blue = np.array([90, 50, 2])
     high_blue = np.array([126, 255, 255])
 
-    #Rød range
-    low_red = np.array([1, 100, 130])
-    high_red = np.array([255, 255, 255])
+    #Rødt deteksjonsområde
+    low_red = np.array([1, 100, 138])
+    high_red = np.array([25, 255, 255])
 
     # Lager en "maske" som filtrerer bort alt i bildet bortsett fra det blå:
     blue_mask = cv2.inRange(hsv, low_blue, high_blue)
@@ -184,9 +193,9 @@ def takePoints():
 
     minDist = 10
     param1 = 300 #500
-    param2 = 16 #200 #smaller value-> more false circles
-    minRadius = 27
-    maxRadius = 35 #10
+    param2 = 10 #200 #smaller value-> more false circles
+    minRadius = 20
+    maxRadius = 26 
     blue_circles = cv2.HoughCircles(blue_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
     red_circles = cv2.HoughCircles(red_mask, cv2.HOUGH_GRADIENT, 1, minDist, param1=param1, param2=param2, minRadius=minRadius, maxRadius=maxRadius)
 
@@ -203,7 +212,7 @@ def takePoints():
         blue_circles = np.round(blue_circles[0, :]).astype("int")
         for (x, y, r) in blue_circles:
             cv2.circle(output, (x, y), r, (0, 255, 0), 4)
-            cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
+            #cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
             print(x,y, r, "blue")
             bluestones.append((x,y))
             #bluecount +=1
@@ -212,7 +221,7 @@ def takePoints():
         red_circles = np.round(red_circles[0, :]).astype("int")
         for (x, y, r) in red_circles:
             cv2.circle(output, (x, y), r, (0, 255, 0), 4)
-            cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
+            #cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
             print(x,y, r, "red")
             redstones.append((x,y))
             #redcount +=1
@@ -293,6 +302,48 @@ def takePoints():
     else:
         winnerTeam = 0
         points = 0
+
+def defineCenter():
+    global camera
+    global origo
+    camera.start_preview()
+    time.sleep(1)
+    camera.stop_preview()
+    #Tar bilde og lager bildet som "im"
+    camera.capture('center0.jpg')
+    im = cv2.imread("center0.jpg")
+    #Bildet gjoeres mindre
+    reshape = cv2.resize(im, (820, 616))
+    image = reshape.copy()
+
+    # convert image to grayscale image
+
+
+    bilateral_filtered_image = cv2.bilateralFilter(image, 5, 175, 175)
+
+    edge_detected_image = cv2.Canny(bilateral_filtered_image, 75, 200)
+
+    contours, hierarchy = cv2.findContours(edge_detected_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    contour_list = []
+    for contour in contours:
+        approx = cv2.approxPolyDP(contour,0.01*cv2.arcLength(contour,True),True)
+        area = cv2.contourArea(contour)
+        if ((len(approx) > 15) & (len(approx) < 35) & (area < 82000) & (area > 71000) ):
+            contour_list.append(contour)
+
+    M = cv2.moments(contour_list[0])
+    cX = int(M["m10"] / M["m00"])
+    cY = int(M["m01"] / M["m00"])
+    cv2.circle(image, (cX, cY), 7, (255, 255, 255), -1)
+    cv2.putText(image, "center", (cX - 20, cY - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+
+    print(cX)
+    print(cY)
+    origo = [cX, cY]
+    cv2.drawContours(image, contour_list,  -1, (255,0,0), 2)
+    cv2.imshow('Objects Detected',image)
+    cv2.waitKey(0)
 
 class ImageLabel(Label): # Gif
     """a label that displays images, and plays them if they are gifs"""
@@ -451,6 +502,7 @@ def logoWindow():
     label4 = Label(window, image=img4, bg = 'hot pink')
     label4.image = img4
     label4.pack()
+    window.after(100, defineCenter)
     window.after(50, startLyssekvens)
     window.after(3000,clearFrame)
     window.after(3000, window1)
@@ -581,9 +633,8 @@ def window2(): # Vinduet under spill
             
             try:
                 while stonesBefore == stones:
-                    ADC_output_code = MCP3201X.readADC_MSB()
-                    ADC_voltage = MCP3201X.convert_to_voltage(ADC_output_code)
                     
+                    ADC_output_code = MCP3201X.readADC_MSB()
                     time.sleep(0.005)  # wait minimum of 100 ms between ADC measurements
                     
                     #ADC_output_code = MCP3201X.readADC_LSB()
